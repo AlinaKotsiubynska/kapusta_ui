@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { INCOMES, EXPENSES } from 'helpers/constants/routes.constants';
 import { NavLink, useRouteMatch, Switch, Route } from 'react-router-dom';
 import { useHistory } from 'react-router';
+import { Assets } from 'components/Assets';
 
 export const AssetsPage = () => {
   const TABS = [INCOMES, EXPENSES];
@@ -11,9 +12,9 @@ export const AssetsPage = () => {
   const getComponent = tab => {
     switch (tab) {
       case INCOMES:
-        return <div>'INCOMES'</div>;
+        return <Assets tabKey={INCOMES} />;
       case EXPENSES:
-        return <div>'EXPENSES'</div>;
+        return <Assets tabKey={EXPENSES} />;
       default:
         break;
     }
