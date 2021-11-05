@@ -2,12 +2,33 @@ import { useTable } from 'react-table';
 import { useMemo } from 'react';
 
 export const AssetsList = () => {
+  const deleteEntry = e => {
+    const onDel = event => {
+      console.log(e);
+    };
+
+    console.log(e);
+    return (
+      <button type="button" onClick={onDel}>
+        trashIcon
+      </button>
+    );
+  };
+
   const data = [
     {
+      id: 1,
       date: 'миллион до н.э',
       descr: 'Бананы',
       category: 'Трансопрт',
       total: 5000,
+    },
+    {
+      id: 2,
+      date: '500',
+      descr: 'Лампа',
+      category: 'аптека',
+      total: 100,
     },
   ];
 
@@ -28,6 +49,10 @@ export const AssetsList = () => {
       {
         Header: 'Сумма',
         accessor: 'total',
+      },
+      {
+        Header: ' ',
+        accessor: deleteEntry,
       },
     ],
     [],
