@@ -4,6 +4,7 @@ import { NavLink, useRouteMatch, Switch, Route } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { Assets } from 'components/Assets';
 import { Balance } from 'components/shared/Balance';
+import styles from './HomePage.module.scss';
 
 export const HomePage = () => {
   const TABS = [INCOMES, EXPENSES];
@@ -26,7 +27,7 @@ export const HomePage = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.homeBody}>
       <Balance />
       {TABS.map(tab => (
         <NavLink key={tab} to={path + '/' + tab}>
