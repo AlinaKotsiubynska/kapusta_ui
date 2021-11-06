@@ -1,16 +1,16 @@
 import { useTable } from 'react-table';
 import { useMemo } from 'react';
+import { ReactComponent as Trash } from 'assets/icons/trash1.svg';
 
 export const AssetsList = () => {
-  const deleteEntry = e => {
+  const deleteEntry = data => {
     const onDel = event => {
-      console.log(e);
+      //delete method
+      console.log(data);
     };
-
-    console.log(e);
     return (
       <button type="button" onClick={onDel}>
-        trashIcon
+        <Trash />
       </button>
     );
   };
