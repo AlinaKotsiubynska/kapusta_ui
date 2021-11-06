@@ -1,4 +1,5 @@
 import { useState } from 'react/cjs/react.development';
+import styles from './Balance.module.scss';
 
 export const Balance = () => {
   const [balance, setBalance] = useState(0);
@@ -13,9 +14,11 @@ export const Balance = () => {
   };
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <form onSubmit={formHandler}>
-        <label htmlFor="input">Баланс:</label>
+        <label htmlFor="input" className={styles.input}>
+          Баланс:
+        </label>
         <input
           type="number"
           name="input"
@@ -23,7 +26,9 @@ export const Balance = () => {
           value={balance}
           onChange={inputHandler}
         />
-        <button type="submit">Подтвердить</button>
+        <button type="submit" className={styles.button}>
+          Подтвердить
+        </button>
       </form>
     </div>
   );
