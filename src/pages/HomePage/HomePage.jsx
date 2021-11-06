@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
-import { INCOMES, EXPENSES } from 'helpers/constants/routes.constants';
+import { INCOMES, EXPENSES, REPORTS } from 'helpers/constants/routes.constants';
 import { NavLink, useRouteMatch, Switch, Route } from 'react-router-dom';
-import { useHistory } from 'react-router';
+import { Redirect, useHistory } from 'react-router';
 import { Assets } from 'components/Assets';
 import { Balance } from 'components/shared/Balance';
 
 export const HomePage = () => {
   const TABS = [INCOMES, EXPENSES];
+  const ROUTESNAMES = [INCOMES, EXPENSES, REPORTS];
   const { path } = useRouteMatch();
   const history = useHistory();
 
@@ -28,17 +29,19 @@ export const HomePage = () => {
   return (
     <div>
       <Balance />
+      <NavLink to={path + '/' + REPORTS}>{REPORTS}</NavLink>
       {TABS.map(tab => (
         <NavLink key={tab} to={path + '/' + tab}>
           {tab}
         </NavLink>
       ))}
       <Switch>
-        {TABS.map(tab => (
+        {ROUTESNAMES.map(tab => (
           <Route key={tab} path={path + '/' + tab}>
             {getComponent(tab)}
           </Route>
         ))}
+        <Redirect to={path + '/' + EXPENSES} />
       </Switch>
     </div>
   );
