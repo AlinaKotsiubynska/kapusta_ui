@@ -1,1 +1,1 @@
-export { ReportPage } from './BackButton';
+export { BackButton } from './BackButton';

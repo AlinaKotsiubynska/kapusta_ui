@@ -5,6 +5,7 @@
 export const CategoriesItem = () => {
   return (
     <>
+      <p>Категория 1</p>
       {/* <h1>Home</h1>
       <Switch>
         <Route path={`${match.path}/${EXPENSES}`}>

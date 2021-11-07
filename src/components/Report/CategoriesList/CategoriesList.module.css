@@ -1,0 +1,8 @@
+.switcher {
+  display: flex;
+  justify-content: center;
+}
+
+.categories {
+  text-align: center;
+}
