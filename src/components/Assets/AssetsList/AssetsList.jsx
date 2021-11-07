@@ -19,10 +19,31 @@ export const AssetsList = () => {
   const data = [
     {
       id: 1,
-      date: 'миллион до н.э',
+      date: '05.05.2020',
       descr: 'Бананы',
       category: 'Трансопрт',
       total: 5000,
+    },
+    {
+      id: 2,
+      date: '500',
+      descr: 'Лампа',
+      category: 'аптека',
+      total: 100,
+    },
+    {
+      id: 2,
+      date: '500',
+      descr: 'Лампа',
+      category: 'аптека',
+      total: 100,
+    },
+    {
+      id: 2,
+      date: '500',
+      descr: 'Лампа',
+      category: 'аптека',
+      total: 100,
     },
     {
       id: 2,
@@ -65,28 +86,36 @@ export const AssetsList = () => {
     tableInstance;
 
   return (
-    <table {...getTableProps()} className={styles.table}>
-      <thead className={styles.header}>
-        {headerGroups.map(headerGroup => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-      <tbody {...getTableBodyProps()}>
-        {rows.map(row => {
-          prepareRow(row);
-          return (
-            <tr {...row.getRowProps()}>
-              {row.cells.map(cell => {
-                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
-              })}
+    <div className={styles.tableWrapper}>
+      <table {...getTableProps()} className={styles.table}>
+        <thead className={styles.header}>
+          {headerGroups.map(headerGroup => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map(column => (
+                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+              ))}
             </tr>
-          );
-        })}
-      </tbody>
-    </table>
+          ))}
+        </thead>
+      </table>
+      <div className={styles.bodyWrapper}>
+        <table {...getTableProps()} className={styles.tableBody}>
+          <tbody {...getTableBodyProps()}>
+            {rows.map(row => {
+              prepareRow(row);
+              return (
+                <tr {...row.getRowProps()}>
+                  {row.cells.map(cell => {
+                    return (
+                      <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 };

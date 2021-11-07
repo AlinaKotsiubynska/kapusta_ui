@@ -1,18 +1,78 @@
-.table {
+.table,
+.tableBody {
+  table-layout: fixed;
+  border-collapse: collapse;
   border-spacing: 0;
-  border: 2px solid #f5f6fb;
-  border-radius: 20px 20px 0 0;
-  overflow: hidden;
   text-align: left;
+  width: 100%;
+  border: 2px solid #f5f6fb;
 }
 
-.header tr {
+.table {
+  background-color: #f5f6fb;
+  padding-right: 6px;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+}
+.bodyWrapper {
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.table thead {
+  padding-right: 6px;
+}
+
+.bodyWrapper {
+  height: 200px;
+  overflow-y: scroll;
+}
+.bodyWrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.bodyWrapper::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: #ff751d;
+}
+
+.table tbody::-webkit-scrollbar-track {
   background-color: #f5f6fb;
 }
 
-th,
-td {
+th {
   padding: 20px;
+}
+
+td {
+  padding: 10px 20px;
+}
+
+tr {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.04em;
+  color: #52555f;
+}
+
+td:nth-child(4) {
+  font-weight: bold;
+  text-align: left;
+  color: #e7192e;
+}
+
+th {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #000000;
 }
 
 tr:not(:last-child) td {
@@ -30,4 +90,26 @@ tr:not(:last-child) td {
 .button:hover {
   background-color: #f5f6fb;
   cursor: pointer;
+}
+th:nth-child(1),
+td:nth-child(1) {
+  width: 15%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: 30%;
+}
+th:nth-child(3),
+td:nth-child(3) {
+  width: 30%;
+  text-align: center;
+}
+th:nth-child(4),
+td:nth-child(4) {
+  width: 20%;
+}
+th:nth-child(5),
+td:nth-child(5) {
+  width: 15%;
 }
