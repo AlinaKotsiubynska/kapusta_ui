@@ -1,0 +1,33 @@
+.table {
+  border-spacing: 0;
+  border: 2px solid #f5f6fb;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+  text-align: left;
+}
+
+.header tr {
+  background-color: #f5f6fb;
+}
+
+th,
+td {
+  padding: 20px;
+}
+
+tr:not(:last-child) td {
+  border-bottom: 2px solid #f5f6fb;
+}
+
+.button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+.button:hover {
+  background-color: #f5f6fb;
+  cursor: pointer;
+}

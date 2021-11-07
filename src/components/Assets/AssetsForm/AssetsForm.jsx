@@ -1,4 +1,5 @@
 import Button from 'components/shared/Button';
+import styles from './AssetsForm.module.scss';
 
 const options = ['транспорт', 'еда', 'коммуналка', 'связь'];
 
@@ -9,7 +10,7 @@ export const AssetsForm = () => {
     console.log(e.target.select.value);
   };
   return (
-    <form onSubmit={formHandler}>
+    <form onSubmit={formHandler} className={styles.form}>
       <input type="text" name="input" />
       <select size="1" name="select">
         {options.map(el => (

@@ -1,6 +1,7 @@
 import { useTable } from 'react-table';
 import { useMemo } from 'react';
 import { ReactComponent as Trash } from 'assets/icons/trash1.svg';
+import styles from './AssetsList.module.scss';
 
 export const AssetsList = () => {
   const deleteEntry = data => {
@@ -9,7 +10,7 @@ export const AssetsList = () => {
       console.log(data);
     };
     return (
-      <button type="button" onClick={onDel}>
+      <button type="button" onClick={onDel} className={styles.button}>
         <Trash />
       </button>
     );
@@ -64,8 +65,8 @@ export const AssetsList = () => {
     tableInstance;
 
   return (
-    <table {...getTableProps()}>
-      <thead>
+    <table {...getTableProps()} className={styles.table}>
+      <thead className={styles.header}>
         {headerGroups.map(headerGroup => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map(column => (
