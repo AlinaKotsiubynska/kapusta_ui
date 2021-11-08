@@ -29,10 +29,15 @@ export const HomePage = () => {
 
   return (
     <div className={styles.homeBody}>
-      <Balance />
       <NavLink to={path + '/' + REPORTS}>{REPORTS}</NavLink>
+      <Balance />
       {TABS.map(tab => (
-        <NavLink key={tab} to={path + '/' + tab}>
+        <NavLink
+          key={tab}
+          to={path + '/' + tab}
+          className={styles.navlink}
+          activeClassName={styles.activenavlink}
+        >
           {tab}
         </NavLink>
       ))}
