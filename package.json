@@ -3,12 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.23.0",
     "gh-pages": "^3.2.3",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-hot-toast": "^2.0.0",
+    "react-hot-toast": "^2.1.1",
     "react-router-dom": "^5.2.1",
     "react-scripts": "4.0.3"
   },
@@ -42,7 +41,7 @@
     "source.fixAll.eslint": true
   },
   "devDependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.23.0",
     "eslint": "^7.30.0",
     "husky": "^7.0.1",
     "lint-staged": "^11.0.1",
