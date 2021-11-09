@@ -1,24 +1,54 @@
-import { Route, Switch, Redirect, useRouteMatch } from 'react-router-dom';
-import { EXPENSES, INCOMES, REPORTS } from 'helpers/constants/routes.constants';
+import { useEffect } from 'react';
+import { INCOMES, EXPENSES, REPORTS } from 'helpers/constants/routes.constants';
+import { NavLink, useRouteMatch, Switch, Route } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router';
+import { Assets } from 'components/Assets';
+import { Balance } from 'components/shared/Balance';
+import styles from './HomePage.module.scss';
 
 export const HomePage = () => {
-  const match = useRouteMatch();
+  const TABS = [INCOMES, EXPENSES];
+  const ROUTESNAMES = [INCOMES, EXPENSES, REPORTS];
+  const { path } = useRouteMatch();
+  const history = useHistory();
+
+  const getComponent = tab => {
+    switch (tab) {
+      case INCOMES:
+        return <Assets tabKey={INCOMES} />;
+      case EXPENSES:
+        return <Assets tabKey={EXPENSES} />;
+      default:
+        break;
+    }
+  };
+  useEffect(() => {
+    history.push(`${path}/${TABS[0]}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <>
-      <h1>Home</h1>
+    <div className={styles.homeBody}>
+      <NavLink to={path + '/' + REPORTS}>{REPORTS}</NavLink>
+      <Balance />
+      {TABS.map(tab => (
+        <NavLink
+          key={tab}
+          to={path + '/' + tab}
+          className={styles.navlink}
+          activeClassName={styles.activenavlink}
+        >
+          {tab}
+        </NavLink>
+      ))}
       <Switch>
-        <Route path={`${match.path}/${EXPENSES}`}>
-          <p>EXPENSES</p>
-        </Route>
-        <Route path={`${match.path}/${INCOMES}`}>
-          <p>INCOMES</p>
-        </Route>
-        <Route path={`${match.path}/${REPORTS}`}>
-          <p>REPORTS</p>
-        </Route>
-        <Redirect to={`${match.path}/${EXPENSES}`} />
+        {ROUTESNAMES.map(tab => (
+          <Route key={tab} path={path + '/' + tab}>
+            {getComponent(tab)}
+          </Route>
+        ))}
+        <Redirect to={path + '/' + EXPENSES} />
       </Switch>
-    </>
+    </div>
   );
 };
