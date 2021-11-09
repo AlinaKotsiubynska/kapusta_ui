@@ -1,5 +1,50 @@
+.wrapper {
+  position: relative;
+  display: flex;
+}
+.calendarWrapper {
+  margin-right: 23px;
+}
+.calendar {
+  // display: none;
+  position: absolute;
+  top: 25px;
+  z-index: 100;
+}
+.calendarLabel {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.calendarIcon {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+}
 .form {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
   margin-bottom: 59px;
+  margin-right: 27px;
+  width: 100%;
+
+  button {
+    // временные стили
+    width: 125px;
+  }
+
+  button:not(:last-child) {
+    margin-right: 15px;
+  }
+}
+.input {
+  width: 51%;
+}
+.select {
+  width: 27%;
+}
+.calc {
+  width: 22%;
 }
