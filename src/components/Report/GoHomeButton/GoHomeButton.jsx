@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { HOME } from 'helpers/constants/routes.constants';
-import css from './BackButton.module.css';
+import css from './GoHomeButton.module.css';
 
 export const GoHomeLink = () => {
   return (
