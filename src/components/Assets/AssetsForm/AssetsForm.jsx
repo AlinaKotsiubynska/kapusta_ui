@@ -46,7 +46,12 @@ export const AssetsForm = () => {
         )}
       </div>
       <form onSubmit={formHandler} className={styles.form}>
-        <input className={styles.input} type="text" name="input" />
+        <input
+          className={styles.input}
+          type="text"
+          name="input"
+          placeholder="Описание товара"
+        />
         <select className={styles.select} size="1" name="select">
           {options.map(el => (
             <option key={el} value={el}>

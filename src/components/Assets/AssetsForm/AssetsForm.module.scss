@@ -1,14 +1,15 @@
 .wrapper {
   position: relative;
   display: flex;
+  align-items: center;
+  margin-bottom: 59px;
 }
 .calendarWrapper {
   margin-right: 23px;
 }
 .calendar {
-  // display: none;
   position: absolute;
-  top: 25px;
+  top: 40px;
   z-index: 100;
 }
 .calendarLabel {
@@ -25,9 +26,9 @@
 .form {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 59px;
+  align-items: center;
   margin-right: 27px;
+
   width: 100%;
 
   button {
@@ -41,9 +42,33 @@
 }
 .input {
   width: 51%;
+  padding: 10px 20px;
+  border-radius: 16px 0 0 0;
+
+  border: 2px solid #f5f6fb;
+}
+.input::placeholder {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  color: #c7ccdc;
 }
 .select {
   width: 27%;
+  padding: 10px 20px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  color: #c7ccdc;
+
+  border: 2px solid #f5f6fb;
 }
 .calc {
   width: 22%;
