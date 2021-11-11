@@ -1,24 +1,13 @@
-// import { Link, useRouteMatch, useHistory, useLocation} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import { useState, useEffect } from "react";
 // import css from './ReportPage.module.css'
 
-export const CategoriesItem = () => {
+export const CategoriesItem = ({ category }) => {
   return (
     <>
-      <p>Категория 1</p>
-      {/* <h1>Home</h1>
-      <Switch>
-        <Route path={`${match.path}/${EXPENSES}`}>
-          <p>EXPENSES</p>
-        </Route>
-        <Route path={`${match.path}/${INCOMES}`}>
-          <p>INCOMES</p>
-        </Route>
-        <Route path={`${match.path}/${REPORTS}`}>
-          <p>REPORTS</p>
-        </Route>
-        <Redirect to={`${match.path}/${EXPENSES}`} />
-      </Switch> */}
+      <p>{category.value}</p>
+      <img src={category.url} alt={category.name} />
+      <p>{category.name}</p>
     </>
   );
 };

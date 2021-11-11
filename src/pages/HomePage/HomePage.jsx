@@ -48,9 +48,6 @@ export const HomePage = () => {
             {getComponent(tab)}
           </Route>
         ))}
-      </Switch>
-
-      <Switch>
         <Route key={REPORTS} path={path + '/' + REPORTS}>
           <ReportPage />
         </Route>

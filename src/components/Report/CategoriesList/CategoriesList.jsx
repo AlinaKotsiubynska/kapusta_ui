@@ -1,10 +1,17 @@
-// import { Link, useRouteMatch, useHistory, useLocation} from 'react-router-dom';
+import {
+  Route,
+  Link,
+  useRouteMatch,
+  useHistory,
+  useLocation,
+} from 'react-router-dom';
 // import { useState, useEffect } from 'react';
 import css from './CategoriesList.module.css';
 import { CategoriesItem } from '../CategoriesItem';
+import { Chart } from '../Chart';
 
-export const CategoriesList = () => {
-  // const [categories, setCategories] = useState(null);
+export const CategoriesList = ({ categories }) => {
+  const { url, path } = useRouteMatch();
 
   const handleGoPrevious = () => {
     console.log('go previous');
@@ -13,11 +20,6 @@ export const CategoriesList = () => {
   const handleGoNext = () => {
     console.log('go next');
   };
-  // запрос на бэк за категориями и записать в стейт
-  //  useEffect(() => {
-  //   if (!query) return;
-  //   fetchCategories().then(setCategories);
-  // }, [query]);
 
   return (
     <>
@@ -50,24 +52,20 @@ export const CategoriesList = () => {
           </svg>
         </button>
       </div>
-      {/* 
-      {categories && ( */}
-      <ul className={css.categories}>
-        <li key={1}>
-          <CategoriesItem />
-        </li>
-        <li key={2}>
-          <CategoriesItem />
-        </li>
-        <li key={3}>
-          <CategoriesItem />
-        </li>
-        {/* {categories.map(catagory => (
-            <li key={catagory.id}>
-              <CategoriesItem />
+
+      {categories && (
+        <ul className={css.categories}>
+          {categories.map(category => (
+            <li key={category.id}>
+              <Link to={`${url}/chart/${category.nameEng}`}>
+                <CategoriesItem category={category} />
+              </Link>
             </li>
-          ))} */}
-      </ul>
+          ))}
+        </ul>
+      )}
+
+      <Route path={`${path}/subCategory`}>{categories && <Chart />}</Route>
     </>
   );
 };
