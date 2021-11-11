@@ -27,8 +27,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-right: 27px;
-
   width: 100%;
 
   button {
@@ -72,4 +70,33 @@
 }
 .calc {
   width: 22%;
+  margin-right: 27px;
+  padding: 10px 82px 10px 20px;
+  text-align: right;
+  border-radius: 0 16px 16px 0;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  color: #c7ccdc;
+
+  border: 2px solid #f5f6fb;
+}
+.calc::-webkit-outer-spin-button,
+.calc::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+.calculatorWrapper {
+  position: relative;
+  // width: 22%;
+}
+.calculatorIcon {
+  position: absolute;
+  top: 50%;
+  left: 80px;
+  transform: translateY(-50%);
 }
