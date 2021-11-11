@@ -4,11 +4,12 @@ import { NavLink, useRouteMatch, Switch, Route } from 'react-router-dom';
 import { Redirect, useHistory } from 'react-router';
 import { Assets } from 'components/Assets';
 import { Balance } from 'components/shared/Balance';
+import { ReportPage } from 'components/Report/ReportPage';
 import styles from './HomePage.module.scss';
 
 export const HomePage = () => {
   const TABS = [INCOMES, EXPENSES];
-  const ROUTESNAMES = [INCOMES, EXPENSES, REPORTS];
+  const ROUTESNAMES = [INCOMES, EXPENSES];
   const { path } = useRouteMatch();
   const history = useHistory();
 
@@ -47,6 +48,12 @@ export const HomePage = () => {
             {getComponent(tab)}
           </Route>
         ))}
+      </Switch>
+
+      <Switch>
+        <Route key={REPORTS} path={path + '/' + REPORTS}>
+          <ReportPage />
+        </Route>
         <Redirect to={path + '/' + EXPENSES} />
       </Switch>
     </div>

@@ -14,34 +14,34 @@ console.log('Month', currentMonth);
 console.log('year', currentYear);
 
 export const ReportPage = () => {
-  const [allCategories, setAllCategories] = useState([]);
-  const [expensesByCategories, setExpensesByCategories] = useState([]);
-  //const [expensesBySubCategories, setExpensesSubByCategories] = useState(null);
-  const month = currentMonth;
-  const year = currentYear;
-  console.log('data');
+  // const [allCategories, setAllCategories] = useState([]);
+  // const [expensesByCategories, setExpensesByCategories] = useState([]);
+  // //const [expensesBySubCategories, setExpensesSubByCategories] = useState(null);
+  // const month = currentMonth;
+  // const year = currentYear;
+  // console.log('data');
 
-  useEffect(() => fetchAllCategories().then(setAllCategories), []);
-  console.log('все категории', allCategories);
+  // useEffect(() => fetchAllCategories().then(setAllCategories), []);
+  // console.log('все категории', allCategories);
 
-  useEffect(() => {
-    (async function getData() {
-      const expensesByDate = await fetchDataByDate(month, year);
-      if (!allCategories || !expensesByDate) return;
-      const expensesByCategories = allCategories.map(category => {
-        const dataByCategory = expensesByDate.find(
-          item => item.categoryName === category,
-        );
-        const value = dataByCategory ? dataByCategory.value : '0';
-        category.value = value;
-        category.url = `</img/${category}.svg`;
-        return category;
-      });
-      return setExpensesByCategories(expensesByCategories);
-    })();
-    // getData();
-  }, [month, year, allCategories]);
-  console.log('data', expensesByCategories);
+  // useEffect(() => {
+  //   (async function getData() {
+  //     const expensesByDate = await fetchDataByDate(month, year);
+  //     if (!allCategories || !expensesByDate) return;
+  //     const expensesByCategories = allCategories.map(category => {
+  //       const dataByCategory = expensesByDate.find(
+  //         item => item.categoryName === category,
+  //       );
+  //       const value = dataByCategory ? dataByCategory.value : '0';
+  //       category.value = value;
+  //       category.url = `</img/${category}.svg`;
+  //       return category;
+  //     });
+  //     return setExpensesByCategories(expensesByCategories);
+  //   })();
+  //   // getData();
+  // }, [month, year, allCategories]);
+  // console.log('data', expensesByCategories);
   return (
     <>
       <ReportHeading />
