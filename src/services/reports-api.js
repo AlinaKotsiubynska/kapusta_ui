@@ -22,7 +22,6 @@ export async function fetchDataByDate(year, mounth) {
 export async function fetchAllCategories() {
   try {
     const response = await axios.get(`${BASE_URL}/api/categories`);
-    //   console.log('res:', response.data.results)
     return response.data.results;
   } catch {
     toast.error('Something went wrong');

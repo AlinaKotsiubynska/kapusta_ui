@@ -9,34 +9,39 @@ import { fetchAllCategories, fetchDataByDate } from 'services/reports-api';
 fetchAllCategories().then(response => console.log(response));
 const currentData = new Date();
 const currentYear = currentData.getFullYear();
-const currentMounth = currentData.getUTCMonth();
-console.log('Mounth', currentMounth);
+const currentMonth = currentData.getUTCMonth();
+console.log('Month', currentMonth);
 console.log('year', currentYear);
 
 export const ReportPage = () => {
-  const [allCategories, setAllCategories] = useState(null);
-  const [expensesByCategories, setExpensesByCategories] = useState(null);
-  const [expensesByDate, setExpensesByDate] = useState(null);
-  const [expensesBySubCategories, setExpensesSubByCategories] = useState(null);
-  const [mounth, setMounth] = useState(currentMounth);
-  const [year, setYear] = useState(currentYear);
+  const [allCategories, setAllCategories] = useState([]);
+  const [expensesByCategories, setExpensesByCategories] = useState([]);
+  //const [expensesBySubCategories, setExpensesSubByCategories] = useState(null);
+  const month = currentMonth;
+  const year = currentYear;
   console.log('data');
 
   useEffect(() => fetchAllCategories().then(setAllCategories), []);
-  useEffect(() => fetchDataByDate().then(setExpensesByDate), [mounth, year]);
-  useEffect(() => {
-    const expensesByCategories = allCategories.map(category => {
-      const dataByCategory = expensesByDate.find(
-        item => item.categoryName === category,
-      );
-      const value = dataByCategory ? dataByCategory.value : '0';
-      category.value = value;
-      category.url = `../../svg/${category}`;
-      return category;
-    });
-    setExpensesByCategories(expensesByCategories);
-  }, [allCategories, expensesByDate]);
+  console.log('все категории', allCategories);
 
+  useEffect(() => {
+    (async function getData() {
+      const expensesByDate = await fetchDataByDate(month, year);
+      if (!allCategories || !expensesByDate) return;
+      const expensesByCategories = allCategories.map(category => {
+        const dataByCategory = expensesByDate.find(
+          item => item.categoryName === category,
+        );
+        const value = dataByCategory ? dataByCategory.value : '0';
+        category.value = value;
+        category.url = `</img/${category}.svg`;
+        return category;
+      });
+      return setExpensesByCategories(expensesByCategories);
+    })();
+    // getData();
+  }, [month, year, allCategories]);
+  console.log('data', expensesByCategories);
   return (
     <>
       <ReportHeading />
