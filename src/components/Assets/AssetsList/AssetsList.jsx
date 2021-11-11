@@ -1,14 +1,20 @@
 import { useTable } from 'react-table';
-import { useMemo } from 'react';
+import { useMemo, useContext } from 'react';
 import { ReactComponent as Trash } from 'assets/icons/trash1.svg';
 import styles from './AssetsList.module.scss';
+import userContext from 'contexts/userContext';
+import categoriesContext from 'contexts/categoriesContext';
 
 export const AssetsList = () => {
+  const user = useContext(userContext);
+  const categories = useContext(categoriesContext);
   const deleteEntry = data => {
     const onDel = event => {
       //delete method
       console.log(data);
     };
+    console.log(user);
+    console.log(categories);
     return (
       <button type="button" onClick={onDel} className={styles.button}>
         <Trash />
