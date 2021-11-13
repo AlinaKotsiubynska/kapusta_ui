@@ -3,15 +3,11 @@ import { useState, useContext } from 'react';
 import axios from 'axios';
 import { LOGIN } from 'helpers/constants/routes.constants';
 import { Context } from '../Context/index';
+import { token } from '../../utils/tokenOperations';
 
-axios.defaults.baseURL = 'http://app-kapusta.herokuapp.com/api';
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-};
 export default function SignupForm() {
   const { setUserContext } = useContext(Context);
+  const history = useHistory();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -29,7 +25,6 @@ export default function SignupForm() {
         return;
     }
   };
-  const history = useHistory();
 
   const handleSubmit = async e => {
     e.preventDefault();
