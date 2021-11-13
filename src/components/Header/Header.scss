@@ -1,0 +1,16 @@
+.header {
+  width: 100%;
+  background-color: white;
+  z-index: 2;
+
+  .headerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media screen and (max-width: 767px) {
+      padding-top: 14px;
+      padding-bottom: 13px;
+    }
+  }
+}
