@@ -3,6 +3,7 @@ import styles from './AssetsForm.module.scss';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { ReactComponent as CalendIcon } from 'assets/icons/calendar.svg';
+import { ReactComponent as Calculator } from 'assets/icons/calculator.svg';
 import { useState } from 'react';
 import { format } from 'date-fns';
 
@@ -46,7 +47,12 @@ export const AssetsForm = () => {
         )}
       </div>
       <form onSubmit={formHandler} className={styles.form}>
-        <input className={styles.input} type="text" name="input" />
+        <input
+          className={styles.input}
+          type="text"
+          name="input"
+          placeholder="Описание товара"
+        />
         <select className={styles.select} size="1" name="select">
           {options.map(el => (
             <option key={el} value={el}>
@@ -54,7 +60,15 @@ export const AssetsForm = () => {
             </option>
           ))}
         </select>
-        <div className={styles.calc}>calc</div>
+        <div className={styles.calculatorWrapper}>
+          <Calculator className={styles.calculatorIcon} />
+          <input
+            className={styles.calc}
+            type="number"
+            step="0.01"
+            placeholder="0,00"
+          />
+        </div>
         <Button type="submit">ввод</Button>
         <Button type="button">очистить</Button>
       </form>
