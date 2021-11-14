@@ -1,16 +1,19 @@
-import { AssetsForm } from './AssetsForm/AssetsForm';
-import { AssetsList } from './AssetsList/AssetsList';
-import { AssetsSummary } from './AssetsSummary/AssetsSummary';
+import { AssetsForm } from './AssetsForm';
+import { AssetsList } from './AssetsList';
+import { AssetsSummary } from './AssetsSummary';
 import styles from './Assets.module.scss';
 
-export const Assets = ({ tabKey }) => {
+export const Assets = ({ tabKey, children }) => {
   return (
-    <div className={styles.assets}>
-      <AssetsForm />
-      <div className={styles.listsWrapper}>
-        <AssetsList />
-        <AssetsSummary />
+    <>
+      {children}
+      <div className={styles.assets}>
+        <AssetsForm />
+        <div className={styles.listsWrapper}>
+          <AssetsList />
+          <AssetsSummary />
+        </div>
       </div>
-    </div>
+    </>
   );
 };

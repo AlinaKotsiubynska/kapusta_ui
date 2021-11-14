@@ -1,0 +1,1 @@
+export { AssetsTabs } from './AssetsTabs';
