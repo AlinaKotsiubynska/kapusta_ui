@@ -1,54 +1,99 @@
-// import { Link, useRouteMatch, useHistory, useLocation} from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-// import css from './ReportPage.module.css'
 import { ReportHeading } from '../ReportHeading';
 import { CategoriesList } from '../CategoriesList';
-import { Chart } from '../Chart';
 import { fetchAllCategories, fetchDataByDate } from 'services/reports-api';
-import { data } from './data';
 
-fetchAllCategories().then(response => console.log('response', response));
 const currentData = new Date();
 const currentYear = currentData.getFullYear();
 const currentMonth = currentData.getUTCMonth();
-console.log('Month', currentMonth);
-console.log('year', currentYear);
 
 export const ReportPage = () => {
   const [allCategories, setAllCategories] = useState([]);
-  const [expensesByCategories, setExpensesByCategories] = useState([]);
-  //const [expensesBySubCategories, setExpensesSubByCategories] = useState(null);
-  const month = currentMonth;
-  const year = currentYear;
+  const [categories, setCategories] = useState([]);
+  const [selectedMonth, setSelectedMonth] = useState(currentMonth);
+  const [selectedYear, setSelectedYear] = useState(currentYear);
+  const history = useHistory();
+  const { point } = useParams();
 
-  useEffect(() => fetchAllCategories().then(setAllCategories), []);
+  useEffect(() => {
+    (async function getAllCategories() {
+      const data = await fetchAllCategories();
+      const categories = data.filter(item => item.sign === point);
+      setAllCategories(categories);
+    })();
+  }, [point]);
   console.log('все категории', allCategories);
 
   useEffect(() => {
     (async function getData() {
-      // const expensesByDate = await fetchDataByDate(month, year);
-      const expensesByDate = data;
-      if (!allCategories || !expensesByDate) return;
-      const expensesByCategories = allCategories.map(category => {
-        const dataByCategory = expensesByDate.find(
+      const expensesByDate = await fetchDataByDate(
+        selectedYear,
+        selectedMonth,
+        point,
+      );
+      console.log('result fetch', expensesByDate);
+      const categoriesByDate = expensesByDate;
+      if (!allCategories || !categoriesByDate) return;
+      const dataByCategories = allCategories.map(category => {
+        const dataByCategory = categoriesByDate.find(
           item => item.categoryName === category.name,
         );
         const value = dataByCategory ? dataByCategory.value : '0';
-        const nameEng = dataByCategory ? dataByCategory.nameEn : '';
-        const url = `/img/${nameEng}.svg`;
-        const fullCategory = { ...category, value, url, nameEng };
+        const url = `/img/${category.nameEn}.svg`;
+        const subCategories = dataByCategory
+          ? dataByCategory.subCategories
+          : [];
+        const fullCategory = { ...category, value, url, subCategories };
         return fullCategory;
       });
-      return setExpensesByCategories(expensesByCategories);
+      return setCategories(dataByCategories);
     })();
-  }, [month, year, allCategories]);
-  console.log('data', expensesByCategories);
+  }, [selectedMonth, selectedYear, allCategories, point]);
+
+  const handleGoNextPeriod = () => {
+    if (selectedMonth === 11) {
+      setSelectedMonth(0);
+      const year = selectedYear + 1;
+      setSelectedYear(year);
+      return;
+    }
+    const month = selectedMonth + 1;
+    setSelectedMonth(month);
+    return;
+  };
+
+  const handleGoPreviousPeriod = () => {
+    if (selectedMonth === 0) {
+      setSelectedMonth(11);
+      const year = selectedYear - 1;
+      setSelectedYear(year);
+      return;
+    }
+    const month = selectedMonth - 1;
+    setSelectedMonth(month);
+    console.log('chengedmounth', month);
+  };
+
+  const handleSwitchPoint = () => {
+    const newPoint = point === 'expenses' ? 'incomes' : 'expenses';
+    history.push(`${newPoint}`);
+    console.log('newpoint', newPoint);
+  };
 
   return (
     <>
-      <ReportHeading />
-      <CategoriesList categories={expensesByCategories} />
-      <Chart />
+      <ReportHeading
+        month={selectedMonth}
+        year={selectedYear}
+        handleGoNextPeriod={handleGoNextPeriod}
+        handleGoPreviousPeriod={handleGoPreviousPeriod}
+      />
+      <CategoriesList
+        categories={categories}
+        handleSwitchPoint={handleSwitchPoint}
+        point={point}
+      />
     </>
   );
 };

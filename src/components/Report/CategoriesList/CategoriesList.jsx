@@ -1,24 +1,27 @@
-import {
-  Route,
-  Link,
-  useRouteMatch,
-  useHistory,
-  useLocation,
-} from 'react-router-dom';
-// import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import css from './CategoriesList.module.css';
 import { CategoriesItem } from '../CategoriesItem';
 import { Chart } from '../Chart';
 
-export const CategoriesList = ({ categories }) => {
-  const { url, path } = useRouteMatch();
+export const CategoriesList = ({ categories, handleSwitchPoint, point }) => {
+  const [activeCategory, setActiveCategory] = useState('transport');
+  const title = point === 'expenses' ? 'РАСХОДЫ' : 'ДОХОДЫ';
+  const activeSubCategoriesObj = categories
+    ? categories.find(item => item.nameEn === activeCategory)
+    : {};
+  console.log('activeCategory in component', activeCategory);
+  console.log('activeCategoryOBJ in component', activeSubCategoriesObj);
+  useEffect(() => {
+    if (point === 'expenses') {
+      setActiveCategory('transport');
+      return;
+    }
+    setActiveCategory('salary');
+  }, [point]);
 
-  const handleGoPrevious = () => {
-    console.log('go previous');
-  };
-
-  const handleGoNext = () => {
-    console.log('go next');
+  const chooseCategory = subCategoriesNameEn => {
+    setActiveCategory(subCategoriesNameEn);
+    console.log('activeCategory', subCategoriesNameEn);
   };
 
   return (
@@ -27,7 +30,7 @@ export const CategoriesList = ({ categories }) => {
         <button
           type="button"
           className={css.previousBtn}
-          onClick={handleGoPrevious}
+          onClick={handleSwitchPoint}
         >
           <svg
             width="7"
@@ -39,8 +42,12 @@ export const CategoriesList = ({ categories }) => {
             <path d="M6 1L2 6L6 11" stroke="#FF751D" strokeWidth="2" />
           </svg>
         </button>
-        <p>Expenses</p>
-        <button type="button" className={css.nextBtn} onClick={handleGoNext}>
+        <p>{title}</p>
+        <button
+          type="button"
+          className={css.nextBtn}
+          onClick={handleSwitchPoint}
+        >
           <svg
             width="7"
             height="12"
@@ -54,18 +61,21 @@ export const CategoriesList = ({ categories }) => {
       </div>
 
       {categories && (
-        <ul className={css.categories}>
-          {categories.map(category => (
-            <li key={category.id}>
-              <Link to={`${url}/chart/${category.nameEng}`}>
-                <CategoriesItem category={category} />
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <>
+          <ul className={css.categories}>
+            {categories.map(category => (
+              <li key={category._id}>
+                <button onClick={() => chooseCategory(category.nameEn)}>
+                  <CategoriesItem category={category} />
+                </button>
+              </li>
+            ))}
+          </ul>
+          {activeSubCategoriesObj && (
+            <Chart activeCategory={activeSubCategoriesObj} />
+          )}
+        </>
       )}
-
-      <Route path={`${path}/subCategory`}>{categories && <Chart />}</Route>
     </>
   );
 };

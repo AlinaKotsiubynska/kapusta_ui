@@ -4,6 +4,20 @@ export const data = [
     categoryName: 'Транспорт',
     nameEn: 'transport',
     value: 1200,
+    subCategories: [
+      {
+        name: 'Кино',
+        value: 800,
+      },
+      {
+        name: 'Ресторан',
+        value: 200,
+      },
+      {
+        name: 'Театр',
+        value: 200,
+      },
+    ],
   },
 
   {
@@ -11,6 +25,16 @@ export const data = [
     categoryName: 'Алкоголь',
     nameEn: 'alcohol',
     value: 1200,
+    subCategories: [
+      {
+        name: 'Телевизор',
+        value: 1000,
+      },
+      {
+        name: 'Фонарь',
+        value: 3500,
+      },
+    ],
   },
 
   {
@@ -18,6 +42,16 @@ export const data = [
     categoryName: 'Здоровье',
     nameEn: 'health',
     value: 1200,
+    subCategories: [
+      {
+        name: 'Телевизор',
+        value: 1000,
+      },
+      {
+        name: 'Фонарь',
+        value: 3500,
+      },
+    ],
   },
 
   {
@@ -25,6 +59,16 @@ export const data = [
     categoryName: 'Спорт',
     nameEn: 'sport',
     value: 1200,
+    subCategories: [
+      {
+        name: 'Телевизор',
+        value: 1000,
+      },
+      {
+        name: 'Фонарь',
+        value: 3500,
+      },
+    ],
   },
 
   {
@@ -32,5 +76,15 @@ export const data = [
     categoryName: 'Развлечения',
     nameEn: 'entertainment',
     value: 1200,
+    subCategories: [
+      {
+        name: 'Телевизор',
+        value: 1000,
+      },
+      {
+        name: 'Фонарь',
+        value: 3500,
+      },
+    ],
   },
 ];

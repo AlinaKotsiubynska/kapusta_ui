@@ -30,7 +30,7 @@ export const HomePage = () => {
 
   return (
     <div className={styles.homeBody}>
-      <NavLink to={path + '/' + REPORTS}>{REPORTS}</NavLink>
+      <NavLink to={path + '/' + REPORTS + '/expenses'}>{REPORTS}</NavLink>
       <Balance />
       {TABS.map(tab => (
         <NavLink
@@ -48,7 +48,7 @@ export const HomePage = () => {
             {getComponent(tab)}
           </Route>
         ))}
-        <Route key={REPORTS} path={path + '/' + REPORTS}>
+        <Route key={REPORTS} path={`${path}/${REPORTS}/:point`}>
           <ReportPage />
         </Route>
         <Redirect to={path + '/' + EXPENSES} />

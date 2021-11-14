@@ -1,22 +1,32 @@
-// import { Link, useRouteMatch, useHistory, useLocation} from 'react-router-dom';
-// import { useState, useEffect } from "react";
 import css from './ChoosePeriod.module.css';
 
-export const ChoosePeriod = () => {
-  const handleGoPrevious = () => {
-    console.log('go previous');
-  };
-
-  const handleGoNext = () => {
-    console.log('go next');
-  };
-
+const months = [
+  'январь',
+  'февраль',
+  'март',
+  'апрель',
+  'май',
+  'июнь',
+  'июль',
+  'август',
+  'сентябрь',
+  'октябрь',
+  'ноябрь',
+  'декабрь',
+];
+export const ChoosePeriod = ({
+  month,
+  year,
+  handleGoNextPeriod,
+  handleGoPreviousPeriod,
+}) => {
+  const selectedMonth = months[month];
   return (
     <>
       <button
         type="button"
         className={css.previousBtn}
-        onClick={handleGoPrevious}
+        onClick={handleGoPreviousPeriod}
       >
         <svg
           width="7"
@@ -28,8 +38,15 @@ export const ChoosePeriod = () => {
           <path d="M6 1L2 6L6 11" stroke="#FF751D" strokeWidth="2" />
         </svg>
       </button>
-      <p>Choose Period</p>
-      <button type="button" className={css.nextBtn} onClick={handleGoNext}>
+      <p>
+        <span>{selectedMonth}</span>
+        <span>{year}</span>
+      </p>
+      <button
+        type="button"
+        className={css.nextBtn}
+        onClick={handleGoNextPeriod}
+      >
         <svg
           width="7"
           height="12"
@@ -40,20 +57,6 @@ export const ChoosePeriod = () => {
           <path d="M1 1L5 6L1 11" stroke="#FF751D" strokeWidth="2" />
         </svg>
       </button>
-
-      {/* <h1>Home</h1>
-      <Switch>
-        <Route path={`${match.path}/${EXPENSES}`}>
-          <p>EXPENSES</p>
-        </Route>
-        <Route path={`${match.path}/${INCOMES}`}>
-          <p>INCOMES</p>
-        </Route>
-        <Route path={`${match.path}/${REPORTS}`}>
-          <p>REPORTS</p>
-        </Route>
-        <Redirect to={`${match.path}/${EXPENSES}`} />
-      </Switch> */}
     </>
   );
 };

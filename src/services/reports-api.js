@@ -3,14 +3,13 @@ import toast from 'react-hot-toast';
 
 const BASE_URL = 'https://app-kapusta.herokuapp.com';
 const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTg4MmU0ZmIxMzQyNTI3NzA0MDJmY2QiLCJpYXQiOjE2MzYzMTQ3NTl9.3YE1AkbBtb_KPKnhPLyV1CaLXDG_SxpqZnvl7JwRecA';
-// const API_KEY = '110a8a7647f7de9c0b3bf03e930472b8';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTg1ODlkMWU0MWYwNDc2NmU0MjNiN2YiLCJpYXQiOjE2MzY5MjEwMjJ9.tP3_jV-0uixrp5SkR0ZyJaUR7Pv049TcREH9BptUXc4';
 axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 
-export async function fetchDataByDate(year, mounth) {
+export async function fetchDataByDate(year, mounth, point) {
   try {
     const response = await axios.get(
-      `${BASE_URL}/api/reports/group-by-category?year=${year}&month=${mounth}&sign=expenses`,
+      `${BASE_URL}/api/reports/group-by-category?year=${year}&month=${mounth}&sign=${point}`,
     );
     console.log(response.data.results);
     return response.data.results;
