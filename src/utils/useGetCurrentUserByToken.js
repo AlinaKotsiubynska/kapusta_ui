@@ -16,7 +16,8 @@ export const useGetCurrentByToken = setUserContext => {
               token: currentToken,
               user: {
                 ...state.user,
-                ...data.user,
+                balance: data.user.balance,
+                name: data.user.name,
               },
               authenticated: true,
             };
