@@ -2,6 +2,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { ReportHeading } from '../ReportHeading';
 import { CategoriesList } from '../CategoriesList';
+import { SummaryLine } from '../SummaryLine';
 import { fetchAllCategories, fetchDataByDate } from 'services/reports-api';
 
 const currentData = new Date();
@@ -13,6 +14,7 @@ export const ReportPage = () => {
   const [categories, setCategories] = useState([]);
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [selectedYear, setSelectedYear] = useState(currentYear);
+
   const history = useHistory();
   const { point } = useParams();
 
@@ -23,8 +25,7 @@ export const ReportPage = () => {
       setAllCategories(categories);
     })();
   }, [point]);
-  console.log('все категории', allCategories);
-
+  
   useEffect(() => {
     (async function getData() {
       const expensesByDate = await fetchDataByDate(
@@ -89,6 +90,9 @@ export const ReportPage = () => {
         handleGoNextPeriod={handleGoNextPeriod}
         handleGoPreviousPeriod={handleGoPreviousPeriod}
       />
+      <SummaryLine
+        month={selectedMonth}
+        year={selectedYear}/>
       <CategoriesList
         categories={categories}
         handleSwitchPoint={handleSwitchPoint}

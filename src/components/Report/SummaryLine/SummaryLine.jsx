@@ -1,12 +1,35 @@
-// import { Link, useRouteMatch, useHistory, useLocation} from 'react-router-dom';
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import css from './SummaryLine.module.css';
+import { fetchDataByDate } from "services/reports-api";
 
-export const SummaryLine = () => {
+export const SummaryLine = ({ year, month }) => {
+  const [summaryExpenses, setSummaryExpenses] = useState([]);
+  const [summaryIncomes, setSummaryIncomes] = useState([]);
+  const getSum = dataByDate => dataByDate.reduce((total, {value}) => total + value, 0)
+
+
+  useEffect(() => {
+    (async function getData() {
+      const expensesByDate = await fetchDataByDate(
+        year,
+        month,
+        'expenses',
+      );
+      const incomesByDate = await fetchDataByDate(
+        year,
+        month,
+        'incomes',
+      );
+       setSummaryExpenses(getSum(expensesByDate));
+       setSummaryIncomes(getSum(incomesByDate));
+
+    })()
+  }, [month, year]);
+
   return (
-    <>
+    <div className={css.summaryLine}>
       <p className={css.expenses}>
-        Расходы:<span>-18000</span>
+        Расходы:<span>{summaryExpenses}</span>
       </p>
       <svg
         width="2"
@@ -17,9 +40,9 @@ export const SummaryLine = () => {
       >
         <path d="M1 0V36" stroke="#E0E5EB" />
       </svg>
-      <p className={css.income}>
-        Доходы:<span>+30000</span>
+      <p className={css.incomes}>
+        Доходы:<span>{summaryIncomes}</span>
       </p>
-    </>
+    </div>
   );
 };
