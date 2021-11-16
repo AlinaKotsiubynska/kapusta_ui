@@ -86,6 +86,7 @@ export default function SignupForm() {
         <label>
           Имя:
           <input
+            required
             placeholder="your name"
             type="text"
             name="name"
@@ -97,6 +98,7 @@ export default function SignupForm() {
         <label>
           Электронная почта:
           <input
+            required
             placeholder="your@email.com"
             type="email"
             name="email"
@@ -108,6 +110,7 @@ export default function SignupForm() {
         <label>
           Пароль
           <input
+            required
             type="password"
             name="password"
             value={password}

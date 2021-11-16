@@ -69,6 +69,7 @@ export default function LoginForm() {
         <label>
           Электронная почта:
           <input
+            required
             placeholder="your@email.com"
             type="email"
             name="email"
@@ -80,6 +81,7 @@ export default function LoginForm() {
         <label>
           Пароль
           <input
+            required
             type="password"
             name="password"
             value={password}
