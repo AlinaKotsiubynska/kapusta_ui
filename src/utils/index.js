@@ -1,0 +1,1 @@
+export { useGetCurrentByToken } from './useGetCurrentUserByToken';

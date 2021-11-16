@@ -1,0 +1,1 @@
+export { GoHomeLink } from './GoHomeButton';
