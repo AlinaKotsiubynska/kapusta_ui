@@ -1,6 +1,9 @@
 import { Link, useHistory } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import axios from 'axios';
+import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { LOGIN } from 'helpers/constants/routes.constants';
 import { Context } from '../Context/index';
 import { token } from '../../utils/tokenOperations';
@@ -61,7 +64,7 @@ export default function SignupForm() {
 
       history.push('/home/expenses');
     } catch (error) {
-      console.log(error);
+      toast.error('Проверьте правильность введенных данных');
     }
 
     setEmail('');
@@ -71,6 +74,7 @@ export default function SignupForm() {
 
   return (
     <div>
+      <ToastContainer autoClose={5000} />
       <p>Вы можете авторизоваться с помощью Google Account:</p>
 
       <a href="https://app-kapusta.herokuapp.com/api/auth/google">Google</a>
@@ -82,6 +86,7 @@ export default function SignupForm() {
         <label>
           Имя:
           <input
+            required
             placeholder="your name"
             type="text"
             name="name"
@@ -93,6 +98,7 @@ export default function SignupForm() {
         <label>
           Электронная почта:
           <input
+            required
             placeholder="your@email.com"
             type="email"
             name="email"
@@ -104,6 +110,7 @@ export default function SignupForm() {
         <label>
           Пароль
           <input
+            required
             type="password"
             name="password"
             value={password}
