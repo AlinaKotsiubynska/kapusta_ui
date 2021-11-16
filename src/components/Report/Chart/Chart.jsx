@@ -1,5 +1,3 @@
-// import { Link, useRouteMatch, useHistory, useLocation} from 'react-router-dom';
-// import { useState, useEffect } from "react";
 import { Bar } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import css from './Chart.module.css';
@@ -8,8 +6,10 @@ export const Chart = ({ activeCategory }) => {
   const categoriesArray = activeCategory.subCategories;
   const categoriesName = categoriesArray.map(item => item.name);
   const categoriesValue = categoriesArray.map(item => item.value);
+  const a = 'x';
+  const b = 'y';
+
   const data = {
-    // labels: ["Кино", "Ресторан", "Театр"],
     labels: categoriesName,
     datasets: [
       {
@@ -33,12 +33,18 @@ export const Chart = ({ activeCategory }) => {
       <Bar
         data={data}
         width={758}
-        //height={400}
+        height={400}
         plugins={[ChartDataLabels]}
         options={{
+          // indexAxis: 'y',
           maintainAspectRatio: false,
           responsive: false,
           barThickness: 38,
+          layout: {
+            padding: {
+              top: 20,
+            },
+          },
           scales: {
             x: {
               grid: {

@@ -43,6 +43,8 @@ export default function SignupForm() {
 
       const { data } = await axios.post('/users/login', registeredUser);
 
+      localStorage.setItem('token', JSON.stringify(data.user.token));
+
       token.set(data.user.token);
 
       setUserContext(state => ({
@@ -51,7 +53,9 @@ export default function SignupForm() {
         token: data.user.token,
         authenticated: true,
         user: {
-          name: newUser.name,
+          ...state.user,
+          balance: data.user.balance,
+          name: data.user.name,
         },
       }));
 
@@ -68,7 +72,8 @@ export default function SignupForm() {
   return (
     <div>
       <p>Вы можете авторизоваться с помощью Google Account:</p>
-      <button type="button">Google</button>
+
+      <a href="https://app-kapusta.herokuapp.com/api/auth/google">Google</a>
       <p>
         Или зайти с помощью e-mail и пароля, предварительно зарегистрировавшись:
       </p>
