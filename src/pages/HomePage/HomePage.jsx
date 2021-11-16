@@ -30,7 +30,7 @@ export const HomePage = () => {
 
   return (
     <div className={styles.homeBody}>
-      <NavLink to={path + '/' + REPORTS + '/expenses'}>{REPORTS}</NavLink>
+      <NavLink to={`${path}/${REPORTS}/${EXPENSES}`}>{REPORTS}</NavLink>
       <Balance />
       {TABS.map(tab => (
         <NavLink
