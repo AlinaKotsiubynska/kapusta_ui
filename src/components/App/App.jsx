@@ -3,12 +3,7 @@ import { AuthPage, HomePage } from 'pages';
 import { useState } from 'react';
 import { Context } from 'components/Context';
 import AuthGoogle from '../../components/AuthGoogle/AuthGoogle';
-import {
-  AUTH,
-  HOME,
-  AUTHORIZED,
-  LOGIN,
-} from 'helpers/constants/routes.constants';
+import { AUTH, HOME, AUTHORIZED } from 'helpers/constants/routes.constants';
 import { USER_CONTEXT_DEFAULT } from 'helpers/constants/contexst.constants';
 import { useGetCurrentByToken } from 'utils';
 import s from './App.module.scss';
