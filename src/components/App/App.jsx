@@ -3,7 +3,12 @@ import { AuthPage, HomePage } from 'pages';
 import { useState } from 'react';
 import { Context } from 'components/Context';
 import AuthGoogle from '../../components/AuthGoogle/AuthGoogle';
-import { AUTH, HOME, AUTHORIZED } from 'helpers/constants/routes.constants';
+import {
+  AUTH,
+  HOME,
+  AUTHORIZED,
+  ERROR,
+} from 'helpers/constants/routes.constants';
 import { USER_CONTEXT_DEFAULT } from 'helpers/constants/contexst.constants';
 import { useGetCurrentByToken } from 'utils';
 import s from './App.module.scss';
@@ -33,9 +38,11 @@ export default function App() {
               <Route path={`/${AUTHORIZED}`}>
                 <AuthGoogle />
               </Route>
-              <Route path={`/error`}>
-                <h1>Что-то пошло не так, попробуйте еще раз</h1>
-                <Link to={`${AUTH}`}>Перейти</Link>
+              <Route path={`/${ERROR}`}>
+                <div>
+                  <h1>Что-то пошло не так, попробуйте еще раз</h1>
+                  <Link to={`/${AUTH}`}>Перейти</Link>
+                </div>
               </Route>
               <Redirect to={`/${AUTH}`} />
             </>
