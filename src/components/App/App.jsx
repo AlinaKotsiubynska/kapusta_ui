@@ -6,7 +6,9 @@ import AuthGoogle from '../../components/AuthGoogle/AuthGoogle';
 import { AUTH, HOME, AUTHORIZED } from 'helpers/constants/routes.constants';
 import { USER_CONTEXT_DEFAULT } from 'helpers/constants/contexst.constants';
 import { useGetCurrentByToken } from 'utils';
+import Header from 'components/Header/Header.jsx';
 import s from './App.module.scss';
+
 
 export default function App() {
   const [userContext, setUserContext] = useState(USER_CONTEXT_DEFAULT);
@@ -16,6 +18,7 @@ export default function App() {
   return (
     <Context.Provider value={{ userContext, setUserContext }}>
       <div className={s.container}>
+        <Header />
         <Switch>
           <Route path={`/${AUTH}`}>
             <AuthPage />

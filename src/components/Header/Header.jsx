@@ -3,7 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 // import Avatar from '';
 // import Container from '';
-import Modal from './Modal/Modal';
+import Modal from 'components/shared/Modal/Modal.jsx';
 
 export default function Header() {
   const [modalActive, setModalActive] = useState(true);
