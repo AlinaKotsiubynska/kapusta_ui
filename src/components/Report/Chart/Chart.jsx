@@ -42,8 +42,8 @@ export const Chart = ({ activeCategory }) => {
           barThickness: 38,
           layout: {
             padding: {
-              top: 20
-            }
+              top: 20,
+            },
           },
           scales: {
             x: {

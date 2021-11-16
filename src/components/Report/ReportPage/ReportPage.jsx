@@ -25,7 +25,7 @@ export const ReportPage = () => {
       setAllCategories(categories);
     })();
   }, [point]);
-  
+
   useEffect(() => {
     (async function getData() {
       const expensesByDate = await fetchDataByDate(
@@ -90,9 +90,7 @@ export const ReportPage = () => {
         handleGoNextPeriod={handleGoNextPeriod}
         handleGoPreviousPeriod={handleGoPreviousPeriod}
       />
-      <SummaryLine
-        month={selectedMonth}
-        year={selectedYear}/>
+      <SummaryLine month={selectedMonth} year={selectedYear} />
       <CategoriesList
         categories={categories}
         handleSwitchPoint={handleSwitchPoint}

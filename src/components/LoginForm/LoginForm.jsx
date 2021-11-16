@@ -28,7 +28,7 @@ export default function LoginForm() {
 
     try {
       const { data } = await axios.post('/users/login', user);
-      localStorage.setItem('userToken', JSON.stringify(data.user.token));
+      localStorage.setItem('token', JSON.stringify(data.user.token));
 
       token.set(data.user.token);
 

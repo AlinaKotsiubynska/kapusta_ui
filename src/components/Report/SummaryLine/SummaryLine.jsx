@@ -1,29 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import css from './SummaryLine.module.css';
-import { fetchDataByDate } from "services/reports-api";
+import { fetchDataByDate } from 'services/reports-api';
 
 export const SummaryLine = ({ year, month }) => {
   const [summaryExpenses, setSummaryExpenses] = useState([]);
   const [summaryIncomes, setSummaryIncomes] = useState([]);
-  const getSum = dataByDate => dataByDate.reduce((total, {value}) => total + value, 0)
-
+  const getSum = dataByDate =>
+    dataByDate.reduce((total, { value }) => total + value, 0);
 
   useEffect(() => {
     (async function getData() {
-      const expensesByDate = await fetchDataByDate(
-        year,
-        month,
-        'expenses',
-      );
-      const incomesByDate = await fetchDataByDate(
-        year,
-        month,
-        'incomes',
-      );
-       setSummaryExpenses(getSum(expensesByDate));
-       setSummaryIncomes(getSum(incomesByDate));
-
-    })()
+      const expensesByDate = await fetchDataByDate(year, month, 'expenses');
+      const incomesByDate = await fetchDataByDate(year, month, 'incomes');
+      setSummaryExpenses(getSum(expensesByDate));
+      setSummaryIncomes(getSum(incomesByDate));
+    })();
   }, [month, year]);
 
   return (
