@@ -10,18 +10,22 @@ import s from './App.module.scss';
 
 export default function App() {
   const [userContext, setUserContext] = useState(USER_CONTEXT_DEFAULT);
-
+  const { authenticated } = userContext;
   return (
     <Context.Provider value={{ userContext, setUserContext }}>
       <div className={s.container}>
         <Switch>
-          <Route path={`/${AUTH}`}>
-            <AuthPage />
-          </Route>
-          <Route path={`/${HOME}`}>
-            <HomePage />
-          </Route>
-          <Redirect to={`/${AUTH}`} />
+          {authenticated ? (
+            <Route path={`/${HOME}`}>
+              <HomePage />
+            </Route>
+          ) : (
+            <Route path={`/${AUTH}`}>
+              <AuthPage />
+            </Route>
+          )}
+
+          <Redirect to={`/${authenticated ? HOME : AUTH}`} />
         </Switch>
       </div>
     </Context.Provider>
