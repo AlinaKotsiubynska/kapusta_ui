@@ -2,11 +2,11 @@ import { Bar } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import css from './Chart.module.css';
 
-export const Chart = ({ activeCategory }) => {
+export const ChartVertical = ({ activeCategory }) => {
   const categoriesArray = activeCategory.subCategories;
   const categoriesName = categoriesArray.map(item => item.name);
   const categoriesValue = categoriesArray.map(item => item.value);
-  const categoriesLabels = categoriesArray.map(item => `${item.value} грн.`);
+  // const categoriesLabels = categoriesArray.map(item => `${item.value} грн.`);
 
   const data = {
     labels: categoriesName,

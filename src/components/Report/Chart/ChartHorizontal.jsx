@@ -2,17 +2,16 @@ import { Bar } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import css from './Chart.module.css';
 
-export const Chart = ({ activeCategory }) => {
+export const ChartHorizontal = ({ activeCategory }) => {
   const categoriesArray = activeCategory.subCategories;
   const categoriesName = categoriesArray.map(item => item.name);
   const categoriesValue = categoriesArray.map(item => item.value);
-  // const categoriesLabels = categoriesArray.map(item => `${item.value} грн.`);
+  const categoriesLabels = categoriesArray.map(item => `${item.value} грн.`);
 
   const data = {
     labels: categoriesName,
     datasets: [
       {
-        label: 'Expenses',
         data: categoriesValue,
         backgroundColor: [
           'rgba(255, 117, 29, 0.8)',
@@ -24,13 +23,14 @@ export const Chart = ({ activeCategory }) => {
           anchor: 'end',
           align: 'top',
           offset: 13,
-          // display: true,
+          display: true,
           font: {
             size: 10
           },
-          formatter: function(value, context) {
-          return context.chart.data.categoriesLabels[context.dataIndex];
-        }
+          // formatter: function(value, context) {
+          // return context.chart.data.categoriesLabels[context.dataIndex];
+        //}
+          formatter: categoriesLabels,
         },
       },
     ],
@@ -42,6 +42,12 @@ export const Chart = ({ activeCategory }) => {
         width={480}
         plugins={[ChartDataLabels]}
         options={{
+            plugins: {
+            datalabels: {
+                display: true,
+                formatter: categoriesLabels,
+            }
+        },
           indexAxis: 'y',
           maintainAspectRatio: false,
           responsive: false,
@@ -66,6 +72,7 @@ export const Chart = ({ activeCategory }) => {
               ticks: {
                 mirror: true,
                 labelOffset: -20,
+                z: 0,
                 font: {
                   size: 10
                 }
@@ -77,47 +84,8 @@ export const Chart = ({ activeCategory }) => {
              },
             },
           },
-          plugins: {
-            legend: false,
-          },
         }}
       />
     </div>
   );
 };
-
-{/* <Bar
-        data={data}
-        width={758}
-        height={400}
-        plugins={[ChartDataLabels]}
-        options={{
-          // indexAxis: 'y',
-          maintainAspectRatio: false,
-          responsive: false,
-          barThickness: 38,
-          layout: {
-            padding: {
-              top: 20
-            }
-          },
-          scales: {
-            x: {
-              grid: {
-                display: false,
-              },
-            },
-            y: {
-              ticks: {
-                display: false,
-              },
-              grid: {
-                drawTicks: false,
-              },
-            },
-          },
-          plugins: {
-            legend: false,
-          },
-        }}
-      /> */}

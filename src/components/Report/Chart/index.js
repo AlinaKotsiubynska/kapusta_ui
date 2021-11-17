@@ -1,1 +1,2 @@
-export { Chart } from './ChartVertical';
+export { ChartVertical } from './ChartVertical';
+export {ChartHorizontal} from './ChartHorizontal'
