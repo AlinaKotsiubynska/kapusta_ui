@@ -13,22 +13,22 @@ export default function AuthGoogle() {
 
     const authorizedUser = {
       name: params.get('name'),
-      token: params.get('token'),
+      userToken: params.get('token'),
       email: params.get('email'),
     };
 
     if (!authorizedUser.token) {
       history.push('/error');
     }
-    if (authorizedUser.token) {
-      token.set(authorizedUser.token);
+    if (authorizedUser.userToken) {
+      token.set(authorizedUser.userToken);
 
-      localStorage.setItem('token', JSON.stringify(authorizedUser.token));
+      localStorage.setItem('token', JSON.stringify(authorizedUser.userToken));
 
       setUserContext(state => ({
         ...state,
 
-        token: authorizedUser.token,
+        token: authorizedUser.userToken,
         authenticated: true,
         user: {
           ...state.user,
