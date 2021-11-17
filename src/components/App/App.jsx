@@ -14,7 +14,6 @@ import { useGetCurrentByToken } from 'utils';
 import Header from 'components/Header/Header.jsx';
 import s from './App.module.scss';
 
-
 export default function App() {
   const [userContext, setUserContext] = useState(USER_CONTEXT_DEFAULT);
   const { authenticated } = userContext;
@@ -26,30 +25,27 @@ export default function App() {
       <div className={s.container}>
         <Header />
         <Switch>
-          {authenticated ? (
+          {authenticated && (
             <>
               <Route path={`/${HOME}`}>
                 <HomePage />
               </Route>
               <Redirect to={`/${HOME}`} />
             </>
-          ) : (
-            <>
-              <Route path={`/${AUTH}`}>
-                <AuthPage />
-              </Route>
-              <Route path={`/${AUTHORIZED}`}>
-                <AuthGoogle />
-              </Route>
-              <Route path={`/${ERROR}`}>
-                <div>
-                  <h1>Что-то пошло не так, попробуйте еще раз</h1>
-                  <Link to={`/${AUTH}`}>Перейти</Link>
-                </div>
-              </Route>
-              <Redirect to={`/${AUTH}`} />
-            </>
           )}
+          <Route path={`/${AUTH}`}>
+            <AuthPage />
+          </Route>
+          <Route path={`/${AUTHORIZED}`}>
+            <AuthGoogle />
+          </Route>
+          <Route path={`/${ERROR}`}>
+            <div>
+              <h1>Что-то пошло не так, попробуйте еще раз</h1>
+              <Link to={`/${AUTH}`}>Перейти</Link>
+            </div>
+          </Route>
+          <Redirect to={`/${AUTH}`} />
         </Switch>
       </div>
     </Context.Provider>
