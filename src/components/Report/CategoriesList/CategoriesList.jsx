@@ -1,16 +1,22 @@
 import { useState, useEffect } from 'react';
 import css from './CategoriesList.module.css';
 import { CategoriesItem } from '../CategoriesItem';
-import { Chart } from '../Chart';
+import { ChartHorizontal, ChartVertical } from '../Chart';
+import debounce from 'lodash.debounce';
 
 export const CategoriesList = ({ categories, handleSwitchPoint, point }) => {
   const [activeCategory, setActiveCategory] = useState('transport');
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth); 
   const title = point === 'expenses' ? 'РАСХОДЫ' : 'ДОХОДЫ';
-  const activeSubCategoriesObj = categories
-    ? categories.find(item => item.nameEn === activeCategory)
-    : {};
-  console.log('activeCategory in component', activeCategory);
-  console.log('activeCategoryOBJ in component', activeSubCategoriesObj);
+  // const activeSubCategoriesObj = categories
+  //   ? categories.find(item => item.nameEn === activeCategory) : {};
+    const activeSubCategoriesObj = categories.find(item => item.nameEn === activeCategory);
+  
+  useEffect((e) => {
+    window.addEventListener('resize', debounce(() => setWindowWidth(window.innerWidth),300));
+    return window.removeEventListener('resize', debounce(() => setWindowWidth(window.innerWidth),300));
+  }, []);
+
   useEffect(() => {
     if (point === 'expenses') {
       setActiveCategory('transport');
@@ -21,7 +27,6 @@ export const CategoriesList = ({ categories, handleSwitchPoint, point }) => {
 
   const chooseCategory = subCategoriesNameEn => {
     setActiveCategory(subCategoriesNameEn);
-    console.log('activeCategory', subCategoriesNameEn);
   };
 
   return (
@@ -71,9 +76,8 @@ export const CategoriesList = ({ categories, handleSwitchPoint, point }) => {
               </li>
             ))}
           </ul>
-          {activeSubCategoriesObj && (
-            <Chart activeCategory={activeSubCategoriesObj} />
-          )}
+          {activeSubCategoriesObj && (windowWidth <= 600) && <ChartHorizontal activeCategory={activeSubCategoriesObj} />}
+          {activeSubCategoriesObj && (windowWidth > 600) && <ChartVertical activeCategory={activeSubCategoriesObj} />}
         </>
       )}
     </>
