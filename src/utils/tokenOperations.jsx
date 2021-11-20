@@ -1,5 +1,5 @@
 import axios from 'axios';
-axios.defaults.baseURL = 'http://app-kapusta.herokuapp.com/api';
+axios.defaults.baseURL = 'https://app-kapusta.herokuapp.com/api';
 
 export const token = {
   set(token) {

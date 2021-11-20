@@ -1,4 +1,4 @@
-import { useState } from 'react/cjs/react.development';
+import { useState } from 'react';
 import styles from './Balance.module.scss';
 
 export const Balance = () => {
