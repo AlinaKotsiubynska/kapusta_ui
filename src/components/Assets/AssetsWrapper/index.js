@@ -1,0 +1,1 @@
+export { AssetsWrapper } from './AssetsWrapper';

@@ -1,0 +1,1 @@
+export { AssetsBoard } from './AssetsBoard';

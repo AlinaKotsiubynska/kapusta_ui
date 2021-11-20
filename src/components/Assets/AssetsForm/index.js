@@ -1,0 +1,1 @@
+export { AssetsForm } from './AssetsForm';
