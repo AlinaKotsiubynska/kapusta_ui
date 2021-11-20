@@ -1,6 +1,10 @@
 export const USER_CONTEXT_DEFAULT = {
   authenticated: false,
-  user: {},
+  user: {
+    name: '',
+    email: '',
+    balance: 0,
+  },
   token: null,
 };
 
