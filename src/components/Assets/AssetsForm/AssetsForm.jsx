@@ -4,25 +4,29 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { ReactComponent as CalendIcon } from 'assets/icons/calendar.svg';
 import { ReactComponent as Calculator } from 'assets/icons/calculator.svg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { format } from 'date-fns';
+import { getCategories, setIncomes } from '../Api/Api';
 
-const options = ['транспорт', 'еда', 'коммуналка', 'связь'];
-
-export const AssetsForm = () => {
+export const AssetsForm = ({ tabKey }) => {
   const [date, setDate] = useState(null);
   const [isVisible, setVisible] = useState(true);
+  const [categories, setCategories] = useState([]);
 
-  const dateNow = format(new Date(), 'MM.dd.yyyy');
+  const dateNow = format(new Date(), 'dd.MM.yyyy');
 
   const formHandler = e => {
     e.preventDefault();
-    console.log(e.target.input.value);
-    console.log(e.target.select.value);
+    const description = e.target.input.value;
+    const category = e.target.select.value;
+    const value = e.target.calc.value;
+    console.log(categories);
+    console.log({ date: new Date(date), category, description, value });
+    setIncomes({ date: new Date(date), category, description, value });
   };
 
   const onClickDay = day => {
-    const formatDay = format(day, 'MM.dd.yyyy');
+    const formatDay = format(day, 'dd.MM.yyyy');
     setDate(formatDay);
     onLabelClic();
     return;
@@ -31,6 +35,18 @@ export const AssetsForm = () => {
   const onLabelClic = () => {
     setVisible(prev => !prev);
   };
+
+  const getSign = (tabKey, categories) => {
+    return categories.filter(el => el.sign === tabKey);
+  };
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await getCategories();
+      const sortCategories = getSign(tabKey, data.results);
+      setCategories(sortCategories);
+    })();
+  }, [tabKey]);
 
   return (
     <div className={styles.wrapper}>
@@ -54,15 +70,16 @@ export const AssetsForm = () => {
           placeholder="Описание товара"
         />
         <select className={styles.select} size="1" name="select">
-          {options.map(el => (
-            <option key={el} value={el}>
-              {el}
+          {categories.map(el => (
+            <option key={el._id} value={el._id}>
+              {el.name}
             </option>
           ))}
         </select>
         <div className={styles.calculatorWrapper}>
           <Calculator className={styles.calculatorIcon} />
           <input
+            name="calc"
             className={styles.calc}
             type="number"
             step="0.01"

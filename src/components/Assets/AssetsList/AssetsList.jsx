@@ -1,22 +1,11 @@
 import { useTable } from 'react-table';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ReactComponent as Trash } from 'assets/icons/trash1.svg';
 import styles from './AssetsList.module.scss';
+import { getCategories } from 'components/Assets/Api/Api';
 
 export const AssetsList = () => {
-  const deleteEntry = data => {
-    const onDel = event => {
-      //delete method
-      console.log(data);
-    };
-    return (
-      <button type="button" onClick={onDel} className={styles.button}>
-        <Trash />
-      </button>
-    );
-  };
-
-  const data = [
+  const init = [
     {
       id: 1,
       date: '05.05.2020',
@@ -53,6 +42,29 @@ export const AssetsList = () => {
       total: 100,
     },
   ];
+  const [data, setData] = useState(init);
+
+  useEffect(() => {
+    const getItems = async () => {
+      const res = await getCategories();
+      setData(res.data.results);
+    };
+    getItems();
+  }, []);
+
+  // console.log(data);
+
+  const deleteEntry = data => {
+    const onDel = event => {
+      //delete method
+      console.log(data);
+    };
+    return (
+      <button type="button" onClick={onDel} className={styles.button}>
+        <Trash />
+      </button>
+    );
+  };
 
   const columns = useMemo(
     () => [
@@ -86,36 +98,44 @@ export const AssetsList = () => {
     tableInstance;
 
   return (
-    <div className={styles.tableWrapper}>
-      <table {...getTableProps()} className={styles.table}>
-        <thead className={styles.header}>
-          {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-      </table>
-      <div className={styles.bodyWrapper}>
-        <table {...getTableProps()} className={styles.tableBody}>
-          <tbody {...getTableBodyProps()}>
-            {rows.map(row => {
-              prepareRow(row);
-              return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map(cell => {
-                    return (
-                      <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                    );
-                  })}
+    <div>
+      {data && (
+        <div className={styles.tableWrapper}>
+          <table {...getTableProps()} className={styles.table}>
+            <thead className={styles.header}>
+              {headerGroups.map(headerGroup => (
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map(column => (
+                    <th {...column.getHeaderProps()}>
+                      {column.render('Header')}
+                    </th>
+                  ))}
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+              ))}
+            </thead>
+          </table>
+          <div className={styles.bodyWrapper}>
+            <table {...getTableProps()} className={styles.tableBody}>
+              <tbody {...getTableBodyProps()}>
+                {rows.map(row => {
+                  prepareRow(row);
+                  return (
+                    <tr {...row.getRowProps()}>
+                      {row.cells.map(cell => {
+                        return (
+                          <td {...cell.getCellProps()}>
+                            {cell.render('Cell')}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
