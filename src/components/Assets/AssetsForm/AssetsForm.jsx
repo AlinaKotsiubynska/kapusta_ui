@@ -36,6 +36,14 @@ export const AssetsForm = ({ tabKey, setUpdate }) => {
     });
 
     setUpdate(pr => !pr);
+
+    clearForm(e.target);
+  };
+
+  const clearForm = ({ input, calc, select }) => {
+    input.value = '';
+    calc.value = '';
+    select.firstChild.selected = true;
   };
 
   const onClickDay = day => {
