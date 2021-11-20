@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { INCOMES, EXPENSES, REPORTS } from 'helpers/constants/routes.constants';
 import { NavLink, useRouteMatch, Switch, Route } from 'react-router-dom';
-import { Redirect, useHistory } from 'react-router';
+import { useHistory } from 'react-router';
 import { AssetsBoard } from 'components/Assets/AssetsBoard';
 import { Balance } from 'components/shared/Balance';
 import styles from './AssetsWrapper.module.scss';
@@ -29,25 +29,25 @@ export const AssetsWrapper = () => {
 
   return (
     <div className={styles.body}>
-      <NavLink to={`${path}/${REPORTS}/${EXPENSES}`}>{REPORTS}</NavLink>
-      <Balance />
-      {TABS.map(tab => (
-        <NavLink
-          key={tab}
-          to={path + '/' + tab}
-          className={styles.navlink}
-          activeClassName={styles.activenavlink}
-        >
-          {tab}
-        </NavLink>
+      {/* <Switch> */}
+      {ROUTESNAMES.map(tab => (
+        <Route key={tab} path={path + '/' + tab}>
+          <NavLink to={`${path}/${REPORTS}/${EXPENSES}`}>{REPORTS}</NavLink>
+          <Balance />
+          {TABS.map(tab => (
+            <NavLink
+              key={tab}
+              to={path + '/' + tab}
+              className={styles.navlink}
+              activeClassName={styles.activenavlink}
+            >
+              {tab}
+            </NavLink>
+          ))}
+          {getComponent(tab)}
+        </Route>
       ))}
-      <Switch>
-        {ROUTESNAMES.map(tab => (
-          <Route key={tab} path={path + '/' + tab}>
-            {getComponent(tab)}
-          </Route>
-        ))}
-      </Switch>
+      {/* </Switch> */}
     </div>
   );
 };
