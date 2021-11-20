@@ -13,18 +13,17 @@ import { getNormalizeData } from 'utils';
 export const AssetsList = ({ tabKey, isUpdate, setUpdate }) => {
   const { reportContext } = useContext(Context);
 
-  const [day, mounth, year] = format(
-    reportContext.viewDate,
-    'dd/MM/yyyy',
-  ).split('/');
+  const [, mounth, year] = format(reportContext.viewDate, 'dd/MM/yyyy').split(
+    '/',
+  );
 
   const init = [
     {
-      id: 1,
-      date: '05.05.2020',
-      descr: 'Бананы',
-      category: 'Трансопрт',
-      total: 5000,
+      id: null,
+      date: '',
+      descr: '',
+      category: '',
+      value: null,
     },
   ];
 

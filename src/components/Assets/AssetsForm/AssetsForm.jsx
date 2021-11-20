@@ -22,18 +22,19 @@ export const AssetsForm = ({ tabKey, setUpdate }) => {
 
   useSetChangedDate(setReportContext, date);
 
-  const onSubmitForm = e => {
+  const onSubmitForm = async e => {
     e.preventDefault();
     const description = e.target.input.value;
     const category = e.target.select.value;
     const value = e.target.calc.value;
 
-    setTransactions(tabKey)({
+    await setTransactions(tabKey)({
       date: new Date().getTime(date),
       category,
       description,
       value: Number(value),
     });
+
     setUpdate(pr => !pr);
   };
 
