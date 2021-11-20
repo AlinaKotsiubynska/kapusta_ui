@@ -2,9 +2,9 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 
 const BASE_URL = 'https://app-kapusta.herokuapp.com';
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTg1ODlkMWU0MWYwNDc2NmU0MjNiN2YiLCJpYXQiOjE2MzY5MjEwMjJ9.tP3_jV-0uixrp5SkR0ZyJaUR7Pv049TcREH9BptUXc4';
-axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+//const token =
+//  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTg1ODlkMWU0MWYwNDc2NmU0MjNiN2YiLCJpYXQiOjE2MzY5MjEwMjJ9.tP3_jV-0uixrp5SkR0ZyJaUR7Pv049TcREH9BptUXc4';
+
 
 export async function fetchDataByDate(year, mounth, point) {
   try {

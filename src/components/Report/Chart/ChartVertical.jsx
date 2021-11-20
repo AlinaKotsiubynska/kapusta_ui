@@ -2,12 +2,11 @@ import { Bar } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import css from './Chart.module.css';
 
-export const Chart = ({ activeCategory }) => {
+export const ChartVertical = ({ activeCategory }) => {
   const categoriesArray = activeCategory.subCategories;
   const categoriesName = categoriesArray.map(item => item.name);
   const categoriesValue = categoriesArray.map(item => item.value);
-  const a = 'x';
-  const b = 'y';
+  // const categoriesLabels = categoriesArray.map(item => `${item.value} грн.`);
 
   const data = {
     labels: categoriesName,
@@ -21,29 +20,31 @@ export const Chart = ({ activeCategory }) => {
           'rgba(255, 218, 192, 0.8)',
         ],
         borderRadius: 5,
-        datalabels: {
+       datalabels: {
           anchor: 'end',
           align: 'top',
+          font: {
+            size: 12
+          },
         },
       },
     ],
   };
   return (
-    <div className={css.chart}>
-      <Bar
+    < div className={css.chart}>
+<Bar
         data={data}
         width={758}
         height={400}
         plugins={[ChartDataLabels]}
         options={{
-          // indexAxis: 'y',
           maintainAspectRatio: false,
           responsive: false,
           barThickness: 38,
           layout: {
             padding: {
-              top: 20
-            }
+              top: 20,
+            },
           },
           scales: {
             x: {
@@ -65,6 +66,6 @@ export const Chart = ({ activeCategory }) => {
           },
         }}
       />
-    </div>
+ </div>
   );
 };

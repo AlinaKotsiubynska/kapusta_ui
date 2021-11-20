@@ -1,6 +1,9 @@
 import { Link, useHistory } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import axios from 'axios';
+import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { SIGNUP } from 'helpers/constants/routes.constants';
 import { Context } from '../Context/index';
 import { token } from '../../utils/tokenOperations';
@@ -28,7 +31,7 @@ export default function LoginForm() {
 
     try {
       const { data } = await axios.post('/users/login', user);
-      localStorage.setItem('userToken', JSON.stringify(data.user.token));
+      localStorage.setItem('token', JSON.stringify(data.user.token));
 
       token.set(data.user.token);
 
@@ -45,7 +48,7 @@ export default function LoginForm() {
       }));
       history.push('/home/expenses');
     } catch (error) {
-      console.log(error);
+      toast.error('Проверьте правильность введенных данных');
     }
 
     setEmail('');
@@ -54,6 +57,7 @@ export default function LoginForm() {
 
   return (
     <div>
+      <ToastContainer autoClose={5000} />
       <p>Вы можете авторизоваться с помощью Google Account:</p>
 
       <a href="https://app-kapusta.herokuapp.com/api/auth/google">Google</a>
@@ -65,6 +69,7 @@ export default function LoginForm() {
         <label>
           Электронная почта:
           <input
+            required
             placeholder="your@email.com"
             type="email"
             name="email"
@@ -76,6 +81,7 @@ export default function LoginForm() {
         <label>
           Пароль
           <input
+            required
             type="password"
             name="password"
             value={password}

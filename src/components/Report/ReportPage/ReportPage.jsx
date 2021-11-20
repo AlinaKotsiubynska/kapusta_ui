@@ -1,9 +1,10 @@
 import { useParams, useHistory } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
 import { ReportHeading } from '../ReportHeading';
 import { CategoriesList } from '../CategoriesList';
 import { SummaryLine } from '../SummaryLine';
 import { fetchAllCategories, fetchDataByDate } from 'services/reports-api';
+import toast, { Toaster } from 'react-hot-toast';
 
 const currentData = new Date();
 const currentYear = currentData.getFullYear();
@@ -19,21 +20,24 @@ export const ReportPage = () => {
   const { point } = useParams();
 
   useEffect(() => {
-    (async function getAllCategories() {
-      const data = await fetchAllCategories();
-      const categories = data.filter(item => item.sign === point);
-      setAllCategories(categories);
-    })();
+    async function getAllCategories() {
+      try {
+        const data = await fetchAllCategories();
+        const categories = data.filter(item => item.sign === point);
+        setAllCategories(categories);
+      }
+      catch { toast.error('Something went wrong');}
+    }
+    getAllCategories();
   }, [point]);
-  
+
   useEffect(() => {
     (async function getData() {
       const expensesByDate = await fetchDataByDate(
         selectedYear,
         selectedMonth,
-        point,
+        point
       );
-      console.log('result fetch', expensesByDate);
       const categoriesByDate = expensesByDate;
       if (!allCategories || !categoriesByDate) return;
       const dataByCategories = allCategories.map(category => {
@@ -90,14 +94,13 @@ export const ReportPage = () => {
         handleGoNextPeriod={handleGoNextPeriod}
         handleGoPreviousPeriod={handleGoPreviousPeriod}
       />
-      <SummaryLine
-        month={selectedMonth}
-        year={selectedYear}/>
+      <SummaryLine month={selectedMonth} year={selectedYear} />
       <CategoriesList
         categories={categories}
         handleSwitchPoint={handleSwitchPoint}
         point={point}
       />
+      <Toaster />
     </>
   );
 };
