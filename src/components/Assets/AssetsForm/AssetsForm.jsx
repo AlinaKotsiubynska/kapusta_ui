@@ -72,12 +72,13 @@ export const AssetsForm = ({ tabKey, setUpdate }) => {
       </div>
       <form onSubmit={onSubmitForm} className={styles.form}>
         <input
+          required
           className={styles.input}
           type="text"
           name="input"
           placeholder="Описание товара"
         />
-        <select className={styles.select} size="1" name="select">
+        <select className={styles.select} size="1" name="select" required>
           {categories.map(el => (
             <option key={el._id} value={el._id}>
               {el.name}
@@ -87,6 +88,7 @@ export const AssetsForm = ({ tabKey, setUpdate }) => {
         <div className={styles.calculatorWrapper}>
           <Calculator className={styles.calculatorIcon} />
           <input
+            required
             name="calc"
             className={styles.calc}
             type="number"
