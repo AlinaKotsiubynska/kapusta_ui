@@ -9,19 +9,25 @@ import {
   AUTHORIZED,
   ERROR,
 } from 'helpers/constants/routes.constants';
-import { USER_CONTEXT_DEFAULT } from 'helpers/constants/contexst.constants';
+import {
+  USER_CONTEXT_DEFAULT,
+  REPORT_CONTEXT_DEFAULT,
+} from 'helpers/constants/contexst.constants';
 import { useGetCurrentByToken } from 'utils';
 import Header from 'components/Header/Header.jsx';
 import s from './App.module.scss';
 
 export default function App() {
   const [userContext, setUserContext] = useState(USER_CONTEXT_DEFAULT);
+  const [reportContext, setReportContext] = useState(REPORT_CONTEXT_DEFAULT);
   const { authenticated } = userContext;
 
   useGetCurrentByToken(setUserContext);
 
   return (
-    <Context.Provider value={{ userContext, setUserContext }}>
+    <Context.Provider
+      value={{ userContext, reportContext, setUserContext, setReportContext }}
+    >
       <div className={s.container}>
         <Header />
         <Switch>

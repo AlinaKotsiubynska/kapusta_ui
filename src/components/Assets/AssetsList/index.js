@@ -1,0 +1,1 @@
+export { AssetsList } from './AssetsList';

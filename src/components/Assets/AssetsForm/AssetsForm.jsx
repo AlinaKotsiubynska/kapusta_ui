@@ -4,26 +4,42 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { ReactComponent as CalendIcon } from 'assets/icons/calendar.svg';
 import { ReactComponent as Calculator } from 'assets/icons/calculator.svg';
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { format } from 'date-fns';
+import {
+  setTransactions,
+  getCategoriesBySign,
+} from 'components/Assets/Api/Api';
+import { Context } from 'components/Context/Context';
+import { useSetChangedDate } from 'utils';
 
-const options = ['транспорт', 'еда', 'коммуналка', 'связь'];
+export const AssetsForm = ({ tabKey, setUpdate }) => {
+  const { setReportContext } = useContext(Context);
 
-export const AssetsForm = () => {
-  const [date, setDate] = useState(null);
+  const [date, setDate] = useState(() => new Date());
   const [isVisible, setVisible] = useState(true);
+  const [categories, setCategories] = useState([]);
 
-  const dateNow = format(new Date(), 'MM.dd.yyyy');
+  useSetChangedDate(setReportContext, date);
 
-  const formHandler = e => {
+  const onSubmitForm = async e => {
     e.preventDefault();
-    console.log(e.target.input.value);
-    console.log(e.target.select.value);
+    const description = e.target.input.value;
+    const category = e.target.select.value;
+    const value = e.target.calc.value;
+
+    await setTransactions(tabKey)({
+      date: new Date().getTime(date),
+      category,
+      description,
+      value: Number(value),
+    });
+
+    setUpdate(pr => !pr);
   };
 
   const onClickDay = day => {
-    const formatDay = format(day, 'MM.dd.yyyy');
-    setDate(formatDay);
+    setDate(day);
     onLabelClic();
     return;
   };
@@ -32,11 +48,19 @@ export const AssetsForm = () => {
     setVisible(prev => !prev);
   };
 
+  useEffect(() => {
+    (async () => {
+      const sortCategories = await getCategoriesBySign(tabKey);
+      setCategories(sortCategories);
+    })();
+  }, [tabKey]);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.calendarWrapper}>
         <div className={styles.calendarLabel} onClick={onLabelClic}>
-          <CalendIcon className={styles.calendarIcon} /> {date || dateNow}
+          <CalendIcon className={styles.calendarIcon} />{' '}
+          {format(date, 'dd.MM.yyyy')}
         </div>
         {!isVisible && (
           <Calendar
@@ -46,7 +70,7 @@ export const AssetsForm = () => {
           />
         )}
       </div>
-      <form onSubmit={formHandler} className={styles.form}>
+      <form onSubmit={onSubmitForm} className={styles.form}>
         <input
           className={styles.input}
           type="text"
@@ -54,15 +78,16 @@ export const AssetsForm = () => {
           placeholder="Описание товара"
         />
         <select className={styles.select} size="1" name="select">
-          {options.map(el => (
-            <option key={el} value={el}>
-              {el}
+          {categories.map(el => (
+            <option key={el._id} value={el._id}>
+              {el.name}
             </option>
           ))}
         </select>
         <div className={styles.calculatorWrapper}>
           <Calculator className={styles.calculatorIcon} />
           <input
+            name="calc"
             className={styles.calc}
             type="number"
             step="0.01"
