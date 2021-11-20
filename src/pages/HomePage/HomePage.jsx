@@ -9,11 +9,11 @@ export const HomePage = () => {
 
   return (
     <Switch>
-      <Route path={`${path}`}>
-        <AssetsWrapper />
-      </Route>
       <Route key={REPORTS} path={`${path}/${REPORTS}/:point`}>
         <ReportPage />
+      </Route>
+      <Route path={`${path}`}>
+        <AssetsWrapper />
       </Route>
       <Redirect to={path + '/' + EXPENSES} />
     </Switch>
