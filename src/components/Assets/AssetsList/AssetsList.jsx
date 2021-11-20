@@ -1,10 +1,23 @@
 import { useTable } from 'react-table';
-import { useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { ReactComponent as Trash } from 'assets/icons/trash1.svg';
 import styles from './AssetsList.module.scss';
-import { getCategories } from 'components/Assets/Api/Api';
+import {
+  getReportsByMouthAndYear,
+  deleteTransaction,
+} from 'components/Assets/Api/Api';
+import { Context } from 'components/Context';
+import { format } from 'date-fns';
+import { getNormalizeData } from 'utils';
 
-export const AssetsList = () => {
+export const AssetsList = ({ tabKey, isUpdate, setUpdate }) => {
+  const { reportContext } = useContext(Context);
+
+  const [day, mounth, year] = format(
+    reportContext.viewDate,
+    'dd/MM/yyyy',
+  ).split('/');
+
   const init = [
     {
       id: 1,
@@ -13,51 +26,26 @@ export const AssetsList = () => {
       category: 'Трансопрт',
       total: 5000,
     },
-    {
-      id: 2,
-      date: '500',
-      descr: 'Лампа',
-      category: 'аптека',
-      total: 100,
-    },
-    {
-      id: 2,
-      date: '500',
-      descr: 'Лампа',
-      category: 'аптека',
-      total: 100,
-    },
-    {
-      id: 2,
-      date: '500',
-      descr: 'Лампа',
-      category: 'аптека',
-      total: 100,
-    },
-    {
-      id: 2,
-      date: '500',
-      descr: 'Лампа',
-      category: 'аптека',
-      total: 100,
-    },
   ];
+
   const [data, setData] = useState(init);
 
   useEffect(() => {
-    const getItems = async () => {
-      const res = await getCategories();
-      setData(res.data.results);
-    };
-    getItems();
-  }, []);
-
-  // console.log(data);
+    (async () => {
+      const { data } = await getReportsByMouthAndYear({
+        mounth,
+        year,
+        sign: tabKey,
+      });
+      const normData = getNormalizeData(data.results);
+      setData(normData);
+    })();
+  }, [tabKey, mounth, year, isUpdate]);
 
   const deleteEntry = data => {
-    const onDel = event => {
-      //delete method
-      console.log(data);
+    const onDel = async event => {
+      await deleteTransaction(data.id);
+      setUpdate(pr => !pr);
     };
     return (
       <button type="button" onClick={onDel} className={styles.button}>
@@ -74,7 +62,7 @@ export const AssetsList = () => {
       },
       {
         Header: 'Описание',
-        accessor: 'descr',
+        accessor: 'description',
       },
       {
         Header: 'Категория',
@@ -82,7 +70,7 @@ export const AssetsList = () => {
       },
       {
         Header: 'Сумма',
-        accessor: 'total',
+        accessor: 'value',
       },
       {
         Header: ' ',

@@ -1,13 +1,36 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://app-kapusta.herokuapp.com/api';
-axios.defaults.headers.common['Authorization'] =
-  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxOGY4ZTFkMTVmOGU1OWVjNzQ1ODUiLCJpYXQiOjE2MzcxNzQ5MTJ9.W4wkkNPWjgWJ6mNfdedRaQ0bojUxdZUdwqgL1GCp2tk';
+import { INCOMES } from 'helpers/constants/routes.constants';
 
 export const getCategories = async () => {
   return await axios.get('categories');
 };
 
-export const setIncomes = async body => {
+const setIncomes = async body => {
   return await axios.post('transactions/incomes', body);
+};
+
+const setExpenses = async body => {
+  return await axios.post('transactions/expenses', body);
+};
+
+export const getCategoriesBySign = async tabKey => {
+  const { data } = await getCategories();
+  const categories = data.results;
+  return categories.filter(el => el.sign === tabKey);
+};
+
+export const setTransactions = tabKey => {
+  return tabKey === INCOMES ? setIncomes : setExpenses;
+};
+
+export const getReportsByMouthAndYear = async ({ mounth, year, sign }) => {
+  const normalizeMounth = Number(mounth) - 1;
+  return axios.get(
+    `reports/detals?sign=${sign.toLowerCase()}&year=${year}&month=${normalizeMounth}`,
+  );
+};
+
+export const deleteTransaction = async id => {
+  return axios.delete(`/transactions/${id}`);
 };
