@@ -29,7 +29,6 @@ export const AssetsWrapper = () => {
 
   return (
     <div className={styles.body}>
-      {/* <Switch> */}
       {ROUTESNAMES.map(tab => (
         <Route key={tab} path={path + '/' + tab}>
           <NavLink to={`${path}/${REPORTS}/${EXPENSES}`}>{REPORTS}</NavLink>
@@ -47,7 +46,6 @@ export const AssetsWrapper = () => {
           {getComponent(tab)}
         </Route>
       ))}
-      {/* </Switch> */}
     </div>
   );
 };
