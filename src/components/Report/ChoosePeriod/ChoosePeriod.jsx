@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import css from './ChoosePeriod.module.css';
 
 const months = [
@@ -59,4 +60,11 @@ export const ChoosePeriod = ({
       </button>
     </>
   );
+};
+
+ChoosePeriod.propTypes = {
+  month: PropTypes.number.isRequired,
+  year: PropTypes.number.isRequired,
+  handleGoNextPeriod: PropTypes.func.isRequired,
+  handleGoPreviousPeriod: PropTypes.func.isRequired,
 };

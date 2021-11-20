@@ -7,3 +7,7 @@
   display: flex;
   text-align: center;
 }
+
+.active {
+  fill: #ff751d;
+}

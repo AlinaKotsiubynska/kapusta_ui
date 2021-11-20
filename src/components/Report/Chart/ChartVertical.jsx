@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Bar } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import css from './Chart.module.css';
@@ -6,7 +7,6 @@ export const ChartVertical = ({ activeCategory }) => {
   const categoriesArray = activeCategory.subCategories;
   const categoriesName = categoriesArray.map(item => item.name);
   const categoriesValue = categoriesArray.map(item => item.value);
-  // const categoriesLabels = categoriesArray.map(item => `${item.value} грн.`);
 
   const data = {
     labels: categoriesName,
@@ -32,7 +32,7 @@ export const ChartVertical = ({ activeCategory }) => {
   };
   return (
     < div className={css.chart}>
-<Bar
+      <Bar
         data={data}
         width={758}
         height={400}
@@ -62,10 +62,20 @@ export const ChartVertical = ({ activeCategory }) => {
             },
           },
           plugins: {
+            datalabels: {
+              display: true,
+              formatter: (value) => {
+                return value + ' грн.';
+              }
+            },
             legend: false,
           },
         }}
       />
  </div>
   );
+};
+
+ChartVertical.propTypes = {
+  activeCategory: PropTypes.object.isRequired
 };
