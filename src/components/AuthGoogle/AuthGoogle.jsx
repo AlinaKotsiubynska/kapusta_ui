@@ -3,10 +3,11 @@ import { useContext, useEffect } from 'react';
 
 import { Context } from '../Context/index';
 import { token } from '../../utils/tokenOperations';
+import axios from 'axios';
 
 export default function AuthGoogle() {
   const history = useHistory();
-  const { setUserContext, userContext } = useContext(Context);
+  const { setUserContext } = useContext(Context);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -25,18 +26,21 @@ export default function AuthGoogle() {
 
       localStorage.setItem('token', JSON.stringify(authorizedUser.token));
 
-      setUserContext(state => ({
-        ...state,
+      axios.get('/users/current').then(({ data: userInfo }) => {
+        setUserContext(state => ({
+          ...state,
 
-        token: authorizedUser.token,
-        authenticated: true,
-        user: {
-          ...state.user,
-          name: authorizedUser.name,
-        },
-      }));
+          token: authorizedUser.token,
+          authenticated: true,
+          user: {
+            ...state.user,
+            balance: userInfo.user.balance,
+            name: userInfo.user.name,
+          },
+        }));
 
-      history.push('/home/expenses');
+        history.push('/home/expenses');
+      });
     }
   });
 

@@ -32,8 +32,8 @@ export default function LoginForm() {
     try {
       const { data } = await axios.post('/users/login', user);
       localStorage.setItem('token', JSON.stringify(data.user.token));
-
       token.set(data.user.token);
+      const { data: userInfo } = await axios.get('/users/current');
 
       setUserContext(state => ({
         ...state,
@@ -42,8 +42,8 @@ export default function LoginForm() {
         authenticated: true,
         user: {
           ...state.user,
-          balance: data.user.balance,
-          name: data.user.name,
+          balance: userInfo.user.balance,
+          name: userInfo.user.name,
         },
       }));
       history.push('/home/expenses');

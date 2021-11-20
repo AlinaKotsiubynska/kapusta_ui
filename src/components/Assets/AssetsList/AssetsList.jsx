@@ -1,13 +1,50 @@
 import { useTable } from 'react-table';
-import { useMemo } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { ReactComponent as Trash } from 'assets/icons/trash1.svg';
 import styles from './AssetsList.module.scss';
+import {
+  getReportsByMouthAndYear,
+  deleteTransaction,
+} from 'components/Assets/Api/Api';
+import { Context } from 'components/Context';
+import { format } from 'date-fns';
+import { getNormalizeData } from 'utils';
 
-export const AssetsList = () => {
+export const AssetsList = ({ tabKey, isUpdate, setUpdate }) => {
+  const { reportContext } = useContext(Context);
+
+  const [, mounth, year] = format(reportContext.viewDate, 'dd/MM/yyyy').split(
+    '/',
+  );
+
+  const init = [
+    {
+      id: null,
+      date: '',
+      descr: '',
+      category: '',
+      value: null,
+    },
+  ];
+
+  const [data, setData] = useState(init);
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await getReportsByMouthAndYear({
+        mounth,
+        year,
+        sign: tabKey,
+      });
+      const normData = getNormalizeData(data.results);
+      setData(normData);
+    })();
+  }, [tabKey, mounth, year, isUpdate]);
+
   const deleteEntry = data => {
-    const onDel = event => {
-      //delete method
-      console.log(data);
+    const onDel = async event => {
+      await deleteTransaction(data.id);
+      setUpdate(pr => !pr);
     };
     return (
       <button type="button" onClick={onDel} className={styles.button}>
@@ -15,44 +52,6 @@ export const AssetsList = () => {
       </button>
     );
   };
-
-  const data = [
-    {
-      id: 1,
-      date: '05.05.2020',
-      descr: 'Бананы',
-      category: 'Трансопрт',
-      total: 5000,
-    },
-    {
-      id: 2,
-      date: '500',
-      descr: 'Лампа',
-      category: 'аптека',
-      total: 100,
-    },
-    {
-      id: 2,
-      date: '500',
-      descr: 'Лампа',
-      category: 'аптека',
-      total: 100,
-    },
-    {
-      id: 2,
-      date: '500',
-      descr: 'Лампа',
-      category: 'аптека',
-      total: 100,
-    },
-    {
-      id: 2,
-      date: '500',
-      descr: 'Лампа',
-      category: 'аптека',
-      total: 100,
-    },
-  ];
 
   const columns = useMemo(
     () => [
@@ -62,7 +61,7 @@ export const AssetsList = () => {
       },
       {
         Header: 'Описание',
-        accessor: 'descr',
+        accessor: 'description',
       },
       {
         Header: 'Категория',
@@ -70,7 +69,7 @@ export const AssetsList = () => {
       },
       {
         Header: 'Сумма',
-        accessor: 'total',
+        accessor: 'value',
       },
       {
         Header: ' ',
@@ -86,36 +85,44 @@ export const AssetsList = () => {
     tableInstance;
 
   return (
-    <div className={styles.tableWrapper}>
-      <table {...getTableProps()} className={styles.table}>
-        <thead className={styles.header}>
-          {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-      </table>
-      <div className={styles.bodyWrapper}>
-        <table {...getTableProps()} className={styles.tableBody}>
-          <tbody {...getTableBodyProps()}>
-            {rows.map(row => {
-              prepareRow(row);
-              return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map(cell => {
-                    return (
-                      <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                    );
-                  })}
+    <div>
+      {data && (
+        <div className={styles.tableWrapper}>
+          <table {...getTableProps()} className={styles.table}>
+            <thead className={styles.header}>
+              {headerGroups.map(headerGroup => (
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map(column => (
+                    <th {...column.getHeaderProps()}>
+                      {column.render('Header')}
+                    </th>
+                  ))}
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+              ))}
+            </thead>
+          </table>
+          <div className={styles.bodyWrapper}>
+            <table {...getTableProps()} className={styles.tableBody}>
+              <tbody {...getTableBodyProps()}>
+                {rows.map(row => {
+                  prepareRow(row);
+                  return (
+                    <tr {...row.getRowProps()}>
+                      {row.cells.map(cell => {
+                        return (
+                          <td {...cell.getCellProps()}>
+                            {cell.render('Cell')}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,0 +1,1 @@
+export { AssetsSummary } from './AssetsSummary';
