@@ -3,8 +3,7 @@ import axios from 'axios';
 
 export const useGetCurrentByToken = setUserContext => {
   useEffect(() => {
-    // const currentToken = JSON.parse(localStorage.getItem('token'));
-    const currentToken = null;
+    const currentToken = JSON.parse(localStorage.getItem('token'));
     if (currentToken) {
       axios.defaults.baseURL = 'http://app-kapusta.herokuapp.com/api';
       axios.defaults.headers.common.Authorization = 'Bearer ' + currentToken;
