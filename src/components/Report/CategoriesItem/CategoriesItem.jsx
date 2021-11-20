@@ -1,9 +1,24 @@
-export const CategoriesItem = ({ category }) => {
+import PropTypes from 'prop-types';
+import css from './CategoriesItem.module.css';
+import sprite from '../../../assets/icons/sprite.svg'
+export const CategoriesItem = ({ category, activeCategory }) => {
+  const iconClass = (category.nameEn === activeCategory) ? css.activeIcon : css.icon;
+  const rectClass = (category.nameEn === activeCategory) ? css.activeRect : css.rect;
   return (
     <>
       <p>{category.value}</p>
-      <img src={category.url} alt={category.name} />
+      <div className={css.iconWrapper}>
+        <span className={rectClass}></span>
+        <svg className={iconClass} width='56' height='56'>
+          <use href={`${sprite}#icon-${category.nameEn}`}></use>
+        </svg>
+      </div>
       <p>{category.name}</p>
     </>
   );
+};
+      
+CategoriesItem.propTypes = {
+  category: PropTypes.object.isRequired,
+  activeCategory: PropTypes.string.isRequired
 };

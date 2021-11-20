@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Bar } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import css from './Chart.module.css';
@@ -6,7 +7,6 @@ export const ChartHorizontal = ({ activeCategory }) => {
   const categoriesArray = activeCategory.subCategories;
   const categoriesName = categoriesArray.map(item => item.name);
   const categoriesValue = categoriesArray.map(item => item.value);
-  const categoriesLabels = categoriesArray.map(item => `${item.value} грн.`);
 
   const data = {
     labels: categoriesName,
@@ -21,32 +21,31 @@ export const ChartHorizontal = ({ activeCategory }) => {
         borderRadius: 5,
         datalabels: {
           anchor: 'end',
-          align: 'top',
-          offset: 13,
+          align: 'right',
+          offset: 5,
           display: true,
           font: {
             size: 10
           },
-          // formatter: function(value, context) {
-          // return context.chart.data.categoriesLabels[context.dataIndex];
-        //}
-          formatter: categoriesLabels,
         },
       },
     ],
   };
   return (
-    < div className={css.chart}>
+    <div className={css.chart}>
       <Bar
         data={data}
         width={480}
         plugins={[ChartDataLabels]}
         options={{
-            plugins: {
+          plugins: {
             datalabels: {
-                display: true,
-                formatter: categoriesLabels,
-            }
+              display: true,
+              formatter: (value) => {
+                return value + ' грн.';
+              },
+            },
+            legend: false,
         },
           indexAxis: 'y',
           maintainAspectRatio: false,
@@ -72,10 +71,9 @@ export const ChartHorizontal = ({ activeCategory }) => {
               ticks: {
                 mirror: true,
                 labelOffset: -20,
-                z: 0,
                 font: {
                   size: 10
-                }
+                },
               },
               grid: {
                display: false,
@@ -84,8 +82,13 @@ export const ChartHorizontal = ({ activeCategory }) => {
              },
             },
           },
+          
         }}
       />
     </div>
   );
+};
+
+ChartHorizontal.propTypes = {
+  activeCategory: PropTypes.object.isRequired
 };
