@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Modal({ active, setActive, children }) {
+function Modal({ active, setActive, children, onSubmitClick, onCanselCLick }) {
   return (
     <div
       className={active ? 'modal active' : 'modal'}
@@ -11,6 +11,8 @@ function Modal({ active, setActive, children }) {
         onClick={e => e.stopPropagation()}
       >
         {children}
+        <button onClick={onSubmitClick}>да</button>
+        <button onClick={onCanselCLick}>нет</button>
       </div>
     </div>
   );

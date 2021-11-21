@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import { GoHomeLink } from '../GoHomeButton/GoHomeButton';
 import { ChoosePeriod } from '../ChoosePeriod';
 import { Balance } from 'components/shared/Balance';
-import css from './ReportHeading.module.css';
+import s from './ReportHeading.module.scss';
 
 export const ReportHeading = ({
   month,
@@ -10,7 +11,7 @@ export const ReportHeading = ({
   handleGoNextPeriod,
 }) => {
   return (
-    <div className={css.heading}>
+    <div className={s.heading}>
       <GoHomeLink />
       <Balance />
       <ChoosePeriod
@@ -21,4 +22,11 @@ export const ReportHeading = ({
       />
     </div>
   );
+};
+
+ChoosePeriod.propTypes = {
+  month: PropTypes.number.isRequired,
+  year: PropTypes.number.isRequired,
+  handleGoNextPeriod: PropTypes.func.isRequired,
+  handleGoPreviousPeriod: PropTypes.func.isRequired,
 };

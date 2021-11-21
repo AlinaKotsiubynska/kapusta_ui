@@ -1,9 +1,9 @@
 import { useParams, useHistory } from 'react-router-dom';
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { ReportHeading } from '../ReportHeading';
 import { CategoriesList } from '../CategoriesList';
 import { SummaryLine } from '../SummaryLine';
-import { fetchAllCategories, fetchDataByDate } from 'services/reports-api';
+import { fetchAllCategories } from 'services/reports-api';
 import toast, { Toaster } from 'react-hot-toast';
 
 const currentData = new Date();
@@ -12,7 +12,6 @@ const currentMonth = currentData.getUTCMonth();
 
 export const ReportPage = () => {
   const [allCategories, setAllCategories] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [selectedYear, setSelectedYear] = useState(currentYear);
 
@@ -25,38 +24,15 @@ export const ReportPage = () => {
         const data = await fetchAllCategories();
         const categories = data.filter(item => item.sign === point);
         setAllCategories(categories);
+      } catch {
+        toast.error('Something went wrong');
       }
-      catch { toast.error('Something went wrong');}
     }
     getAllCategories();
   }, [point]);
 
-  useEffect(() => {
-    (async function getData() {
-      const expensesByDate = await fetchDataByDate(
-        selectedYear,
-        selectedMonth,
-        point
-      );
-      const categoriesByDate = expensesByDate;
-      if (!allCategories || !categoriesByDate) return;
-      const dataByCategories = allCategories.map(category => {
-        const dataByCategory = categoriesByDate.find(
-          item => item.categoryName === category.name,
-        );
-        const value = dataByCategory ? dataByCategory.value : '0';
-        const url = `/img/${category.nameEn}.svg`;
-        const subCategories = dataByCategory
-          ? dataByCategory.subCategories
-          : [];
-        const fullCategory = { ...category, value, url, subCategories };
-        return fullCategory;
-      });
-      return setCategories(dataByCategories);
-    })();
-  }, [selectedMonth, selectedYear, allCategories, point]);
-
-  const handleGoNextPeriod = () => {
+  const handleGoNextPeriod = e => {
+    e.preventDefault();
     if (selectedMonth === 11) {
       setSelectedMonth(0);
       const year = selectedYear + 1;
@@ -68,7 +44,8 @@ export const ReportPage = () => {
     return;
   };
 
-  const handleGoPreviousPeriod = () => {
+  const handleGoPreviousPeriod = e => {
+    e.preventDefault();
     if (selectedMonth === 0) {
       setSelectedMonth(11);
       const year = selectedYear - 1;
@@ -77,13 +54,12 @@ export const ReportPage = () => {
     }
     const month = selectedMonth - 1;
     setSelectedMonth(month);
-    console.log('chengedmounth', month);
   };
 
-  const handleSwitchPoint = () => {
+  const handleSwitchPoint = e => {
+    e.preventDefault();
     const newPoint = point === 'expenses' ? 'incomes' : 'expenses';
     history.push(`${newPoint}`);
-    console.log('newpoint', newPoint);
   };
 
   return (
@@ -96,9 +72,11 @@ export const ReportPage = () => {
       />
       <SummaryLine month={selectedMonth} year={selectedYear} />
       <CategoriesList
-        categories={categories}
+        selectedMonth={selectedMonth}
+        selectedYear={selectedYear}
         handleSwitchPoint={handleSwitchPoint}
         point={point}
+        allCategories={allCategories}
       />
       <Toaster />
     </>

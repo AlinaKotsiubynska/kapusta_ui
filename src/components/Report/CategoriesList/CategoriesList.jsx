@@ -1,21 +1,66 @@
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-import css from './CategoriesList.module.css';
+import s from './CategoriesList.module.scss';
 import { CategoriesItem } from '../CategoriesItem';
 import { ChartHorizontal, ChartVertical } from '../Chart';
+import { fetchDataByDate } from 'services/reports-api';
 import debounce from 'lodash.debounce';
+import toast from 'react-hot-toast';
 
-export const CategoriesList = ({ categories, handleSwitchPoint, point }) => {
+export const CategoriesList = ({
+  selectedMonth,
+  selectedYear,
+  handleSwitchPoint,
+  point,
+  allCategories,
+}) => {
   const [activeCategory, setActiveCategory] = useState('transport');
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth); 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [categories, setCategories] = useState([]);
   const title = point === 'expenses' ? 'РАСХОДЫ' : 'ДОХОДЫ';
-  // const activeSubCategoriesObj = categories
-  //   ? categories.find(item => item.nameEn === activeCategory) : {};
-    const activeSubCategoriesObj = categories.find(item => item.nameEn === activeCategory);
-  
-  useEffect((e) => {
-    window.addEventListener('resize', debounce(() => setWindowWidth(window.innerWidth),300));
-    return window.removeEventListener('resize', debounce(() => setWindowWidth(window.innerWidth),300));
+  const activeSubCategoriesObj = categories.find(
+    item => item.nameEn === activeCategory,
+  );
+
+  useEffect(e => {
+    window.addEventListener(
+      'resize',
+      debounce(() => setWindowWidth(window.innerWidth), 300),
+    );
+
+    return window.removeEventListener(
+      'resize',
+      debounce(() => setWindowWidth(window.innerWidth), 300),
+    );
   }, []);
+
+  useEffect(() => {
+    (async function getData() {
+      try {
+        const categoriesByDate = await fetchDataByDate(
+          selectedYear,
+          selectedMonth,
+          point,
+        );
+        if (!allCategories || !categoriesByDate) return;
+        const dataByCategories = allCategories.map(category => {
+          const dataByCategory = categoriesByDate.find(
+            item => item.categoryName === category.name,
+          );
+          const value = dataByCategory ? dataByCategory.value : '0';
+          const url = `/img/${category.nameEn}.svg`;
+          const subCategories = dataByCategory
+            ? dataByCategory.subCategories
+            : [];
+          const fullCategory = { ...category, value, url, subCategories };
+          return fullCategory;
+        });
+        return setCategories(dataByCategories);
+      } catch {
+        toast.error('Something went wrong');
+      }
+    })();
+  }, [selectedMonth, selectedYear, point, allCategories]);
 
   useEffect(() => {
     if (point === 'expenses') {
@@ -25,16 +70,17 @@ export const CategoriesList = ({ categories, handleSwitchPoint, point }) => {
     setActiveCategory('salary');
   }, [point]);
 
-  const chooseCategory = subCategoriesNameEn => {
+  const chooseCategory = (e, subCategoriesNameEn) => {
+    e.preventDefault();
     setActiveCategory(subCategoriesNameEn);
   };
 
   return (
     <>
-      <div className={css.switcher}>
+      <div className={s.switcher}>
         <button
           type="button"
-          className={css.previousBtn}
+          className={s.previousBtn}
           onClick={handleSwitchPoint}
         >
           <svg
@@ -48,11 +94,7 @@ export const CategoriesList = ({ categories, handleSwitchPoint, point }) => {
           </svg>
         </button>
         <p>{title}</p>
-        <button
-          type="button"
-          className={css.nextBtn}
-          onClick={handleSwitchPoint}
-        >
+        <button type="button" className={s.nextBtn} onClick={handleSwitchPoint}>
           <svg
             width="7"
             height="12"
@@ -67,19 +109,37 @@ export const CategoriesList = ({ categories, handleSwitchPoint, point }) => {
 
       {categories && (
         <>
-          <ul className={css.categories}>
+          <ul className={s.categories}>
             {categories.map(category => (
               <li key={category._id}>
-                <button onClick={() => chooseCategory(category.nameEn)}>
-                  <CategoriesItem category={category} />
+                <button
+                  type="button"
+                  onClick={e => chooseCategory(e, category.nameEn)}
+                >
+                  <CategoriesItem
+                    category={category}
+                    activeCategory={activeCategory}
+                  />
                 </button>
               </li>
             ))}
           </ul>
-          {activeSubCategoriesObj && (windowWidth <= 600) && <ChartHorizontal activeCategory={activeSubCategoriesObj} />}
-          {activeSubCategoriesObj && (windowWidth > 600) && <ChartVertical activeCategory={activeSubCategoriesObj} />}
+          {activeSubCategoriesObj && windowWidth <= 600 && (
+            <ChartHorizontal activeCategory={activeSubCategoriesObj} />
+          )}
+          {activeSubCategoriesObj && windowWidth > 600 && (
+            <ChartVertical activeCategory={activeSubCategoriesObj} />
+          )}
         </>
       )}
     </>
   );
+};
+
+CategoriesList.propTypes = {
+  selectedMonth: PropTypes.number.isRequired,
+  selectedYear: PropTypes.number.isRequired,
+  handleSwitchPoint: PropTypes.func.isRequired,
+  point: PropTypes.string.isRequired,
+  allCategories: PropTypes.array.isRequired,
 };

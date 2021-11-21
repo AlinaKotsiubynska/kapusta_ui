@@ -1,4 +1,4 @@
-import styles from './Balance.module.scss';
+import s from './Balance.module.scss';
 
 export const Balance = ({ balance, setBalance, onSubmitForm }) => {
   const inputHandler = e => {
@@ -7,14 +7,14 @@ export const Balance = ({ balance, setBalance, onSubmitForm }) => {
   };
 
   return (
-    <div className={styles.wrapper}>
+    <div className={s.wrapper}>
       <form onSubmit={onSubmitForm}>
-        <label htmlFor="input" className={styles.label}>
+        <label htmlFor="input" className={s.label}>
           Баланс:
         </label>
-        <span className={styles.inputWrapper}>
+        <span className={s.inputWrapper}>
           <input
-            className={styles.input}
+            className={s.input}
             type="number"
             name="input"
             id="input"
@@ -23,9 +23,9 @@ export const Balance = ({ balance, setBalance, onSubmitForm }) => {
             onChange={inputHandler}
             placeholder="0.00"
           />
-          <span className={styles.marker}>UAH</span>
+          <span className={s.marker}>UAH</span>
         </span>
-        <button type="submit" className={styles.button}>
+        <button type="submit" className={s.button}>
           Подтвердить
         </button>
       </form>

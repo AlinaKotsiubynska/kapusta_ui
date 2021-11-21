@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { SIGNUP } from 'helpers/constants/routes.constants';
 import { Context } from '../Context/index';
 import { token } from '../../utils/tokenOperations';
+import s from '../LoginForm/LoginForm.module.scss';
 
 export default function LoginForm() {
   const { setUserContext } = useContext(Context);
@@ -32,8 +33,8 @@ export default function LoginForm() {
     try {
       const { data } = await axios.post('/users/login', user);
       localStorage.setItem('token', JSON.stringify(data.user.token));
-
       token.set(data.user.token);
+      const { data: userInfo } = await axios.get('/users/current');
 
       setUserContext(state => ({
         ...state,
@@ -42,8 +43,8 @@ export default function LoginForm() {
         authenticated: true,
         user: {
           ...state.user,
-          balance: data.user.balance,
-          name: data.user.name,
+          balance: userInfo.user.balance,
+          name: userInfo.user.name,
         },
       }));
       history.push('/home/expenses');
@@ -56,12 +57,14 @@ export default function LoginForm() {
   };
 
   return (
-    <div>
+    <div className={s.wrapper}>
       <ToastContainer autoClose={5000} />
-      <p>Вы можете авторизоваться с помощью Google Account:</p>
+      <p className={s.loginForm_text}>
+        Вы можете авторизоваться с помощью Google Account:
+      </p>
 
       <a href="https://app-kapusta.herokuapp.com/api/auth/google">Google</a>
-      <p>
+      <p className={s.loginForm_text}>
         Или зайти с помощью e-mail и пароля, предварительно зарегистрировавшись:
       </p>
 
