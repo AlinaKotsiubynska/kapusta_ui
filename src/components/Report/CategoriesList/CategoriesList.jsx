@@ -76,7 +76,7 @@ export const CategoriesList = ({
   };
 
   return (
-    <>
+    <div className={s.section}>
       <div className={s.switcher}>
         <button
           type="button"
@@ -132,7 +132,7 @@ export const CategoriesList = ({
           )}
         </>
       )}
-    </>
+    </div>
   );
 };
 

@@ -24,8 +24,6 @@
   font-weight: bold;
   font-size: 14px;
   line-height: 16px;
-  // display: flex;
-  // align-items: center;
   text-align: center;
 
   color: #52555f;
@@ -38,9 +36,6 @@
   font-weight: bold;
   font-size: 14px;
   line-height: 16px;
-  // display: flex;
-  // align-items: center;
-  // text-align: center;
   letter-spacing: 0.04em;
 }
 
@@ -50,4 +45,16 @@
 
 .sumIn {
   color: #407946;
+}
+
+@media screen and (min-width: 768px) {
+  .summaryLine {
+    margin: 0 auto;
+    height: 50px;
+  }
+
+  .expenses,
+  .incomes {
+    flex-direction: row;
+  }
 }

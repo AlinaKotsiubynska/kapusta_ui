@@ -1,6 +1,6 @@
 .heading {
   background-color: #f5f6fb;
-  border-bottom-left-radius: 20%;
+  border-bottom-left-radius: 50px;
   justify-content: center;
   padding-bottom: 98px;
 }
@@ -9,11 +9,23 @@
   display: flex;
   flex-direction: column-reverse;
 }
-// .heading {
-//   display: flex;
-//   justify-content: center;
-// }
 
 .heading form button {
   display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 50px 30px;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 }

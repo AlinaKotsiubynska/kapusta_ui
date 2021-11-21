@@ -31,9 +31,6 @@
   font-weight: bold;
   font-size: 14px;
   line-height: 16px;
-  // display: flex;
-  // align-items: center;
-  // text-align: center;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #000000;
@@ -55,6 +52,18 @@ button {
 .previousBtn,
 .nextBtn {
   background-color: #f5f6fb;
-  padding: 0 15px;
   height: 12px;
+}
+.previousBtn {
+  padding: 0 15px 0 0;
+}
+
+.nextBtn {
+  padding: 0 0 0 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .switcher {
+    margin-bottom: 0px;
+  }
 }

@@ -51,8 +51,6 @@ export const ChartHorizontal = ({ activeCategory }) => {
           maintainAspectRatio: false,
           responsive: false,
           barThickness: 15,
-           //barPercentage: 0.1,
-          //categoryPercentage: 0.5,
           layout: {
             padding: {
               right: 40,
