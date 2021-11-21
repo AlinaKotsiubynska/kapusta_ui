@@ -1,5 +1,5 @@
 import { useTable } from 'react-table';
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { ReactComponent as Trash } from 'assets/icons/trash1.svg';
 import styles from './AssetsList.module.scss';
 import {
@@ -8,10 +8,10 @@ import {
 } from 'components/Assets/Api/Api';
 import { Context } from 'components/Context';
 import { format } from 'date-fns';
-import { getNormalizeData } from 'utils';
+import { getNormalizeData, setCurrentBalance } from 'utils';
 
 export const AssetsList = ({ tabKey, isUpdate, setUpdate }) => {
-  const { reportContext } = useContext(Context);
+  const { reportContext, setUserContext } = useContext(Context);
 
   const [, mounth, year] = format(reportContext.viewDate, 'dd/MM/yyyy').split(
     '/',
@@ -41,17 +41,22 @@ export const AssetsList = ({ tabKey, isUpdate, setUpdate }) => {
     })();
   }, [tabKey, mounth, year, isUpdate]);
 
-  const deleteEntry = data => {
-    const onDel = async event => {
-      await deleteTransaction(data.id);
-      setUpdate(pr => !pr);
-    };
-    return (
-      <button type="button" onClick={onDel} className={styles.button}>
-        <Trash />
-      </button>
-    );
-  };
+  const deleteEntry = useCallback(
+    data => {
+      const onDel = async event => {
+        const response = await deleteTransaction(data.id);
+
+        setUserContext(setCurrentBalance(response));
+        setUpdate(pr => !pr);
+      };
+      return (
+        <button type="button" onClick={onDel} className={styles.button}>
+          <Trash />
+        </button>
+      );
+    },
+    [setUpdate],
+  );
 
   const columns = useMemo(
     () => [
@@ -76,7 +81,7 @@ export const AssetsList = ({ tabKey, isUpdate, setUpdate }) => {
         accessor: deleteEntry,
       },
     ],
-    [],
+    [deleteEntry],
   );
 
   const tableInstance = useTable({ columns, data });

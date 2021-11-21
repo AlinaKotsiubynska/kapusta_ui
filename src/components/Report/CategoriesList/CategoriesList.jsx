@@ -1,48 +1,64 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-import css from './CategoriesList.module.css';
+import s from './CategoriesList.module.scss';
 import { CategoriesItem } from '../CategoriesItem';
 import { ChartHorizontal, ChartVertical } from '../Chart';
 import { fetchDataByDate } from 'services/reports-api';
 import debounce from 'lodash.debounce';
-import toast from 'react-hot-toast'
+import toast from 'react-hot-toast';
 
-export const CategoriesList = ({ selectedMonth, selectedYear, handleSwitchPoint, point, allCategories }) => {
+export const CategoriesList = ({
+  selectedMonth,
+  selectedYear,
+  handleSwitchPoint,
+  point,
+  allCategories,
+}) => {
   const [activeCategory, setActiveCategory] = useState('transport');
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-   const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
   const title = point === 'expenses' ? 'РАСХОДЫ' : 'ДОХОДЫ';
-  const activeSubCategoriesObj = categories.find(item => item.nameEn === activeCategory);
-  
-  useEffect((e) => {
-    window.addEventListener('resize', debounce(() => setWindowWidth(window.innerWidth), 300));
+  const activeSubCategoriesObj = categories.find(
+    item => item.nameEn === activeCategory,
+  );
 
-    return window.removeEventListener('resize', debounce(() => setWindowWidth(window.innerWidth),300));
+  useEffect(e => {
+    window.addEventListener(
+      'resize',
+      debounce(() => setWindowWidth(window.innerWidth), 300),
+    );
+
+    return window.removeEventListener(
+      'resize',
+      debounce(() => setWindowWidth(window.innerWidth), 300),
+    );
   }, []);
 
-   useEffect(() => {
-     (async function getData() {
-       try {
-         const categoriesByDate = await fetchDataByDate(
-           selectedYear,
-           selectedMonth,
-           point
-         );
-         if (!allCategories || !categoriesByDate) return;
-         const dataByCategories = allCategories.map(category => {
-           const dataByCategory = categoriesByDate.find(
-             item => item.categoryName === category.name,
-           );
-           const value = dataByCategory ? dataByCategory.value : '0';
-           const url = `/img/${category.nameEn}.svg`;
-           const subCategories = dataByCategory
-             ? dataByCategory.subCategories
-             : [];
-           const fullCategory = { ...category, value, url, subCategories };
-           return fullCategory;
-         });
-         return setCategories(dataByCategories);
-       } catch {toast.error('Something went wrong');}
+  useEffect(() => {
+    (async function getData() {
+      try {
+        const categoriesByDate = await fetchDataByDate(
+          selectedYear,
+          selectedMonth,
+          point,
+        );
+        if (!allCategories || !categoriesByDate) return;
+        const dataByCategories = allCategories.map(category => {
+          const dataByCategory = categoriesByDate.find(
+            item => item.categoryName === category.name,
+          );
+          const value = dataByCategory ? dataByCategory.value : '0';
+          const url = `/img/${category.nameEn}.svg`;
+          const subCategories = dataByCategory
+            ? dataByCategory.subCategories
+            : [];
+          const fullCategory = { ...category, value, url, subCategories };
+          return fullCategory;
+        });
+        return setCategories(dataByCategories);
+      } catch {
+        toast.error('Something went wrong');
+      }
     })();
   }, [selectedMonth, selectedYear, point, allCategories]);
 
@@ -53,18 +69,18 @@ export const CategoriesList = ({ selectedMonth, selectedYear, handleSwitchPoint,
     }
     setActiveCategory('salary');
   }, [point]);
-  
-  const chooseCategory = (e,subCategoriesNameEn) => {
+
+  const chooseCategory = (e, subCategoriesNameEn) => {
     e.preventDefault();
     setActiveCategory(subCategoriesNameEn);
   };
 
   return (
     <>
-      <div className={css.switcher}>
+      <div className={s.switcher}>
         <button
           type="button"
-          className={css.previousBtn}
+          className={s.previousBtn}
           onClick={handleSwitchPoint}
         >
           <svg
@@ -78,11 +94,7 @@ export const CategoriesList = ({ selectedMonth, selectedYear, handleSwitchPoint,
           </svg>
         </button>
         <p>{title}</p>
-        <button
-          type="button"
-          className={css.nextBtn}
-          onClick={handleSwitchPoint}
-        >
+        <button type="button" className={s.nextBtn} onClick={handleSwitchPoint}>
           <svg
             width="7"
             height="12"
@@ -97,17 +109,27 @@ export const CategoriesList = ({ selectedMonth, selectedYear, handleSwitchPoint,
 
       {categories && (
         <>
-          <ul className={css.categories}>
+          <ul className={s.categories}>
             {categories.map(category => (
               <li key={category._id}>
-                <button type="button" onClick={(e) => chooseCategory(e, category.nameEn)}>
-                  <CategoriesItem category={category} activeCategory={ activeCategory}/>
+                <button
+                  type="button"
+                  onClick={e => chooseCategory(e, category.nameEn)}
+                >
+                  <CategoriesItem
+                    category={category}
+                    activeCategory={activeCategory}
+                  />
                 </button>
               </li>
             ))}
           </ul>
-          {activeSubCategoriesObj && (windowWidth <= 600) && <ChartHorizontal activeCategory={activeSubCategoriesObj} />}
-          {activeSubCategoriesObj && (windowWidth > 600) && <ChartVertical activeCategory={activeSubCategoriesObj} />}
+          {activeSubCategoriesObj && windowWidth <= 600 && (
+            <ChartHorizontal activeCategory={activeSubCategoriesObj} />
+          )}
+          {activeSubCategoriesObj && windowWidth > 600 && (
+            <ChartVertical activeCategory={activeSubCategoriesObj} />
+          )}
         </>
       )}
     </>

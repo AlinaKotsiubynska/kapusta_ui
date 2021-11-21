@@ -2,17 +2,17 @@ import { AssetsForm } from 'components/Assets/AssetsForm';
 import { AssetsList } from 'components/Assets/AssetsList';
 import { AssetsSummary } from 'components/Assets/AssetsSummary';
 import { useState } from 'react';
-import styles from './Assets.module.scss';
+import s from './Assets.module.scss';
 
 export const AssetsBoard = ({ tabKey }) => {
   const [isUpdate, setUpdate] = useState(false);
 
   return (
-    <div className={styles.assets}>
+    <div className={s.assets}>
       <AssetsForm tabKey={tabKey} setUpdate={setUpdate} />
-      <div className={styles.listsWrapper}>
+      <div className={s.listsWrapper}>
         <AssetsList tabKey={tabKey} isUpdate={isUpdate} setUpdate={setUpdate} />
-        <AssetsSummary />
+        <AssetsSummary isUpdate={isUpdate} tabKey={tabKey}/>
       </div>
     </div>
   );

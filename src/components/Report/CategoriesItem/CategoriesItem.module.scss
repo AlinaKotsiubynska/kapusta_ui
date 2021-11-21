@@ -1,6 +1,9 @@
+@import '../../../assets/base/sass/utils/variables';
+
 button {
-  background-color: white;
+  background-color: $primary-bg-color;
 }
+
 .icon {
   fill: #071f41;
   position: relative;
@@ -8,7 +11,7 @@ button {
 
 .activeIcon {
   position: relative;
-  fill: #ff751d;
+  fill: $accent-color;
 }
 
 .iconWrapper {
@@ -20,7 +23,7 @@ button {
   display: block;
   width: 56px;
   height: 46px;
-  background: #f5f6fb;
+  background: $secondary-bg-color;
   border-radius: 20%;
   top: 50%;
   left: 50%;
@@ -36,5 +39,5 @@ button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #ffdac0;
+  background: $auxiliary-accent-color;
 }

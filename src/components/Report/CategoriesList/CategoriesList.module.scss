@@ -1,3 +1,5 @@
+@import '../../../assets/base/sass/utils/variables';
+
 .switcher {
   display: flex;
   justify-content: center;
@@ -9,5 +11,5 @@
 }
 
 .active {
-  fill: #ff751d;
+  fill: $accent-color;
 }

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-import css from './SummaryLine.module.css';
+import s from './SummaryLine.module.scss';
 import { fetchDataByDate } from 'services/reports-api';
 import toast from 'react-hot-toast';
 
@@ -20,13 +20,12 @@ export const SummaryLine = ({ year, month }) => {
       } catch {
         toast.error('Something went wrong');
       }
-      
     })();
   }, [month, year]);
 
   return (
-    <div className={css.summaryLine}>
-      <p className={css.expenses}>
+    <div className={s.summaryLine}>
+      <p className={s.expenses}>
         Расходы:<span>{summaryExpenses}</span>
       </p>
       <svg
@@ -38,7 +37,7 @@ export const SummaryLine = ({ year, month }) => {
       >
         <path d="M1 0V36" stroke="#E0E5EB" />
       </svg>
-      <p className={css.incomes}>
+      <p className={s.incomes}>
         Доходы:<span>{summaryIncomes}</span>
       </p>
     </div>

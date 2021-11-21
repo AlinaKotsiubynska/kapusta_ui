@@ -1,3 +1,4 @@
+// import Modal from '../shared/Modal/Modal';
 import { useState, useContext } from 'react';
 import { Avatar } from 'components/Avatar';
 // import Container from '';
@@ -6,6 +7,9 @@ import axios from 'axios';
 import { token } from 'utils';
 import { USER_CONTEXT_DEFAULT } from 'helpers/constants/contexst.constants';
 import { Context } from 'components/Context';
+import { NavLink } from 'react-router-dom';
+import s from '../Header/Header.module.scss';
+import logo from '../../assets/images/logo.png';
 
 export default function Header() {
   const [modalActive, setModalActive] = useState(false);
@@ -37,9 +41,11 @@ export default function Header() {
   return (
     <header className="header">
       <div>
-        <div>
-          <h1 className="title">Kapu$ta</h1>
-        </div>
+        <NavLink className={s.logoLink} to="/">
+          <div>
+            <img src={logo} alt="logo" />
+          </div>
+        </NavLink>
         {authenticated && (
           <div className="userInfo">
             <Avatar name={user?.name} />
@@ -51,7 +57,7 @@ export default function Header() {
                 onSubmitClick={handleLogout}
                 onCanselCLick={closeModal}
               >
-                <p>Хотите выйти?</p>
+                <p>Вы действительно хотите выйти?</p>
               </Modal>
             )}
           </div>
