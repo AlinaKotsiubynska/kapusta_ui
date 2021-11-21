@@ -4,14 +4,13 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 56px;
   padding-top: 12px;
   padding-bottom: 13px;
   background-color: $primary-bg-color;
 }
 
-.logo {
-  display: inline-block;
+.logoLink {
+  display: inline-flex;
   align-items: flex-start;
   width: 91px;
   height: 31px;

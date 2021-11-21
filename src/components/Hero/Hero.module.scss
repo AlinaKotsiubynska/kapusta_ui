@@ -1,1 +1,141 @@
 @import '../../assets/base/sass/utils/variables';
+
+.wrapper {
+  position: relative;
+
+  background-image: url('../../assets/images/bg-mobile.png');
+  background-color: $primary-bg-color;
+  background-repeat: no-repeat;
+  user-select: none;
+  width: 100%;
+  height: 100vh;
+
+  padding: 86px 88px 137px 49px;
+
+  @media screen and (min-width: 768px) {
+    background-image: url('../../assets/images/bg-tablet.png');
+    padding: 90px 291px 335px 171px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    background-image: url('../../assets/images/bg-desktop.png');
+    padding: 308px 673px 79px 230px;
+  }
+}
+
+.wrapper::after {
+  position: absolute;
+
+  content: '';
+  background-image: url('../../assets/images/single-cabbage-down.png');
+  right: 137px;
+  top: 119px;
+  width: 49px;
+  height: 89px;
+
+  @media screen and (min-width: 768px) {
+    position: absolute;
+
+    content: '';
+    background-image: url('../../assets/images/tab-cabbage.png');
+    background-repeat: no-repeat;
+
+    left: 10px;
+    top: 48px;
+    width: 100%;
+    height: 232px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    position: absolute;
+
+    content: '';
+    background-image: url('../../assets/images/cabbage.png');
+    background-repeat: no-repeat;
+
+    left: 0;
+    top: 48px;
+    width: 100%;
+    height: 232px;
+  }
+}
+
+.title {
+  font-family: Roboto;
+  font-size: 46px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: $primary-font-color;
+
+  @media screen and (min-width: 768px) {
+    position: relative;
+    z-index: 5;
+
+    font-size: 78px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-weight: 900;
+    font-size: 102px;
+    line-height: 1.18;
+  }
+}
+
+.desc {
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.15;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+
+  color: $secondary-font-color;
+  padding-left: 12px;
+  margin: 0;
+
+  @media screen and (min-width: 768px) {
+    position: relative;
+    z-index: 5;
+
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.19;
+    letter-spacing: 0.18em;
+    padding-left: 35px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding-left: 65px;
+  }
+}
+
+.title::after {
+  position: absolute;
+
+  background-repeat: no-repeat;
+  width: 183px;
+  height: 142px;
+  content: '';
+  top: 576px;
+  left: 35px;
+  background-image: url('../../assets/images/single-cabbage-up.png');
+
+  @media screen and (min-width: 768px) {
+    width: 183px;
+    height: 142px;
+    content: '';
+    top: 596px;
+    left: -34px;
+    background-image: url('../../assets/images/double-cabbage.png');
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 183px;
+    height: 142px;
+    content: '';
+    top: 350px;
+    left: 0;
+    background-image: url('../../assets/images/double-cabbage.png');
+  }
+}

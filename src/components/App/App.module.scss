@@ -4,22 +4,21 @@
 
 @media screen and (min-width: 320px) {
   .container {
-    max-width: 320px;
-    padding: 0 19px;
+    min-width: 320px;
   }
-}
 
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 768px;
-    padding: 0 51px;
+  @media screen and (min-width: 768px) {
+    .container {
+      max-width: 768px;
+      padding: 0 51px;
+    }
   }
-}
 
-@media screen and (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-    padding: 0 110px;
-    padding-bottom: 83px;
+  @media screen and (min-width: 1280px) {
+    .container {
+      max-width: 1280px;
+      padding: 0 110px;
+      padding-bottom: 83px;
+    }
   }
 }
