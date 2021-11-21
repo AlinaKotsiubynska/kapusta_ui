@@ -35,7 +35,7 @@ export const ChartHorizontal = ({ activeCategory }) => {
     <div className={s.chart}>
       <Bar
         data={data}
-        width={480}
+        width={290}
         plugins={[ChartDataLabels]}
         options={{
           plugins: {
@@ -51,9 +51,11 @@ export const ChartHorizontal = ({ activeCategory }) => {
           maintainAspectRatio: false,
           responsive: false,
           barThickness: 15,
+           //barPercentage: 0.1,
+          //categoryPercentage: 0.5,
           layout: {
             padding: {
-              right: 20,
+              right: 40,
             },
           },
           scales: {
@@ -74,6 +76,8 @@ export const ChartHorizontal = ({ activeCategory }) => {
                 font: {
                   size: 10,
                 },
+                 barPercentage: 0.1,
+                 categoryPercentage: 0.5,
               },
               grid: {
                 display: false,

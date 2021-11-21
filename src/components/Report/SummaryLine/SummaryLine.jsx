@@ -26,7 +26,8 @@ export const SummaryLine = ({ year, month }) => {
   return (
     <div className={s.summaryLine}>
       <p className={s.expenses}>
-        Расходы:<span>{summaryExpenses}</span>
+        <span className={s.name}>Расходы:</span>
+        <span className={s.sumEx}>- {summaryExpenses} грн.</span>
       </p>
       <svg
         width="2"
@@ -38,7 +39,8 @@ export const SummaryLine = ({ year, month }) => {
         <path d="M1 0V36" stroke="#E0E5EB" />
       </svg>
       <p className={s.incomes}>
-        Доходы:<span>{summaryIncomes}</span>
+        <span className={s.name}>Доходы:</span>
+        <span className={s.sumIn}>+ {summaryIncomes} грн.</span>
       </p>
     </div>
   );

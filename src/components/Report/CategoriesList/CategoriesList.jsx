@@ -93,7 +93,7 @@ export const CategoriesList = ({
             <path d="M6 1L2 6L6 11" stroke="#FF751D" strokeWidth="2" />
           </svg>
         </button>
-        <p>{title}</p>
+        <p className={s.title}>{title}</p>
         <button type="button" className={s.nextBtn} onClick={handleSwitchPoint}>
           <svg
             width="7"
@@ -111,7 +111,7 @@ export const CategoriesList = ({
         <>
           <ul className={s.categories}>
             {categories.map(category => (
-              <li key={category._id}>
+              <li key={category._id} className={s.category}>
                 <button
                   type="button"
                   onClick={e => chooseCategory(e, category.nameEn)}

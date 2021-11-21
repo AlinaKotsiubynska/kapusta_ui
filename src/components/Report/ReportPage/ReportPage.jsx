@@ -5,6 +5,7 @@ import { CategoriesList } from '../CategoriesList';
 import { SummaryLine } from '../SummaryLine';
 import { fetchAllCategories } from 'services/reports-api';
 import toast, { Toaster } from 'react-hot-toast';
+import s from './ReportPage.module.scss'
 
 const currentData = new Date();
 const currentYear = currentData.getFullYear();
@@ -63,7 +64,7 @@ export const ReportPage = () => {
   };
 
   return (
-    <>
+    <div className={s.container }>
       <ReportHeading
         month={selectedMonth}
         year={selectedYear}
@@ -79,6 +80,6 @@ export const ReportPage = () => {
         allCategories={allCategories}
       />
       <Toaster />
-    </>
+    </div>
   );
 };

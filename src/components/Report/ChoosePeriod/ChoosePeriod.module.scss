@@ -1,0 +1,60 @@
+// .currentPeriod {
+//   background-color: #f5f6fb;
+//   border-bottom-left-radius: 20%;
+//   outline: 1px black;
+// }
+
+.switcher {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin-bottom: 30px;
+}
+
+.periodTitle {
+  display: block;
+  margin-bottom: 5px;
+  text-align: center;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.04em;
+  color: rgba(82, 85, 95, 0.7);
+}
+
+.month,
+.year {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  // display: flex;
+  // align-items: center;
+  // text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.month {
+  margin-right: 5px;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  background-color: none;
+  border: none;
+}
+
+.previousBtn,
+.nextBtn {
+  background-color: #f5f6fb;
+  padding: 0 15px;
+  height: 12px;
+}

@@ -1,5 +1,53 @@
 .summaryLine {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+  padding-top: 20px;
+  padding-bottom: 25px;
+  margin: -68px auto 40px;
+  background-color: white;
+  width: 282px;
+  height: 85px;
+  border-radius: 20px;
+  box-shadow: 5px 10px 20px 0px rgba(170, 178, 197, 0.4);
+}
+
+.expenses,
+.incomes {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  // display: flex;
+  // align-items: center;
+  text-align: center;
+
+  color: #52555f;
+}
+
+.sumIn,
+.sumEx {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  // display: flex;
+  // align-items: center;
+  // text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.sumEx {
+  color: #e53935;
+}
+
+.sumIn {
+  color: #407946;
 }

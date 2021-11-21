@@ -1,4 +1,19 @@
 .heading {
-  display: flex;
+  background-color: #f5f6fb;
+  border-bottom-left-radius: 20%;
   justify-content: center;
+  padding-bottom: 98px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column-reverse;
+}
+// .heading {
+//   display: flex;
+//   justify-content: center;
+// }
+
+.heading form button {
+  display: none;
 }
