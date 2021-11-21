@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import s from './CategoriesItem.module.css';
+import s from './CategoriesItem.module.scss';
 import sprite from '../../../assets/icons/sprite.svg'
 export const CategoriesItem = ({ category, activeCategory }) => {
   const iconClass = (category.nameEn === activeCategory) ? s.activeIcon : s.icon;
