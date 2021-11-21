@@ -20,11 +20,11 @@ export const ChartVertical = ({ activeCategory }) => {
           'rgba(255, 218, 192, 0.8)',
         ],
         borderRadius: 5,
-       datalabels: {
+        datalabels: {
           anchor: 'end',
           align: 'top',
           font: {
-            size: 12
+            size: 12,
           },
         },
       },
@@ -64,18 +64,18 @@ export const ChartVertical = ({ activeCategory }) => {
           plugins: {
             datalabels: {
               display: true,
-              formatter: (value) => {
+              formatter: value => {
                 return value + ' грн.';
-              }
+              },
             },
             legend: false,
           },
         }}
       />
- </div>
+    </div>
   );
 };
 
 ChartVertical.propTypes = {
-  activeCategory: PropTypes.object.isRequired
+  activeCategory: PropTypes.object.isRequired,
 };

@@ -34,3 +34,11 @@ export const getReportsByMouthAndYear = async ({ mounth, year, sign }) => {
 export const deleteTransaction = async id => {
   return axios.delete(`/transactions/${id}`);
 };
+
+export const patchBalance = async balance => {
+  return axios.patch('/users/balance', balance);
+};
+
+export const getCurrent = async () => {
+  return axios.get('/users/current');
+};

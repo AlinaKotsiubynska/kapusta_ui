@@ -43,11 +43,7 @@ export const ChoosePeriod = ({
         <span>{selectedMonth}</span>
         <span>{year}</span>
       </p>
-      <button
-        type="button"
-        className={s.nextBtn}
-        onClick={handleGoNextPeriod}
-      >
+      <button type="button" className={s.nextBtn} onClick={handleGoNextPeriod}>
         <svg
           width="7"
           height="12"

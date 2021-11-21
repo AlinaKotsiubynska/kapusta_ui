@@ -1,13 +1,6 @@
-import { useState } from 'react/cjs/react.development';
 import s from './Balance.module.scss';
 
-export const Balance = () => {
-  const [balance, setBalance] = useState('');
-
-  const formHandler = e => {
-    e.preventDefault();
-  };
-
+export const Balance = ({ balance, setBalance, onSubmitForm }) => {
   const inputHandler = e => {
     const value = e.target.value;
     setBalance(value);
@@ -15,7 +8,7 @@ export const Balance = () => {
 
   return (
     <div className={s.wrapper}>
-      <form onSubmit={formHandler}>
+      <form onSubmit={onSubmitForm}>
         <label htmlFor="input" className={s.label}>
           Баланс:
         </label>
@@ -25,8 +18,10 @@ export const Balance = () => {
             type="number"
             name="input"
             id="input"
+            step="0.01"
             value={balance}
             onChange={inputHandler}
+            placeholder="0.00"
           />
           <span className={s.marker}>UAH</span>
         </span>

@@ -1,10 +1,10 @@
 import { useParams, useHistory } from 'react-router-dom';
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { ReportHeading } from '../ReportHeading';
 import { CategoriesList } from '../CategoriesList';
 import { SummaryLine } from '../SummaryLine';
 import { fetchAllCategories } from 'services/reports-api';
-import toast, { Toaster } from 'react-hot-toast'
+import toast, { Toaster } from 'react-hot-toast';
 
 const currentData = new Date();
 const currentYear = currentData.getFullYear();
@@ -24,13 +24,14 @@ export const ReportPage = () => {
         const data = await fetchAllCategories();
         const categories = data.filter(item => item.sign === point);
         setAllCategories(categories);
+      } catch {
+        toast.error('Something went wrong');
       }
-      catch {toast.error('Something went wrong');}
     }
     getAllCategories();
   }, [point]);
 
-  const handleGoNextPeriod = (e) => {
+  const handleGoNextPeriod = e => {
     e.preventDefault();
     if (selectedMonth === 11) {
       setSelectedMonth(0);
@@ -43,7 +44,7 @@ export const ReportPage = () => {
     return;
   };
 
-  const handleGoPreviousPeriod = (e) => {
+  const handleGoPreviousPeriod = e => {
     e.preventDefault();
     if (selectedMonth === 0) {
       setSelectedMonth(11);
@@ -53,10 +54,9 @@ export const ReportPage = () => {
     }
     const month = selectedMonth - 1;
     setSelectedMonth(month);
-
   };
 
-  const handleSwitchPoint = (e) => {
+  const handleSwitchPoint = e => {
     e.preventDefault();
     const newPoint = point === 'expenses' ? 'incomes' : 'expenses';
     history.push(`${newPoint}`);
@@ -78,7 +78,7 @@ export const ReportPage = () => {
         point={point}
         allCategories={allCategories}
       />
-      <Toaster/>
+      <Toaster />
     </>
   );
 };

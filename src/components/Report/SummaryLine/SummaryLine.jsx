@@ -20,7 +20,6 @@ export const SummaryLine = ({ year, month }) => {
       } catch {
         toast.error('Something went wrong');
       }
-      
     })();
   }, [month, year]);
 

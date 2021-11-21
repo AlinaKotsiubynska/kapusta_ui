@@ -25,7 +25,7 @@ export const ChartHorizontal = ({ activeCategory }) => {
           offset: 5,
           display: true,
           font: {
-            size: 10
+            size: 10,
           },
         },
       },
@@ -41,20 +41,20 @@ export const ChartHorizontal = ({ activeCategory }) => {
           plugins: {
             datalabels: {
               display: true,
-              formatter: (value) => {
+              formatter: value => {
                 return value + ' грн.';
               },
             },
             legend: false,
-        },
+          },
           indexAxis: 'y',
           maintainAspectRatio: false,
           responsive: false,
           barThickness: 15,
           layout: {
             padding: {
-              right: 20
-            }
+              right: 20,
+            },
           },
           scales: {
             x: {
@@ -72,17 +72,16 @@ export const ChartHorizontal = ({ activeCategory }) => {
                 mirror: true,
                 labelOffset: -20,
                 font: {
-                  size: 10
+                  size: 10,
                 },
               },
               grid: {
-               display: false,
-               drawTicks: false,
-               drawBorder: false,
-             },
+                display: false,
+                drawTicks: false,
+                drawBorder: false,
+              },
             },
           },
-          
         }}
       />
     </div>
@@ -90,5 +89,5 @@ export const ChartHorizontal = ({ activeCategory }) => {
 };
 
 ChartHorizontal.propTypes = {
-  activeCategory: PropTypes.object.isRequired
+  activeCategory: PropTypes.object.isRequired,
 };

@@ -9,8 +9,7 @@ import { USER_CONTEXT_DEFAULT } from 'helpers/constants/contexst.constants';
 import { Context } from 'components/Context';
 import { NavLink } from 'react-router-dom';
 import s from '../Header/Header.module.scss';
-import logo from '../../assets/images/logo.png'
-
+import logo from '../../assets/images/logo.png';
 
 export default function Header() {
   const [modalActive, setModalActive] = useState(false);
@@ -43,8 +42,10 @@ export default function Header() {
     <header className="header">
       <div>
         <NavLink className={s.logoLink} to="/">
-				<div><img src={logo} alt="logo"/></div>
-			</NavLink>
+          <div>
+            <img src={logo} alt="logo" />
+          </div>
+        </NavLink>
         {authenticated && (
           <div className="userInfo">
             <Avatar name={user?.name} />

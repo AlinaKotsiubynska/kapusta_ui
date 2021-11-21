@@ -59,7 +59,9 @@ export default function LoginForm() {
   return (
     <div className={s.wrapper}>
       <ToastContainer autoClose={5000} />
-      <p className={s.loginForm_text}>Вы можете авторизоваться с помощью Google Account:</p>
+      <p className={s.loginForm_text}>
+        Вы можете авторизоваться с помощью Google Account:
+      </p>
 
       <a href="https://app-kapusta.herokuapp.com/api/auth/google">Google</a>
       <p className={s.loginForm_text}>

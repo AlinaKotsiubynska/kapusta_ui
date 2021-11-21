@@ -9,7 +9,7 @@ export const AuthPage = () => {
 
   return (
     <section>
-      <Hero/>
+      <Hero />
       <Switch>
         <Route path={`${match.path}/${LOGIN}`}>
           <LoginForm />
