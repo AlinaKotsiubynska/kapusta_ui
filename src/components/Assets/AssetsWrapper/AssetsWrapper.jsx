@@ -34,10 +34,7 @@ export const AssetsWrapper = () => {
     }
   };
 
-  console.log('before useffect', userContext.user.balance);
-
   useEffect(() => {
-    console.log('in useffect', userContext.user.balance);
     if (userContext.user.balance) {
       setBalance(userContext.user.balance);
     }

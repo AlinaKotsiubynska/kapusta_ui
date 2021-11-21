@@ -11,10 +11,10 @@ import {
   getCategoriesBySign,
 } from 'components/Assets/Api/Api';
 import { Context } from 'components/Context/Context';
-import { useSetChangedDate } from 'utils';
+import { useSetChangedDate, setCurrentBalance } from 'utils';
 
 export const AssetsForm = ({ tabKey, setUpdate }) => {
-  const { setReportContext } = useContext(Context);
+  const { setReportContext, setUserContext } = useContext(Context);
   const [date, setDate] = useState(() => new Date());
   const [isVisible, setVisible] = useState(true);
   const [categories, setCategories] = useState([]);
@@ -29,15 +29,15 @@ export const AssetsForm = ({ tabKey, setUpdate }) => {
     const category = e.target.select.value;
     const value = e.target.calc.value;
 
-    await setTransactions(tabKey)({
+    const response = await setTransactions(tabKey)({
       date: new Date().getTime(date),
       category,
       description,
       value: Number(value),
     });
-
     setUpdate(pr => !pr);
 
+    setUserContext(setCurrentBalance(response));
     clearForm();
   };
 
