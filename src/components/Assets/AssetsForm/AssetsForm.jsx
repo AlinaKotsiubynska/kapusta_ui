@@ -11,10 +11,10 @@ import {
   getCategoriesBySign,
 } from 'components/Assets/Api/Api';
 import { Context } from 'components/Context/Context';
-import { useSetChangedDate, setUserBalance } from 'utils';
+import { useSetChangedDate } from 'utils';
 
 export const AssetsForm = ({ tabKey, setUpdate }) => {
-  const { setReportContext, setUserContext } = useContext(Context);
+  const { setReportContext } = useContext(Context);
   const [date, setDate] = useState(() => new Date());
   const [isVisible, setVisible] = useState(true);
   const [categories, setCategories] = useState([]);
@@ -37,8 +37,6 @@ export const AssetsForm = ({ tabKey, setUpdate }) => {
     });
 
     setUpdate(pr => !pr);
-
-    await setUserBalance(setUserContext);
 
     clearForm();
   };

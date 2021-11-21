@@ -5,7 +5,7 @@ export const Balance = ({ balance, setBalance, onSubmitForm }) => {
     const value = e.target.value;
     setBalance(value);
   };
-  console.log('balance', balance);
+
   return (
     <div className={styles.wrapper}>
       <form onSubmit={onSubmitForm}>
