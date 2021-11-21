@@ -44,32 +44,6 @@ ul {
   padding: 0;
 }
 
-.container {
-  width: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
-
-  @include for-size(minmobile) {
-    min-width: 320px;
-  }
-
-  @include for-size(mobile) {
-    min-width: 480px;
-  }
-
-  @include for-size(tablet) {
-    min-width: 768px;
-    padding-left: 51px;
-    padding-right: 51px;
-  }
-
-  @include for-size(desktop) {
-    min-width: 1280px;
-    padding-left: 110px;
-    padding-right: 110px;
-  }
-}
-
 .button {
   cursor: pointer;
 }
