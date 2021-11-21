@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { HOME } from 'helpers/constants/routes.constants';
-import css from './GoHomeButton.module.css';
+import s from './GoHomeButton.module.scss';
 
 export const GoHomeLink = () => {
   return (
-    <Link to={`/${HOME}`} className={css.backBtn}>
+    <Link to={`/${HOME}`} className={s.backBtn}>
       <svg
         width="24"
         height="24"

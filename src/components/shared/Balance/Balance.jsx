@@ -1,5 +1,5 @@
 import { useState } from 'react/cjs/react.development';
-import styles from './Balance.module.scss';
+import s from './Balance.module.scss';
 
 export const Balance = () => {
   const [balance, setBalance] = useState('');
@@ -14,23 +14,23 @@ export const Balance = () => {
   };
 
   return (
-    <div className={styles.wrapper}>
+    <div className={s.wrapper}>
       <form onSubmit={formHandler}>
-        <label htmlFor="input" className={styles.label}>
+        <label htmlFor="input" className={s.label}>
           Баланс:
         </label>
-        <span className={styles.inputWrapper}>
+        <span className={s.inputWrapper}>
           <input
-            className={styles.input}
+            className={s.input}
             type="number"
             name="input"
             id="input"
             value={balance}
             onChange={inputHandler}
           />
-          <span className={styles.marker}>UAH</span>
+          <span className={s.marker}>UAH</span>
         </span>
-        <button type="submit" className={styles.button}>
+        <button type="submit" className={s.button}>
           Подтвердить
         </button>
       </form>

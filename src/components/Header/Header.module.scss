@@ -1,0 +1,19 @@
+@import '../../assets/base/sass/utils/variables';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 13px;
+
+  background-color: $primary-bg-color;
+  z-index: 2;
+}
+
+.logo {
+  display: inline-block;
+  align-items: flex-start;
+}

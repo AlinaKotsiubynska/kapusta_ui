@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Bar } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import css from './Chart.module.css';
+import s from './Chart.module.scss';
 
 export const ChartVertical = ({ activeCategory }) => {
   const categoriesArray = activeCategory.subCategories;
@@ -31,7 +31,7 @@ export const ChartVertical = ({ activeCategory }) => {
     ],
   };
   return (
-    < div className={css.chart}>
+    <div className={s.chart}>
       <Bar
         data={data}
         width={758}

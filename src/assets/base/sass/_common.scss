@@ -49,8 +49,12 @@ ul {
   padding-left: 20px;
   padding-right: 20px;
 
-  @include for-size(mobile) {
+  @include for-size(minmobile) {
     min-width: 320px;
+  }
+
+  @include for-size(mobile) {
+    min-width: 480px;
   }
 
   @include for-size(tablet) {

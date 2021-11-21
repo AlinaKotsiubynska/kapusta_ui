@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-import css from './CategoriesList.module.css';
+import s from './CategoriesList.module.scss';
 import { CategoriesItem } from '../CategoriesItem';
 import { ChartHorizontal, ChartVertical } from '../Chart';
 import { fetchDataByDate } from 'services/reports-api';
@@ -61,10 +61,10 @@ export const CategoriesList = ({ selectedMonth, selectedYear, handleSwitchPoint,
 
   return (
     <>
-      <div className={css.switcher}>
+      <div className={s.switcher}>
         <button
           type="button"
-          className={css.previousBtn}
+          className={s.previousBtn}
           onClick={handleSwitchPoint}
         >
           <svg
@@ -80,7 +80,7 @@ export const CategoriesList = ({ selectedMonth, selectedYear, handleSwitchPoint,
         <p>{title}</p>
         <button
           type="button"
-          className={css.nextBtn}
+          className={s.nextBtn}
           onClick={handleSwitchPoint}
         >
           <svg
@@ -97,7 +97,7 @@ export const CategoriesList = ({ selectedMonth, selectedYear, handleSwitchPoint,
 
       {categories && (
         <>
-          <ul className={css.categories}>
+          <ul className={s.categories}>
             {categories.map(category => (
               <li key={category._id}>
                 <button type="button" onClick={(e) => chooseCategory(e, category.nameEn)}>

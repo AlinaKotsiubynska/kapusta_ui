@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { INCOMES, EXPENSES, REPORTS } from 'helpers/constants/routes.constants';
-import { NavLink, useRouteMatch, Switch, Route } from 'react-router-dom';
+import { NavLink, useRouteMatch, Route } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { AssetsBoard } from 'components/Assets/AssetsBoard';
 import { Balance } from 'components/shared/Balance';
-import styles from './AssetsWrapper.module.scss';
+import s from './AssetsWrapper.module.scss';
 
 export const AssetsWrapper = () => {
   const TABS = [INCOMES, EXPENSES];
@@ -28,7 +28,7 @@ export const AssetsWrapper = () => {
   }, []);
 
   return (
-    <div className={styles.body}>
+    <div className={s.body}>
       {ROUTESNAMES.map(tab => (
         <Route key={tab} path={path + '/' + tab}>
           <NavLink to={`${path}/${REPORTS}/${EXPENSES}`}>{REPORTS}</NavLink>
@@ -37,8 +37,8 @@ export const AssetsWrapper = () => {
             <NavLink
               key={tab}
               to={path + '/' + tab}
-              className={styles.navlink}
-              activeClassName={styles.activenavlink}
+              className={s.navlink}
+              activeClassName={s.activenavlink}
             >
               {tab}
             </NavLink>

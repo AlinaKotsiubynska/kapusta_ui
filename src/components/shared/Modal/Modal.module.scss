@@ -1,3 +1,5 @@
+@import '../../../assets/base/sass/utils/variables';
+
 .modal {
   height: 100vh;
   width: 100vh;
@@ -11,7 +13,7 @@
 
 .modal-content {
   padding: 10px;
-  background-color: #fff;
+  background-color: $primary-bg-color;
   height: 100px;
   width: 100px;
 }

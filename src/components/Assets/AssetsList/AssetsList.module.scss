@@ -1,3 +1,5 @@
+@import '../../../assets/base/sass/utils/variables';
+
 .table,
 .tableBody {
   table-layout: fixed;
@@ -5,11 +7,11 @@
   border-spacing: 0;
   text-align: left;
   width: 100%;
-  border: 2px solid #f5f6fb;
+  border: 2px solid $secondary-bg-color;
 }
 
 .table {
-  background-color: #f5f6fb;
+  background-color: $secondary-bg-color;
   padding-right: 6px;
   border-radius: 20px 20px 0 0;
   overflow: hidden;
@@ -33,11 +35,11 @@
 
 .bodyWrapper::-webkit-scrollbar-thumb {
   border-radius: 2px;
-  background-color: #ff751d;
+  background-color: $accent-color;
 }
 
 .table tbody::-webkit-scrollbar-track {
-  background-color: #f5f6fb;
+  background-color: $secondary-bg-color;
 }
 
 th {
@@ -50,33 +52,31 @@ td {
 
 tr {
   font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 1.17;
   letter-spacing: 0.04em;
-  color: #52555f;
+  color: $secondary-font-color;
 }
 
 td:nth-child(4) {
   font-weight: bold;
   text-align: left;
-  color: #e7192e;
+  color: $expenses-color;
 }
 
 th {
   font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 1.17;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: #000000;
+  color: $primary-font-color;
 }
 
 tr:not(:last-child) td {
-  border-bottom: 2px solid #f5f6fb;
+  border-bottom: 2px solid $secondary-bg-color;
 }
 
 .button {
@@ -88,7 +88,7 @@ tr:not(:last-child) td {
 }
 
 .button:hover {
-  background-color: #f5f6fb;
+  background-color: $secondary-bg-color;
   cursor: pointer;
 }
 th:nth-child(1),
