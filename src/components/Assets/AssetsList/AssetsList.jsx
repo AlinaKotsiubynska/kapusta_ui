@@ -1,7 +1,7 @@
 import { useTable } from 'react-table';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { ReactComponent as Trash } from 'assets/icons/trash1.svg';
-import styles from './AssetsList.module.scss';
+import s from './AssetsList.module.scss';
 import {
   getReportsByMouthAndYear,
   deleteTransaction,
@@ -47,7 +47,7 @@ export const AssetsList = ({ tabKey, isUpdate, setUpdate }) => {
       setUpdate(pr => !pr);
     };
     return (
-      <button type="button" onClick={onDel} className={styles.button}>
+      <button type="button" onClick={onDel} className={s.button}>
         <Trash />
       </button>
     );
@@ -87,9 +87,9 @@ export const AssetsList = ({ tabKey, isUpdate, setUpdate }) => {
   return (
     <div>
       {data && (
-        <div className={styles.tableWrapper}>
-          <table {...getTableProps()} className={styles.table}>
-            <thead className={styles.header}>
+        <div className={s.tableWrapper}>
+          <table {...getTableProps()} className={s.table}>
+            <thead className={s.header}>
               {headerGroups.map(headerGroup => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map(column => (
@@ -101,8 +101,8 @@ export const AssetsList = ({ tabKey, isUpdate, setUpdate }) => {
               ))}
             </thead>
           </table>
-          <div className={styles.bodyWrapper}>
-            <table {...getTableProps()} className={styles.tableBody}>
+          <div className={s.bodyWrapper}>
+            <table {...getTableProps()} className={s.tableBody}>
               <tbody {...getTableBodyProps()}>
                 {rows.map(row => {
                   prepareRow(row);

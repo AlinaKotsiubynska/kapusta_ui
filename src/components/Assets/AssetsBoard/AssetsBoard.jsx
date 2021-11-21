@@ -2,7 +2,7 @@ import { AssetsForm } from 'components/Assets/AssetsForm';
 import { AssetsList } from 'components/Assets/AssetsList';
 import { AssetsSummary } from 'components/Assets/AssetsSummary';
 import { useState } from 'react';
-import s from './Assets.module.scss';
+import s from './AssetsBoard.module.scss';
 
 export const AssetsBoard = ({ tabKey }) => {
   const [isUpdate, setUpdate] = useState(false);
