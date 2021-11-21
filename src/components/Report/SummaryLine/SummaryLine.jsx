@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import css from './SummaryLine.module.css';
+import s from './SummaryLine.module.scss';
 import { fetchDataByDate } from 'services/reports-api';
 
 export const SummaryLine = ({ year, month }) => {
@@ -18,8 +18,8 @@ export const SummaryLine = ({ year, month }) => {
   }, [month, year]);
 
   return (
-    <div className={css.summaryLine}>
-      <p className={css.expenses}>
+    <div className={s.summaryLine}>
+      <p className={s.expenses}>
         Расходы:<span>{summaryExpenses}</span>
       </p>
       <svg
@@ -31,7 +31,7 @@ export const SummaryLine = ({ year, month }) => {
       >
         <path d="M1 0V36" stroke="#E0E5EB" />
       </svg>
-      <p className={css.incomes}>
+      <p className={s.incomes}>
         Доходы:<span>{summaryIncomes}</span>
       </p>
     </div>

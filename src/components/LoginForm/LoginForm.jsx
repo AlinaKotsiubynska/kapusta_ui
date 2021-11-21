@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { SIGNUP } from 'helpers/constants/routes.constants';
 import { Context } from '../Context/index';
 import { token } from '../../utils/tokenOperations';
+import s from '../LoginForm/LoginForm.module.scss';
 
 export default function LoginForm() {
   const { setUserContext } = useContext(Context);
@@ -56,12 +57,12 @@ export default function LoginForm() {
   };
 
   return (
-    <div>
+    <div className={s.wrapper}>
       <ToastContainer autoClose={5000} />
-      <p>Вы можете авторизоваться с помощью Google Account:</p>
+      <p className={s.loginForm_text}>Вы можете авторизоваться с помощью Google Account:</p>
 
       <a href="https://app-kapusta.herokuapp.com/api/auth/google">Google</a>
-      <p>
+      <p className={s.loginForm_text}>
         Или зайти с помощью e-mail и пароля, предварительно зарегистрировавшись:
       </p>
 

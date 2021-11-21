@@ -5,7 +5,7 @@ import { Redirect, useHistory } from 'react-router';
 import { Assets } from 'components/Assets';
 import { Balance } from 'components/shared/Balance';
 import { ReportPage } from 'components/Report/ReportPage';
-import styles from './HomePage.module.scss';
+import s from './HomePage.module.scss';
 
 export const HomePage = () => {
   const TABS = [INCOMES, EXPENSES];
@@ -29,15 +29,15 @@ export const HomePage = () => {
   }, []);
 
   return (
-    <div className={styles.homeBody}>
+    <div className={s.homeBody}>
       <NavLink to={`${path}/${REPORTS}/${EXPENSES}`}>{REPORTS}</NavLink>
       <Balance />
       {TABS.map(tab => (
         <NavLink
           key={tab}
           to={path + '/' + tab}
-          className={styles.navlink}
-          activeClassName={styles.activenavlink}
+          className={s.navlink}
+          activeClassName={s.activenavlink}
         >
           {tab}
         </NavLink>

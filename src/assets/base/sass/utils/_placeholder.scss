@@ -1,0 +1,17 @@
+%animation {
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+%button {
+  align-items: center;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.17;
+  padding: 12px 34px;
+  border-radius: 16px;
+  border-style: none;
+  width: 125px;
+  height: 44px;
+}

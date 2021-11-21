@@ -1,0 +1,18 @@
+@import '../../assets/base/sass/utils/variables';
+
+.wrapper {
+  position: relative;
+  width: 436px;
+}
+
+.loginForm_text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.17;
+  text-align: center;
+  color: $secondary-font-color;
+}

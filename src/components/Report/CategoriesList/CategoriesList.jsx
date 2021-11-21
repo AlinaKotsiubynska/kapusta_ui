@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import css from './CategoriesList.module.css';
+import s from './CategoriesList.module.scss';
 import { CategoriesItem } from '../CategoriesItem';
 import { Chart } from '../Chart';
 
@@ -26,10 +26,10 @@ export const CategoriesList = ({ categories, handleSwitchPoint, point }) => {
 
   return (
     <>
-      <div className={css.switcher}>
+      <div className={s.switcher}>
         <button
           type="button"
-          className={css.previousBtn}
+          className={s.previousBtn}
           onClick={handleSwitchPoint}
         >
           <svg
@@ -45,7 +45,7 @@ export const CategoriesList = ({ categories, handleSwitchPoint, point }) => {
         <p>{title}</p>
         <button
           type="button"
-          className={css.nextBtn}
+          className={s.nextBtn}
           onClick={handleSwitchPoint}
         >
           <svg
@@ -62,7 +62,7 @@ export const CategoriesList = ({ categories, handleSwitchPoint, point }) => {
 
       {categories && (
         <>
-          <ul className={css.categories}>
+          <ul className={s.categories}>
             {categories.map(category => (
               <li key={category._id}>
                 <button onClick={() => chooseCategory(category.nameEn)}>

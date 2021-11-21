@@ -1,4 +1,4 @@
-import css from './ChoosePeriod.module.css';
+import s from './ChoosePeriod.module.scss';
 
 const months = [
   'январь',
@@ -25,7 +25,7 @@ export const ChoosePeriod = ({
     <>
       <button
         type="button"
-        className={css.previousBtn}
+        className={s.previousBtn}
         onClick={handleGoPreviousPeriod}
       >
         <svg
@@ -44,7 +44,7 @@ export const ChoosePeriod = ({
       </p>
       <button
         type="button"
-        className={css.nextBtn}
+        className={s.nextBtn}
         onClick={handleGoNextPeriod}
       >
         <svg
