@@ -45,10 +45,6 @@ export default function Header() {
         <NavLink className={s.logoLink} to="/">
 				<div><img src={logo} alt="logo"/></div>
 			</NavLink>
-        <div>
-          <h1 className="title">Kapu$ta</h1>
-          <p className="desc">Smart Finance</p>
-        </div>
         {authenticated && (
           <div className="userInfo">
             <Avatar name={user?.name} />
