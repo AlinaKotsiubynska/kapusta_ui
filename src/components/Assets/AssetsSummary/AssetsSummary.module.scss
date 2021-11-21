@@ -1,0 +1,49 @@
+@import '../../../assets/base/sass/utils/variables';
+
+.table,
+.tableBody {
+  table-layout: fixed;
+  // border-collapse: collapse;
+  border-spacing: 0;
+  text-align: left;
+  width: 100%;
+  border: 2px solid $secondary-bg-color;
+}
+
+.table {
+  padding-right: 6px;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+  background-color: $secondary-bg-color;
+}
+
+.table thead {
+  padding-right: 6px;
+}
+
+th {
+  padding: 20px;
+}
+
+.summaryTd {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  margin: 0;
+}
+
+tr .summaryTr {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.04em;
+  color: $secondary-font-color;
+  width: 100%;
+  border: 2px solid $primary-bg-color;
+}
+
+.month {
+  margin-right: 50px;
+}
