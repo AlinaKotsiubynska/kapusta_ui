@@ -8,6 +8,7 @@ import { SIGNUP } from 'helpers/constants/routes.constants';
 import { Context } from '../Context/index';
 import { token } from '../../utils/tokenOperations';
 import s from '../LoginForm/LoginForm.module.scss';
+import logo from '../../assets/icons/google-symbol.svg';
 
 export default function LoginForm() {
   const { setUserContext } = useContext(Context);
@@ -62,16 +63,25 @@ export default function LoginForm() {
       <p className={s.loginForm_text}>
         Вы можете авторизоваться с помощью Google Account:
       </p>
+      <div className={s.google_wrapper}>
+        <img src={logo} alt="gg" width="18px" height="18px" />
+        <a
+          href="https://app-kapusta.herokuapp.com/api/auth/google"
+          className={s.google_text}
+        >
+          Google
+        </a>
+      </div>
 
-      <a href="https://app-kapusta.herokuapp.com/api/auth/google">Google</a>
       <p className={s.loginForm_text}>
         Или зайти с помощью e-mail и пароля, предварительно зарегистрировавшись:
       </p>
 
-      <form onSubmit={handleSubmit} autoComplete="off">
-        <label>
-          Электронная почта:
+      <form className={s.form} onSubmit={handleSubmit} autoComplete="off">
+        <label className={s.label}>
+          <p> Электронная почта:</p>
           <input
+            className={s.input}
             required
             placeholder="your@email.com"
             type="email"
@@ -81,9 +91,11 @@ export default function LoginForm() {
           />
         </label>
 
-        <label>
-          Пароль
+        <label className={s.label}>
+          <p> Пароль</p>
           <input
+            placeholder="пароль"
+            className={s.input}
             required
             type="password"
             name="password"
@@ -91,9 +103,15 @@ export default function LoginForm() {
             onChange={handleChange}
           />
         </label>
-
-        <button type="submit">Войти</button>
-        <Link to={`${SIGNUP}`}>Регистрация</Link>
+        <div className={s.btn_wrapper}>
+          <button className={s.button} type="submit">
+            Войти
+          </button>
+          <button className={s.button}>
+            Регистрация
+            <Link to={`${SIGNUP}`}></Link>
+          </button>
+        </div>
       </form>
     </div>
   );

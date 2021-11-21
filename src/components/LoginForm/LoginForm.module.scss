@@ -1,18 +1,117 @@
 @import '../../assets/base/sass/utils/variables';
+p {
+  margin-top: 0;
+}
+button {
+  padding: 0;
+}
 
 .wrapper {
   position: relative;
-  width: 436px;
+  max-width: 300px;
+  border-radius: 30px;
+  padding: 30px;
+  padding-bottom: 50px;
+
+  background-color: bisque;
+  @media screen and (min-width: 767px) {
+    & {
+      width: 436px;
+      padding: 40px 70px 50px 70px;
+    }
+  }
 }
 
 .loginForm_text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-family: Roboto;
   font-weight: 400;
   font-size: 12px;
   line-height: 1.17;
   text-align: center;
   color: $secondary-font-color;
+  text-decoration: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.google_wrapper {
+  display: flex;
+  width: 122px;
+  min-height: 40px;
+  border-radius: 26px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 30px;
+
+  background-color: #f6f7fb;
+}
+
+.label {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.17;
+  text-align: left;
+  color: $secondary-font-color;
+  margin-bottom: 30px;
+  &:last-child {
+    margin-bottom: 40px;
+  }
+}
+
+.input {
+  width: 253px;
+  min-height: 52px;
+  border-radius: 30px;
+  margin: 0 auto;
+  border: none;
+  background-color: #f6f7fb;
+  &::placeholder {
+    color: #a6abb9;
+    padding: 20px;
+    font-size: 14px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  background-color: #f6f7fb;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.17;
+  color: #52555f;
+
+  border-radius: 16px;
+  border-style: none;
+  width: 125px;
+  min-height: 44px;
+  cursor: pointer;
+  &:first-child {
+    margin-right: 15px;
+  }
+  &:hover {
+    background-color: #ff751d;
+    color: white;
+  }
+}
+.btn_wrapper {
+  display: flex;
+}
+.google_text {
+  margin-left: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.17;
+  color: black;
+  text-decoration: none;
 }

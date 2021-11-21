@@ -12,7 +12,7 @@ export const AssetsBoard = ({ tabKey }) => {
       <AssetsForm tabKey={tabKey} setUpdate={setUpdate} />
       <div className={s.listsWrapper}>
         <AssetsList tabKey={tabKey} isUpdate={isUpdate} setUpdate={setUpdate} />
-        <AssetsSummary />
+        <AssetsSummary isUpdate={isUpdate} tabKey={tabKey}/>
       </div>
     </div>
   );
