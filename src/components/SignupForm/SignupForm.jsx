@@ -50,6 +50,8 @@ export default function SignupForm() {
 
       token.set(data.user.token);
 
+      const { data: userInfo } = await axios.get('/users/current');
+
       setUserContext(state => ({
         ...state,
 
@@ -57,8 +59,8 @@ export default function SignupForm() {
         authenticated: true,
         user: {
           ...state.user,
-          balance: data.user.balance,
-          name: data.user.name,
+          balance: userInfo.user.balance,
+          name: userInfo.user.name,
         },
       }));
 

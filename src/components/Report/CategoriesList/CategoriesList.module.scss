@@ -1,3 +1,5 @@
+@import '../../assets/base/sass/utils/variables';
+
 .switcher {
   display: flex;
   justify-content: center;
@@ -6,4 +8,8 @@
 .categories {
   display: flex;
   text-align: center;
+}
+
+.active {
+  fill: $accent-color;
 }
