@@ -1,0 +1,32 @@
+@import '../../assets/base/sass/utils/variables.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  max-width: 320px;
+  margin: 0 auto;
+  height: 100vh;
+  background: url('../../assets/images/single-cabbage-down.png') no-repeat 272px
+      116px,
+    url('../../assets/images/single-cabbage-up.png') no-repeat 35px 735px,
+    url('../../assets/images/bg-mobile.png') no-repeat;
+
+  @media screen and (min-width: 768px) {
+    max-width: 768px;
+
+    background: url('../../assets/images/cabbage.png') no-repeat 10px 48px,
+      url('../../assets/images/double-cabbage.png') no-repeat 100px 775px,
+      url('../../assets/images/bg-tablet.png') no-repeat;
+  }
+
+  @media screen and (min-width: 1280px) {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    max-width: 1280px;
+
+    background: url('../../assets/images/cabbage.png') no-repeat 10px 70px,
+      url('../../assets/images/double-cabbage.png') no-repeat 230px 75px,
+      url('../../assets/images/bg-desktop.png') no-repeat;
+  }
+}
