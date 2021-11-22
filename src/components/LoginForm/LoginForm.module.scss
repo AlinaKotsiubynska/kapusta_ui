@@ -121,6 +121,9 @@ button {
     background-color: $accent-color;
     color: $primary-bg-color;
     box-shadow: rgba(255, 107, 8, 0.35);
+    & a {
+      color: $primary-bg-color !important;
+    }
   }
 }
 .btn_wrapper {
