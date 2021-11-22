@@ -30,7 +30,7 @@ export const AssetsForm = ({ tabKey, setUpdate }) => {
     const value = e.target.calc.value;
 
     const response = await setTransactions(tabKey)({
-      date: new Date().getTime(date),
+      date: new Date(date).getTime(),
       category,
       description,
       value: Number(value),

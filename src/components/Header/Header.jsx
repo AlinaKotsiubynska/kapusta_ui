@@ -47,9 +47,11 @@ export default function Header() {
           </div>
         </NavLink>
         {authenticated && (
-          <div className="userInfo">
+          <div className={s.userInfo}>
             <Avatar name={user?.name} />
-            <button onClick={openModal}>Выйти</button>
+            <button className="logoutBtn" onClick={openModal} type="button">
+              Выйти
+            </button>
             {modalActive && (
               <Modal
                 active={modalActive}
@@ -57,7 +59,7 @@ export default function Header() {
                 onSubmitClick={handleLogout}
                 onCanselCLick={closeModal}
               >
-                <p>Вы действительно хотите выйти?</p>
+                <p className={s.modalText}>Вы действительно хотите выйти?</p>
               </Modal>
             )}
           </div>

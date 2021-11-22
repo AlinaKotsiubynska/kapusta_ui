@@ -1,17 +1,18 @@
 @import '../../assets/base/sass/utils/variables';
 
 header {
+  position: relative;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 56px;
   padding-top: 12px;
   padding-bottom: 13px;
   background-color: $primary-bg-color;
 }
 
-.logo {
-  display: inline-block;
+.logoLink {
+  display: inline-flex;
   align-items: flex-start;
   width: 91px;
   height: 31px;
@@ -20,4 +21,40 @@ header {
   @media screen and (min-width: 768px) {
     margin-left: 26px;
   }
+}
+
+.userInfo {
+  position: absolute;
+
+  top: 17px;
+  right: 44px;
+
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+}
+
+.logoutBtn {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: inline-block;
+    border: transparent;
+    text-decoration: underline;
+  }
+}
+
+.modalText {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.02em;
+
+  color: $secondary-font-color;
 }

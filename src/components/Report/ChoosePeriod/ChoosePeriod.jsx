@@ -23,7 +23,9 @@ export const ChoosePeriod = ({
 }) => {
   const selectedMonth = months[month];
   return (
-    <>
+    <div className={s.currentPeriod}>
+    <p className={s.periodTitle}>Текущий период</p>
+    <div className={s.switcher}>
       <button
         type="button"
         className={s.previousBtn}
@@ -39,9 +41,9 @@ export const ChoosePeriod = ({
           <path d="M6 1L2 6L6 11" stroke="#FF751D" strokeWidth="2" />
         </svg>
       </button>
-      <p>
-        <span>{selectedMonth}</span>
-        <span>{year}</span>
+      <p className={s.period}>
+        <span className={s.month}>{selectedMonth}</span>
+        <span className={s.year}>{year}</span>
       </p>
       <button type="button" className={s.nextBtn} onClick={handleGoNextPeriod}>
         <svg
@@ -54,7 +56,8 @@ export const ChoosePeriod = ({
           <path d="M1 1L5 6L1 11" stroke="#FF751D" strokeWidth="2" />
         </svg>
       </button>
-    </>
+      </div>
+    </div>
   );
 };
 

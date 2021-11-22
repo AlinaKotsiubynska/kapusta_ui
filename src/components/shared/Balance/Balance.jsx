@@ -1,9 +1,33 @@
+import { useState, useContext, useEffect } from 'react';
+import { Context } from 'components/Context';
+import { patchBalance } from 'components/Assets/Api/Api';
 import s from './Balance.module.scss';
 
-export const Balance = ({ balance, setBalance, onSubmitForm }) => {
+export const Balance = ({ isDisabled = false }) => {
+  const { userContext, setUserContext } = useContext(Context);
+  const [balance, setBalance] = useState('');
+
+  useEffect(() => {
+    setBalance(userContext.user.balance);
+  }, [userContext.user.balance]);
+
   const inputHandler = e => {
     const value = e.target.value;
     setBalance(value);
+  };
+
+  const onSubmitForm = async e => {
+    e.preventDefault();
+    const res = await patchBalance({ balance });
+    setUserContext(state => {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          balance: res.data.user.balance,
+        },
+      };
+    });
   };
 
   return (
@@ -14,6 +38,7 @@ export const Balance = ({ balance, setBalance, onSubmitForm }) => {
         </label>
         <span className={s.inputWrapper}>
           <input
+            disabled={isDisabled}
             className={s.input}
             type="number"
             name="input"
@@ -25,9 +50,11 @@ export const Balance = ({ balance, setBalance, onSubmitForm }) => {
           />
           <span className={s.marker}>UAH</span>
         </span>
-        <button type="submit" className={s.button}>
-          Подтвердить
-        </button>
+        {!isDisabled && (
+          <button type="submit" className={s.button}>
+            Подтвердить
+          </button>
+        )}
       </form>
     </div>
   );
