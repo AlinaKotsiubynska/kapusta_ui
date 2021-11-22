@@ -14,14 +14,14 @@ export const ReportHeading = ({
     <div className={s.heading}>
       <GoHomeLink />
       <div className={s.wrapper}>
-      <Balance />
-      <ChoosePeriod
-        month={month}
-        year={year}
-        handleGoNextPeriod={handleGoNextPeriod}
-        handleGoPreviousPeriod={handleGoPreviousPeriod}
+        <Balance isDisabled={true} />
+        <ChoosePeriod
+          month={month}
+          year={year}
+          handleGoNextPeriod={handleGoNextPeriod}
+          handleGoPreviousPeriod={handleGoPreviousPeriod}
         />
-        </div>
+      </div>
     </div>
   );
 };
