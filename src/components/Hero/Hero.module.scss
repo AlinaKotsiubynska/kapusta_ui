@@ -7,7 +7,7 @@
   background-color: $primary-bg-color;
   background-repeat: no-repeat;
   user-select: none;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
 
   padding: 86px 88px 137px 49px;
@@ -24,7 +24,7 @@
 }
 
 .wrapper::after {
-  position: absolute;
+  position: fixed;
 
   content: '';
   background-image: url('../../assets/images/single-cabbage-down.png');
@@ -61,7 +61,7 @@
 }
 
 .title {
-  font-family: Roboto;
+  font-family: inherit;
   font-size: 46px;
   font-weight: 700;
   margin: 0 0 8px 0;
@@ -82,7 +82,7 @@
 }
 
 .desc {
-  font-family: Roboto;
+  font-family: inherit;
   font-weight: 700;
   font-size: 13px;
   line-height: 1.15;
@@ -97,7 +97,7 @@
     position: relative;
     z-index: 5;
 
-    font-family: Roboto;
+    font-family: inherit;
     font-weight: 700;
     font-size: 16px;
     line-height: 1.19;
@@ -117,7 +117,7 @@
   width: 183px;
   height: 142px;
   content: '';
-  top: 576px;
+  bottom: 92px;
   left: 35px;
   background-image: url('../../assets/images/single-cabbage-up.png');
 
@@ -125,7 +125,7 @@
     width: 183px;
     height: 142px;
     content: '';
-    top: 596px;
+    bottom: -736px;
     left: -34px;
     background-image: url('../../assets/images/double-cabbage.png');
   }

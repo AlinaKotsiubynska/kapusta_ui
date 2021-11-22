@@ -1,23 +1,39 @@
 @import '../../assets/base/sass/utils/variables';
+
 p {
   margin-top: 0;
 }
+
 button {
   padding: 0;
 }
 
 .wrapper {
-  position: relative;
+  position: absolute;
+  top: 280px;
+  z-index: 10;
+
   max-width: 300px;
   border-radius: 30px;
-  padding: 30px;
-  padding-bottom: 50px;
+  margin: 0 10px;
+  padding: 40px 30px;
+  box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
 
   background-color: bisque;
   @media screen and (min-width: 767px) {
     & {
+      top: 320px;
+      margin: 0 166px;
       width: 436px;
       padding: 40px 70px 50px 70px;
+    }
+
+    @media screen and (min-width: 1280px) {
+      & {
+        top: 197px;
+        right: -17px;
+        margin: 0;
+      }
     }
   }
 }
@@ -46,7 +62,7 @@ button {
   margin: 0 auto;
   margin-bottom: 30px;
 
-  background-color: #f6f7fb;
+  background-color: $secondary-bg-color;
 }
 
 .label {
@@ -68,9 +84,9 @@ button {
   border-radius: 30px;
   margin: 0 auto;
   border: none;
-  background-color: #f6f7fb;
+  background-color: $secondary-bg-color;
   &::placeholder {
-    color: #a6abb9;
+    color: $auxiliary-font-color-2;
     padding: 20px;
     font-size: 14px;
   }
@@ -83,12 +99,13 @@ button {
 }
 
 .button {
-  background-color: #f6f7fb;
+  background-color: $secondary-bg-color;
   font-family: inherit;
   font-size: 12px;
   font-weight: 700;
   line-height: 1.17;
-  color: #52555f;
+  color: $secondary-font-color;
+  box-shadow: rgba(82, 85, 95, 0.15);
 
   border-radius: 16px;
   border-style: none;
@@ -99,8 +116,9 @@ button {
     margin-right: 15px;
   }
   &:hover {
-    background-color: #ff751d;
-    color: white;
+    background-color: $accent-color;
+    color: $primary-bg-color;
+    box-shadow: rgba(255, 107, 8, 0.35);
   }
 }
 .btn_wrapper {
@@ -112,6 +130,6 @@ button {
   font-size: 14px;
   font-weight: 500;
   line-height: 1.17;
-  color: black;
+  color: $primary-font-color;
   text-decoration: none;
 }

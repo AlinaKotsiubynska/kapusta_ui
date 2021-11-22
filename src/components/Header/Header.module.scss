@@ -1,6 +1,8 @@
 @import '../../assets/base/sass/utils/variables';
 
 header {
+  position: relative;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
