@@ -13,6 +13,7 @@
   .headerContainer {
     max-width: 320px;
     padding: 0 19px;
+    justify-content: space-between;
   }
 }
 
@@ -35,11 +36,10 @@
   cursor: pointer;
 }
 
-// .userInfo {
-//   display: flex;
-//   align-items: center;
-//   margin-right: 40px;
-// }
+.userInfo {
+  display: flex;
+  align-items: center;
+}
 
 .logoutBtn {
   display: none;
