@@ -7,7 +7,7 @@ import { Balance } from 'components/shared/Balance';
 import s from './AssetsWrapper.module.scss';
 import { Context } from 'components/Context';
 import { useContext } from 'react';
-import { useState } from 'react/cjs/react.development';
+import { useState } from 'react';
 import { patchBalance } from 'components/Assets/Api/Api';
 
 export const AssetsWrapper = () => {
