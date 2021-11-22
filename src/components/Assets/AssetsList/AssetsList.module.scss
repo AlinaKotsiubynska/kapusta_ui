@@ -47,7 +47,12 @@ th {
 }
 
 td {
-  padding: 10px 20px;
+  padding: 5px;
+  font-size: 0.8em;
+  @media screen and (min-width: 500px) {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
 }
 
 tr {

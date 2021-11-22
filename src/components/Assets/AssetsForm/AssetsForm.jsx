@@ -79,30 +79,32 @@ export const AssetsForm = ({ tabKey, setUpdate }) => {
               />
             )}
           </div>
-          <input
-            required
-            className={s.input}
-            type="text"
-            name="input"
-            placeholder="Описание товара"
-          />
-          <select className={s.select} size="1" name="select" required>
-            {categories.map(el => (
-              <option key={el._id} value={el._id}>
-                {el.name}
-              </option>
-            ))}
-          </select>
-          <div className={s.calculatorWrapper}>
-            <Calculator className={s.calculatorIcon} />
+          <div className={s.formInputs}>
             <input
               required
-              name="calc"
-              className={s.calc}
-              type="number"
-              step="0.01"
-              placeholder="0,00"
+              className={s.input}
+              type="text"
+              name="input"
+              placeholder="Описание товара"
             />
+            <select className={s.select} size="1" name="select" required>
+              {categories.map(el => (
+                <option key={el._id} value={el._id}>
+                  {el.name}
+                </option>
+              ))}
+            </select>
+            <div className={s.calculatorWrapper}>
+              <Calculator className={s.calculatorIcon} />
+              <input
+                required
+                name="calc"
+                className={s.calc}
+                type="number"
+                step="0.01"
+                placeholder="0,00"
+              />
+            </div>
           </div>
         </div>
         <div className={s.buttonsWrapper}>

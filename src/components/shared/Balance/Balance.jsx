@@ -32,24 +32,26 @@ export const Balance = ({ isDisabled = false }) => {
 
   return (
     <div className={s.wrapper}>
-      <form onSubmit={onSubmitForm}>
-        <label htmlFor="input" className={s.label}>
-          Баланс:
-        </label>
-        <span className={s.inputWrapper}>
-          <input
-            disabled={isDisabled}
-            className={s.input}
-            type="number"
-            name="input"
-            id="input"
-            step="0.01"
-            value={balance}
-            onChange={inputHandler}
-            placeholder="0.00"
-          />
-          <span className={s.marker}>UAH</span>
-        </span>
+      <form onSubmit={onSubmitForm} className={s.form}>
+        <div className={s.formInputs}>
+          <label htmlFor="input" className={s.label}>
+            Баланс:
+          </label>
+          <span className={s.inputWrapper}>
+            <input
+              disabled={isDisabled}
+              className={s.input}
+              type="number"
+              name="input"
+              id="input"
+              step="0.01"
+              value={balance}
+              onChange={inputHandler}
+              placeholder="0.00"
+            />
+            <span className={s.marker}>UAH</span>
+          </span>
+        </div>
         {!isDisabled && (
           <button type="submit" className={s.button}>
             Подтвердить

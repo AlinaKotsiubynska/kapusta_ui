@@ -33,10 +33,11 @@
 }
 
 .button {
-  max-width: 125px;
-  width: 80px;
+  // max-width: 125px;
+  padding: 0 10px;
+  width: 100px;
   height: 44px;
-  display: inline-block;
+  display: block;
   border-radius: 16px;
   background-color: inherit;
   border: 1px solid $secondary-bg-color;
@@ -55,7 +56,8 @@
   &:focus,
   &:hover {
     box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
-    color: $accent-color;
+    background-color: $accent-color;
+    color: $primary-bg-color;
   }
 }
 

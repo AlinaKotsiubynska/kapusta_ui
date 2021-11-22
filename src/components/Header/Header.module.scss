@@ -7,13 +7,13 @@
 .headerContainer {
   display: flex;
   margin: 0 auto;
+  justify-content: space-between;
+  padding: 0 19px;
 }
 
 @media screen and (min-width: 320px) {
   .headerContainer {
     max-width: 320px;
-    padding: 0 19px;
-    justify-content: space-between;
   }
 }
 
