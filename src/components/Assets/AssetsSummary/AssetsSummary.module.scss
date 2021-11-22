@@ -10,6 +10,14 @@
   border: 2px solid $secondary-bg-color;
 }
 
+.tableWrapper {
+  display: none;
+  @media screen and (min-width: 768px) {
+    width: 230px;
+    display: block;
+  }
+}
+
 .table {
   padding-right: 6px;
   border-radius: 20px 20px 0 0;
@@ -21,12 +29,16 @@
   padding-right: 6px;
 }
 
+.tableHead {
+  text-align: center;
+}
+
 th {
   padding: 20px;
 }
 
 .summaryTd {
-  width: 100%;
+  width: 84% !important;
   display: flex;
   justify-content: space-between;
   padding: 10px 20px;
@@ -46,4 +58,5 @@ tr .summaryTr {
 
 .month {
   margin-right: 50px;
+  text-transform: capitalize;
 }
