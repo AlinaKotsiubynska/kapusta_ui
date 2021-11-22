@@ -85,9 +85,9 @@ button {
   margin: 0 auto;
   border: none;
   background-color: $secondary-bg-color;
+  padding: 0 20px;
   &::placeholder {
     color: $auxiliary-font-color-2;
-    padding: 20px;
     font-size: 14px;
   }
 }
