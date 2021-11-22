@@ -1,4 +1,5 @@
 import React from 'react';
+import s from '../Modal/Modal.module.scss';
 
 function Modal({ active, setActive, children, onSubmitClick, onCanselCLick }) {
   return (
@@ -11,8 +12,12 @@ function Modal({ active, setActive, children, onSubmitClick, onCanselCLick }) {
         onClick={e => e.stopPropagation()}
       >
         {children}
-        <button onClick={onSubmitClick}>да</button>
-        <button onClick={onCanselCLick}>нет</button>
+        <button className={s.modalBtnYes} onClick={onSubmitClick}>
+          да
+        </button>
+        <button className={s.modalBtnNo} onClick={onCanselCLick}>
+          нет
+        </button>
       </div>
     </div>
   );

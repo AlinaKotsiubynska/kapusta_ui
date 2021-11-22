@@ -1,18 +1,140 @@
 @import '../../assets/base/sass/utils/variables';
 
+p {
+  margin-top: 0;
+}
+
+button {
+  padding: 0;
+}
+
 .wrapper {
-  position: relative;
-  width: 436px;
+  position: absolute;
+  top: 280px;
+  z-index: 10;
+
+  max-width: 300px;
+  border-radius: 30px;
+  margin: 0 10px;
+  padding: 40px 30px;
+  box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+  background-color: $auxiliary-accent-color;
+  @media screen and (min-width: 767px) {
+    & {
+      top: 320px;
+      margin: 0 166px;
+      width: 436px;
+      padding: 40px 70px 50px 70px;
+    }
+
+    @media screen and (min-width: 1280px) {
+      & {
+        top: 197px;
+        right: -17px;
+        margin: 0;
+      }
+    }
+  }
 }
 
 .loginForm_text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-family: Roboto;
   font-weight: 400;
   font-size: 12px;
   line-height: 1.17;
   text-align: center;
   color: $secondary-font-color;
+  text-decoration: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.google_wrapper {
+  display: flex;
+  width: 122px;
+  min-height: 40px;
+  border-radius: 26px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 30px;
+
+  background-color: $secondary-bg-color;
+}
+
+.label {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.17;
+  text-align: left;
+  color: $secondary-font-color;
+  margin-bottom: 30px;
+  &:last-child {
+    margin-bottom: 40px;
+  }
+}
+
+.input {
+  width: 253px;
+  min-height: 52px;
+  border-radius: 30px;
+  margin: 0 auto;
+  border: none;
+  background-color: $secondary-bg-color;
+  &::placeholder {
+    color: $auxiliary-font-color-2;
+    padding: 20px;
+    font-size: 14px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  background-color: $secondary-bg-color;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.17;
+  color: $secondary-font-color;
+  box-shadow: rgba(82, 85, 95, 0.15);
+
+  border-radius: 16px;
+  border-style: none;
+  min-width: 125px;
+  padding: 10px;
+  min-height: 44px;
+  cursor: pointer;
+  &:first-child {
+    margin-right: 15px;
+  }
+  &:hover,
+  &:focus {
+    background-color: $accent-color;
+    color: $primary-bg-color;
+    box-shadow: rgba(255, 107, 8, 0.35);
+    & a {
+      color: $primary-bg-color !important;
+    }
+  }
+}
+.btn_wrapper {
+  display: flex;
+}
+.google_text {
+  margin-left: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.17;
+  color: $primary-font-color;
+  text-decoration: none;
 }
