@@ -9,35 +9,34 @@ button {
 }
 
 .wrapper {
-  position: absolute;
-  top: 280px;
-  z-index: 10;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  // margin: 0 10px;
   max-width: 300px;
   border-radius: 30px;
-  margin: 0 10px;
-  padding: 40px 18px 53px 17px;
+  padding: 40px 15px 53px 15px;
   box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
   background-color: $auxiliary-accent-color;
   @media screen and (min-width: 768px) {
     & {
-      top: 320px;
       margin: 0 166px;
-      width: 436px;
-      padding: 40px 70px 50px 70px;
+      max-width: 436px;
+      padding: 50px 85px 53px 85px;
     }
+  }
 
-    @media screen and (min-width: 1280px) {
-      & {
-        top: 197px;
-        right: -17px;
-        margin: 0;
-      }
+  @media screen and (min-width: 1280px) {
+    & {
+      margin: 117px 0 0 0;
     }
   }
 }
 
 .loginForm_text {
+  width: 222px;
   font-family: Roboto;
   font-weight: 400;
   font-size: 12px;
@@ -79,7 +78,7 @@ button {
 }
 
 .input {
-  width: 253px;
+  width: 250px;
   min-height: 52px;
   border-radius: 30px;
   margin: 0 auto;

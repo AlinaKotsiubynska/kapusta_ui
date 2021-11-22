@@ -4,8 +4,6 @@
   display: flex;
   flex-direction: column;
 
-  max-width: 1280px;
-  padding: 86px 88px 137px 49px;
   max-width: 320px;
   margin: 0 auto;
   height: 100vh;
@@ -16,7 +14,6 @@
 
   @media screen and (min-width: 768px) {
     max-width: 768px;
-    padding: 90px 291px 335px 171px;
 
     background: url('../../assets/images/cabbage.png') no-repeat 10px 48px,
       url('../../assets/images/double-cabbage.png') no-repeat 100px 775px,
@@ -24,8 +21,9 @@
   }
 
   @media screen and (min-width: 1280px) {
+    flex-direction: row;
+    flex-wrap: nowrap;
     max-width: 1280px;
-    padding: 308px 673px 79px 230px;
 
     background: url('../../assets/images/cabbage.png') no-repeat 10px 70px,
       url('../../assets/images/double-cabbage.png') no-repeat 245px 765px,
@@ -80,5 +78,21 @@
 
   @media screen and (min-width: 1280px) {
     padding-left: 65px;
+  }
+}
+
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+
+  padding: 86px 88px 50px 49px;
+
+  @media screen and (min-width: 768px) {
+    padding: 90px 290px 50px 171px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding: 308px 127px 347px 230px;
   }
 }
