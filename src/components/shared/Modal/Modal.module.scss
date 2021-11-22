@@ -83,3 +83,35 @@
     color: $accent-color;
   }
 }
+
+.modalClose {
+  width: 12px;
+  height: 12px;
+  top: 20px;
+  right: 20px;
+  display: block;
+  position: absolute;
+  font-size: 12px;
+  border: none;
+  box-shadow: none;
+  background-color: inherit;
+
+  &:hover,
+  &:focus {
+    box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
+    fill: $accent-color;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1200;
+}
