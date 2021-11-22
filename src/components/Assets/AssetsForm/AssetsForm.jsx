@@ -64,48 +64,57 @@ export const AssetsForm = ({ tabKey, setUpdate }) => {
 
   return (
     <div className={s.wrapper}>
-      <div className={s.calendarWrapper}>
-        <div className={s.calendarLabel} onClick={onLabelClic}>
-          <CalendIcon className={s.calendarIcon} /> {format(date, 'dd.MM.yyyy')}
-        </div>
-        {!isVisible && (
-          <Calendar
-            className={s.calendar}
-            view="month"
-            onClickDay={onClickDay}
-          />
-        )}
-      </div>
       <form onSubmit={onSubmitForm} className={s.form} ref={ref}>
-        <input
-          required
-          className={s.input}
-          type="text"
-          name="input"
-          placeholder="Описание товара"
-        />
-        <select className={s.select} size="1" name="select" required>
-          {categories.map(el => (
-            <option key={el._id} value={el._id}>
-              {el.name}
-            </option>
-          ))}
-        </select>
-        <div className={s.calculatorWrapper}>
-          <Calculator className={s.calculatorIcon} />
-          <input
-            required
-            name="calc"
-            className={s.calc}
-            type="number"
-            step="0.01"
-            placeholder="0,00"
-          />
+        <div className={s.formData}>
+          <div className={s.calendarWrapper}>
+            <div className={s.calendarLabel} onClick={onLabelClic}>
+              <CalendIcon className={s.calendarIcon} />{' '}
+              {format(date, 'dd.MM.yyyy')}
+            </div>
+            {!isVisible && (
+              <Calendar
+                className={s.calendar}
+                view="month"
+                onClickDay={onClickDay}
+              />
+            )}
+          </div>
+          <div className={s.formInputs}>
+            <input
+              required
+              className={s.input}
+              type="text"
+              name="input"
+              placeholder="Описание товара"
+            />
+            <select className={s.select} size="1" name="select" required>
+              {categories.map(el => (
+                <option key={el._id} value={el._id}>
+                  {el.name}
+                </option>
+              ))}
+            </select>
+            <div className={s.calculatorWrapper}>
+              <Calculator className={s.calculatorIcon} />
+              <input
+                required
+                name="calc"
+                className={s.calc}
+                type="number"
+                step="0.01"
+                placeholder="0,00"
+              />
+            </div>
+          </div>
         </div>
-        <Button type="submit">ввод</Button>
-        <Button type="button" onClick={clearForm}>
-          очистить
-        </Button>
+        <div className={s.buttonsWrapper}>
+          <Button type="submit" className={s.button}>
+            ввод
+          </Button>
+          <Button type="button" onClick={clearForm} className={s.button}>
+            очистить
+          </Button>
+        </div>
       </form>
     </div>
   );

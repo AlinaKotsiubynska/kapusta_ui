@@ -29,10 +29,10 @@ function Modal({ active, setActive, children, onSubmitClick, onCanselCLick }) {
         >
           {children}
           <div className={s.modalBtns}>
-            <button className={s.modalBtnYes} onClick={onSubmitClick}>
+            <button className={s.button} onClick={onSubmitClick}>
               да
             </button>
-            <button className={s.modalBtnNo} onClick={onCanselCLick}>
+            <button className={s.button} onClick={onCanselCLick}>
               нет
             </button>
           </div>

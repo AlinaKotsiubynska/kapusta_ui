@@ -32,40 +32,13 @@
   justify-content: space-between;
 }
 
-.modalBtnYes {
-  width: 80px;
+.button {
+  // max-width: 125px;
+  padding: 0 10px;
+  width: 100px;
   height: 44px;
-  display: inline-block;
+  display: block;
   border-radius: 16px;
-  // margin-right: 15px;
-  background-color: $accent-color;
-  color: $primary-bg-color;
-  border: none;
-
-  font-family: Roboto;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 1.17;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-
-  &:focus,
-  &:hover {
-    box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
-    background-color: $accent-color;
-    color: $primary-bg-color;
-  }
-}
-
-.modalBtnNo {
-  max-width: 125px;
-  width: 80px;
-  height: 44px;
-  display: inline-block;
-  border-radius: 16px;
-  // margin-left: 15px;
   background-color: inherit;
   border: 1px solid $secondary-bg-color;
 
@@ -83,7 +56,8 @@
   &:focus,
   &:hover {
     box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
-    color: $accent-color;
+    background-color: $accent-color;
+    color: $primary-bg-color;
   }
 }
 

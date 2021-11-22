@@ -6,8 +6,31 @@
   align-items: center;
   margin-bottom: 59px;
 }
+
+.formData {
+  display: flex;
+  margin-bottom: 20px;
+  flex-direction: column-reverse;
+  align-items: center;
+  @media screen and (min-width: 500px) {
+    flex-direction: row;
+  }
+  @media screen and (min-width: 900px) {
+    margin-bottom: 0px;
+  }
+}
+
+.formInputs {
+  display: flex;
+}
+
 .calendarWrapper {
-  margin-right: 23px;
+  // margin-right: 23px;
+
+  margin: 20px auto 0;
+  @media screen and (min-width: 500px) {
+    margin: 0 23px 0;
+  }
 }
 .calendar {
   position: absolute;
@@ -30,13 +53,47 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  flex-direction: column;
 
-  button {
-    // временные стили
-    width: 125px;
+  @media screen and (min-width: 900px) {
+    flex-direction: row;
   }
 
-  button:not(:last-child) {
+  .buttonsWrapper {
+    display: flex;
+    @media screen and (min-width: 900px) {
+      margin-left: 27px;
+    }
+  }
+
+  .button {
+    max-width: 125px;
+    width: 125px;
+    height: 44px;
+    display: inline-block;
+    border-radius: 16px;
+    background-color: inherit;
+    border: 1px solid $secondary-bg-color;
+
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.17;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+
+    color: $secondary-font-color;
+
+    &:focus,
+    &:hover {
+      box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
+      color: $accent-color;
+    }
+  }
+
+  .button:not(:last-child) {
     margin-right: 15px;
   }
 }

@@ -1,9 +1,43 @@
-.button {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+// .button {
+//   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+//     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+//     sans-serif;
 
-  &:active {
-    text-decoration: underline 1px;
+//   &:active {
+//     text-decoration: underline 1px;
+//   }
+// }
+@import '../../../assets/base/sass/utils/variables';
+
+.button {
+  // max-width: 125px;
+  padding: 0 10px;
+  width: 125px;
+  height: 44px;
+  display: block;
+  border-radius: 16px;
+  background-color: inherit;
+  border: 1px solid $secondary-bg-color;
+
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.17;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: $secondary-font-color;
+
+  &:focus,
+  &:hover {
+    box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
+    background-color: $accent-color;
+    color: $primary-bg-color;
   }
+}
+
+.button:not(:last-child) {
+  margin-right: 15px;
 }
