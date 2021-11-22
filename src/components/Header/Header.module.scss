@@ -1,35 +1,41 @@
 @import '../../assets/base/sass/utils/variables';
 
-header {
-  position: relative;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 12px;
-  padding-bottom: 13px;
+.header {
   background-color: $primary-bg-color;
-  width: 100vw;
 }
 
-.logoLink {
-  display: inline-flex;
-  align-items: flex-start;
-  width: 91px;
-  height: 31px;
-  margin-left: 19px;
+.headerContainer {
+  display: flex;
+  margin: 0 auto;
+}
 
-  @media screen and (min-width: 768px) {
-    margin-left: 26px;
+@media screen and (min-width: 320px) {
+  .headerContainer {
+    max-width: 320px;
+    padding: 0 19px;
   }
 }
 
+@media screen and (min-width: 768px) {
+  .headerContainer {
+    max-width: 768px;
+    padding: 0 20px 0 26px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .headerContainer {
+    max-width: 1280px;
+    padding: 0 44px 0 26px;
+  }
+}
+
+.logoLink {
+  padding: 12px 0 13px;
+  cursor: pointer;
+}
+
 .userInfo {
-  position: fixed;
-
-  top: 17px;
-  right: 135px;
-
   display: flex;
   align-items: center;
   margin-right: 40px;

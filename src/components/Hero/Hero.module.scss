@@ -1,7 +1,8 @@
 @import '../../assets/base/sass/utils/variables';
 
 .wrapper {
-  position: relative;
+  display: flex;
+  flex-direction: column;
 
   max-width: 1280px;
   padding: 86px 88px 137px 49px;
