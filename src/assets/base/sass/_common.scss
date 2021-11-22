@@ -34,8 +34,7 @@ h4,
 h5,
 h6,
 p {
-  margin-top: 0;
-  margin-bottom: 0;
+  margin: 0;
 }
 
 a {
@@ -54,18 +53,27 @@ ul {
 
 .container {
   width: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
+  margin: 0 auto;
 
-  @media screen and (min-width: 320px) and (max-width: 480px) {
-    max-width: 480px;
+  @media screen and (min-width: 320px) {
+    & {
+      max-width: 320px;
+      padding: 0 19px;
+    }
   }
 
   @media screen and (min-width: 768px) {
-    max-width: 768px;
+    & {
+      max-width: 768px;
+      padding: 0 51px;
+    }
   }
 
   @media screen and (min-width: 1280px) {
-    max-width: 1280px;
+    & {
+      max-width: 1280px;
+      padding: 0 110px;
+      padding-bottom: 83px;
+    }
   }
 }
