@@ -35,3 +35,21 @@
 
   color: $accent-color;
 }
+
+.transHead {
+  display: flex;
+  align-items: center;
+}
+
+.goReports {
+  display: block;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.04em;
+  color: rgba(82, 85, 95, 0.7);
+  margin-left: 18px;
+  text-decoration: none;
+}
