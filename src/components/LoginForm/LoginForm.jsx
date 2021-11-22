@@ -108,8 +108,17 @@ export default function LoginForm() {
             Войти
           </button>
           <button className={s.button}>
-            Регистрация
-            <Link to={`${SIGNUP}`}></Link>
+            <Link
+              style={{
+                textDecoration: 'none',
+                color: '#52555f',
+                fontWeight: '700',
+                fontSize: '12px',
+              }}
+              to={`${SIGNUP}`}
+            >
+              Регистрация
+            </Link>
           </button>
         </div>
       </form>
