@@ -11,10 +11,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
-  @media (max-width: 379px) {
-    max-width: 310px;
-  }
 }
 
 .modal-content {
