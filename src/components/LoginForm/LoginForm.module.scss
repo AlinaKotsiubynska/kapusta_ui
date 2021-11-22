@@ -13,7 +13,6 @@ button {
   padding: 30px;
   padding-bottom: 50px;
 
-  background-color: bisque;
   @media screen and (min-width: 767px) {
     & {
       width: 436px;
@@ -92,7 +91,8 @@ button {
 
   border-radius: 16px;
   border-style: none;
-  width: 125px;
+  min-width: 125px;
+  padding: 10px;
   min-height: 44px;
   cursor: pointer;
   &:first-child {
