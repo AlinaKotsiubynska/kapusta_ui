@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { LOGIN } from 'helpers/constants/routes.constants';
 import { Context } from '../Context/index';
 import { token } from '../../utils/tokenOperations';
+import s from '../LoginForm/LoginForm.module.scss';
+import logo from '../../assets/icons/google-symbol.svg';
 
 export default function SignupForm() {
   const { setUserContext } = useContext(Context);
@@ -75,19 +77,30 @@ export default function SignupForm() {
   };
 
   return (
-    <div>
+    <div className={s.wrapper}>
       <ToastContainer autoClose={5000} />
-      <p>Вы можете авторизоваться с помощью Google Account:</p>
+      <p className={s.loginForm_text}>
+        Вы можете авторизоваться с помощью Google Account:
+      </p>
 
-      <a href="https://app-kapusta.herokuapp.com/api/auth/google">Google</a>
-      <p>
+      <div className={s.google_wrapper}>
+        <img src={logo} alt="gg" width="18px" height="18px" />
+        <a
+          className={s.google_text}
+          href="https://app-kapusta.herokuapp.com/api/auth/google"
+        >
+          Google
+        </a>
+      </div>
+      <p className={s.loginForm_text}>
         Или зайти с помощью e-mail и пароля, предварительно зарегистрировавшись:
       </p>
 
-      <form onSubmit={handleSubmit} autoComplete="off">
-        <label>
-          Имя:
+      <form className={s.form} onSubmit={handleSubmit} autoComplete="off">
+        <label className={s.label}>
+          <p> Имя:</p>
           <input
+            className={s.input}
             required
             placeholder="your name"
             type="text"
@@ -97,9 +110,10 @@ export default function SignupForm() {
           />
         </label>
 
-        <label>
-          Электронная почта:
+        <label className={s.label}>
+          <p> Электронная почта:</p>
           <input
+            className={s.input}
             required
             placeholder="your@email.com"
             type="email"
@@ -109,9 +123,11 @@ export default function SignupForm() {
           />
         </label>
 
-        <label>
-          Пароль
+        <label className={s.label}>
+          <p> Пароль</p>
           <input
+            placeholder="пароль"
+            className={s.input}
             required
             type="password"
             name="password"
@@ -120,8 +136,24 @@ export default function SignupForm() {
           />
         </label>
 
-        <Link to={`${LOGIN}`}>Войти</Link>
-        <button type="submit">Зарегистрироваться</button>
+        <div className={s.btn_wrapper}>
+          <button className={s.button}>
+            <Link
+              style={{
+                textDecoration: 'none',
+                color: '#52555f',
+                fontWeight: '700',
+                fontSize: '12px',
+              }}
+              to={`${LOGIN}`}
+            >
+              Войти
+            </Link>
+          </button>
+          <button className={s.button} type="button">
+            Зарегистрироваться
+          </button>
+        </div>
       </form>
     </div>
   );
