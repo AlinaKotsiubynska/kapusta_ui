@@ -32,8 +32,15 @@ export const AssetsWrapper = () => {
     <div className={s.body}>
       {ROUTESNAMES.map(tab => (
         <Route key={tab} path={path + '/' + tab}>
-          <NavLink to={`${path}/${REPORTS}/${EXPENSES}`}>{REPORTS}</NavLink>
-          <Balance />
+          <div className={s.transHead}>
+            <Balance />
+            <NavLink
+              to={`${path}/${REPORTS}/${EXPENSES}`}
+              className={s.goReports}
+            >
+              Перейти к отчётам{' '}
+            </NavLink>
+          </div>
           {TABS.map(tab => (
             <NavLink
               key={tab}

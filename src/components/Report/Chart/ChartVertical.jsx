@@ -34,7 +34,7 @@ export const ChartVertical = ({ activeCategory }) => {
     <div className={s.chart}>
       <Bar
         data={data}
-        width={758}
+        width={605}
         height={400}
         plugins={[ChartDataLabels]}
         options={{
