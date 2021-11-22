@@ -16,10 +16,10 @@ button {
   max-width: 300px;
   border-radius: 30px;
   margin: 0 10px;
-  padding: 40px 30px;
+  padding: 40px 18px 53px 17px;
   box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
   background-color: $auxiliary-accent-color;
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: 768px) {
     & {
       top: 320px;
       margin: 0 166px;
@@ -85,9 +85,9 @@ button {
   margin: 0 auto;
   border: none;
   background-color: $secondary-bg-color;
+  padding: 0 20px;
   &::placeholder {
     color: $auxiliary-font-color-2;
-    padding: 20px;
     font-size: 14px;
   }
 }
@@ -137,4 +137,8 @@ button {
   line-height: 1.17;
   color: $primary-font-color;
   text-decoration: none;
+}
+
+.desc {
+  margin-bottom: 10px;
 }

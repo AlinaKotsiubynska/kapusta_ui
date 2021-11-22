@@ -79,7 +79,7 @@ export default function LoginForm() {
 
       <form className={s.form} onSubmit={handleSubmit} autoComplete="off">
         <label className={s.label}>
-          <p> Электронная почта:</p>
+          <p className={s.desc}> Электронная почта:</p>
           <input
             className={s.input}
             required
@@ -92,7 +92,7 @@ export default function LoginForm() {
         </label>
 
         <label className={s.label}>
-          <p> Пароль</p>
+          <p className={s.desc}> Пароль</p>
           <input
             placeholder="пароль"
             className={s.input}
