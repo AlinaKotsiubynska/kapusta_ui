@@ -3,21 +3,23 @@ import s from '../Modal/Modal.module.scss';
 
 function Modal({ active, setActive, children, onSubmitClick, onCanselCLick }) {
   return (
-    <div
-      className={active ? 'modal active' : 'modal'}
-      onClick={() => setActive(false)}
-    >
+    <div className={s.overlay}>
       <div
-        className={active ? 'modal-content active' : 'modal-content'}
-        onClick={e => e.stopPropagation()}
+        className={active ? 'modal active' : 'modal'}
+        onClick={() => setActive(false)}
       >
-        {children}
-        <button className={s.modalBtnYes} onClick={onSubmitClick}>
-          да
-        </button>
-        <button className={s.modalBtnNo} onClick={onCanselCLick}>
-          нет
-        </button>
+        <div
+          className={active ? 'modal-content active' : 'modal-content'}
+          onClick={e => e.stopPropagation()}
+        >
+          {children}
+          <button className={s.modalBtnYes} onClick={onSubmitClick}>
+            да
+          </button>
+          <button className={s.modalBtnNo} onClick={onCanselCLick}>
+            нет
+          </button>
+        </div>
       </div>
     </div>
   );
