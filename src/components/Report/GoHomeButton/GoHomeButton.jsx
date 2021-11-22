@@ -17,7 +17,7 @@ export const GoHomeLink = () => {
           fill="#FF751D"
         />
       </svg>
-      Вернуться на главную
+      <span className={s.goHome}>Вернуться на главную</span>
     </Link>
   );
 };

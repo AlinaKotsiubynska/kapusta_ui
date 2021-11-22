@@ -7,11 +7,13 @@ button {
 .icon {
   fill: #071f41;
   position: relative;
+  padding: 5px 0;
 }
 
 .activeIcon {
   position: relative;
   fill: $accent-color;
+  padding: 5px 0;
 }
 
 .iconWrapper {
