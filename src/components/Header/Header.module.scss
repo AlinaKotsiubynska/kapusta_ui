@@ -22,3 +22,37 @@ header {
     margin-left: 26px;
   }
 }
+
+.userInfo {
+  position: absolute;
+
+  top: 17px;
+  right: 44px;
+
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+}
+
+.logoutBtn {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: inline-block;
+    border: transparent;
+    text-decoration: underline;
+  }
+}
+
+.modalText {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.11;
+  letter-spacing: 0.02em;
+
+  color: $secondary-font-color;
+}

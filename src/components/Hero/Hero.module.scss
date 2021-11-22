@@ -24,7 +24,7 @@
 }
 
 .wrapper::after {
-  position: fixed;
+  position: absolute;
 
   content: '';
   background-image: url('../../assets/images/single-cabbage-down.png');
