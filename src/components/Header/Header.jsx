@@ -1,4 +1,5 @@
 // import Modal from '../shared/Modal/Modal';
+import { Link } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { Avatar } from 'components/Avatar';
 // import Container from '';
@@ -40,7 +41,7 @@ export default function Header() {
   return (
     <header className={s.header}>
       <div className={s.headerContainer}>
-        <a href="/" aria-label="logo">
+        <Link to="/home" aria-label="logo">
           <div>
             <img
               className={s.logoLink}
@@ -50,7 +51,7 @@ export default function Header() {
               height="31"
             />
           </div>
-        </a>
+        </Link>
         {authenticated && (
           <div className={s.userInfo}>
             <Avatar name={user?.name} />

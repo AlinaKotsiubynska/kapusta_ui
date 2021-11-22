@@ -1,36 +1,5 @@
 @import '../../assets/base/sass/utils/variables';
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-
-  max-width: 320px;
-  margin: 0 auto;
-  height: 100vh;
-  background: url('../../assets/images/single-cabbage-down.png') no-repeat 272px
-      116px,
-    url('../../assets/images/single-cabbage-up.png') no-repeat 35px 735px,
-    url('../../assets/images/bg-mobile.png') no-repeat;
-
-  @media screen and (min-width: 768px) {
-    max-width: 768px;
-
-    background: url('../../assets/images/cabbage.png') no-repeat 10px 48px,
-      url('../../assets/images/double-cabbage.png') no-repeat 100px 775px,
-      url('../../assets/images/bg-tablet.png') no-repeat;
-  }
-
-  @media screen and (min-width: 1280px) {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    max-width: 1280px;
-
-    background: url('../../assets/images/cabbage.png') no-repeat 10px 70px,
-      url('../../assets/images/double-cabbage.png') no-repeat 245px 765px,
-      url('../../assets/images/bg-desktop.png') no-repeat;
-  }
-}
-
 .title {
   font-family: inherit;
   font-size: 46px;
@@ -39,9 +8,7 @@
   color: $primary-font-color;
 
   @media screen and (min-width: 768px) {
-    position: relative;
-    z-index: 5;
-
+    font-weight: 700;
     font-size: 78px;
   }
 
@@ -62,12 +29,9 @@
 
   color: $secondary-font-color;
   padding-left: 12px;
-  margin: 0;
+  // margin: 0;
 
   @media screen and (min-width: 768px) {
-    position: relative;
-    z-index: 5;
-
     font-family: inherit;
     font-weight: 700;
     font-size: 16px;
@@ -93,6 +57,7 @@
   }
 
   @media screen and (min-width: 1280px) {
+    max-width: 377px;
     padding: 308px 127px 347px 230px;
   }
 }
