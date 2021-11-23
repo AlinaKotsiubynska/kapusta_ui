@@ -7,6 +7,7 @@
 }
 
 .categories {
+  padding-top: 30px;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
@@ -51,6 +52,7 @@ ul {
 
 @media screen and (min-width: 768px) {
   .section {
+    padding-top: 30px;
     margin: -332px auto 0;
     background-color: white;
     width: 666px;

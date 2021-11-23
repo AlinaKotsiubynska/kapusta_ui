@@ -19,7 +19,7 @@ button {
   border-radius: 30px;
   padding: 40px 15px 53px 15px;
   box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
-  background-color: $auxiliary-accent-color;
+  background-color: $primary-bg-color;
   @media screen and (min-width: 768px) {
     & {
       margin: 0 166px;
